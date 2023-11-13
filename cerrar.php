@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redirigir a la página de inicio de sesión
-header("Location: login.php");
+header("Location: /MedicInven/login.php");
 exit();
 ?>

@@ -6,7 +6,7 @@ $varsesion = $_SESSION['idPersona'];
 
 if ($varsesion == null || $varsesion == '') {
   echo "no tiene autorizacion";
-  header("Location: login.php");
+  header("Location: /MedicInven/login.php");
   die();
 
 } else {
@@ -154,7 +154,7 @@ if ($varsesion == null || $varsesion == '') {
 
       <div class="align-items-center d-grid gap-2 d-md-flex justify-content-md-end">
         <ul class="nav navbar-nav">
-          <li class="nav-item"><a class="nav-link p-1 btn btn-danger " href="../../cerrar.php"
+          <li class="nav-item"><a class="nav-link p-1 btn btn-danger " href="/Medicinven/cerrar.php"
               style="color: white;margin-right: 5px;">Cerrar Sesión</a></li>
         </ul>
       </div>
