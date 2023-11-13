@@ -18,7 +18,8 @@ if ($_POST) {
   $sentencia->bindParam(":telefonoDistri", $telefonoDistri);
   $sentencia->bindParam(":celularDistri", $celularDistri);
   $sentencia->execute();
-  header("location:index.php");
+  $mensaje="Registro agregado";
+  header("Location:index.php?mensaje=".$mensaje);
 }
 
 ?>

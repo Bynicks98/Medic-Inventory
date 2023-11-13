@@ -65,11 +65,6 @@ $Subcategorias = $sentenciaSubcat ->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include("../../Plantillas/header.php"); ?>
 
-
-
-
-
-<?php include("../../Plantillas/header.php"); ?>
 <br>
 
 <div class="card">

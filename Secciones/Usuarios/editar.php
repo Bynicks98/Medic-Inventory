@@ -7,13 +7,14 @@ if (isset($_GET['txtID'])){
     $sentencia->bindParam(":idPersona", $txtID);
     $sentencia->execute();
     $registro = $sentencia->fetch(PDO::FETCH_LAZY);  //ejecuta la consulta preparada y recupera la siguiente fila de resultados de la base de datos
-    if ($registro) {
+    if ($registro) { 
         $nombreP = $registro["nombreP"];
         $apellidosP = $registro["apellidosP"];
         $telefonoP = $registro["telefonoP"];
         $numeroP = $registro["numeroP"];
         $correo = $registro["correo"];
         $cedulaP = $registro["cedulaP"];
+        $contrasena = $registro["contrasena"];
     }
 }
 if ($_POST){
@@ -25,9 +26,11 @@ if ($_POST){
     $numeroP = (isset($_POST["numeroP"]) ? $_POST["numeroP"] : "");
     $correo = (isset($_POST["correo"]) ? $_POST["correo"] : "");
     $cedulaP = (isset($_POST["cedulaP"]) ? $_POST["cedulaP"] : "");
+    $contrasena = (isset($_POST["contrasena"]) ? $_POST["contrasena"] : "");
     
 
-    $sentencia = $conexion->prepare("UPDATE persona SET nombreP=:nombreP, apellidosP=:apellidosP, telefonoP=:telefonoP, numeroP=:numeroP, correo=:correo, cedulaP=:cedulaP  WHERE idPersona=:idPersona");
+    $sentencia = $conexion->prepare("UPDATE persona SET nombreP=:nombreP, apellidosP=:apellidosP, telefonoP=:telefonoP, numeroP=:numeroP, correo=:correo, cedulaP=:cedulaP, contrasena=:contrasena WHERE idPersona=:idPersona");
+
 
     $sentencia->bindParam(":nombreP", $nombreP);
     $sentencia->bindParam(":apellidosP", $apellidosP);
@@ -36,9 +39,13 @@ if ($_POST){
     $sentencia->bindParam(":correo", $correo);
     $sentencia->bindParam(":cedulaP", $cedulaP);
     $sentencia->bindParam(":idPersona", $txtID);
+    $sentencia->bindParam(":contrasena", $contrasena);
 
     $sentencia->execute();
-    header("Location:index.php");
+    
+    $mensaje = "Registro Actualizado";
+    header("Location: index.php?mensaje=" . $mensaje);
+    exit();
 }
 ?>
 
@@ -66,6 +73,7 @@ Datos del User
             <!--bs5forminput abajo-->
           <label for="nombreP" class="form-label">Nombre</label>
           <input type="text"
+          
             class="form-control" name="nombreP" id="nombreP" aria-describedby="helpId" placeholder="Ingrese su nombre">
           
         </div>
@@ -96,6 +104,12 @@ Datos del User
           <label for="cedulaP" class="form-label">Cedula:</label>
           <input type="text"
             class="form-control" name="cedulaP" id="cedulaP" aria-describedby="helpId" placeholder="Ingrese su cedula">
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="text"
+          value="<?php echo $contrasena;?>"
+          class="form-control" name="contrasena" id="contrasena" aria-describedby="helpId" placeholder="Digite la contraseña de su rol...">
         </div>
         <!-- bs5formselectcustom sirve para hacer una seleccion del (Rol) eje:
         esto se tomara de una base de datos que tendra los roles abajo-->

@@ -14,7 +14,8 @@ if ($_POST) {
   $sentencia->bindParam(":descripcionSubcat", $DescripcionSubcat);
   $sentencia->bindParam(":idCATEGORIA", $idCATEGORIA);
   $sentencia->execute();
-  header("location:index.php");
+  $mensaje="Registro agregado";
+  header("Location:index.php?mensaje=".$mensaje);
 }
 $sentenciaCat = $conexion->prepare("SELECT idCATEGORIA, nombreCat FROM categoria");
 $sentenciaCat->execute();

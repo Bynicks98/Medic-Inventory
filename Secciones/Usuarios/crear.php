@@ -12,10 +12,11 @@ include("../../database.php");
     $correo = (isset($_POST["correo"]) ? $_POST["correo"] : "");
     $cedulaP = (isset($_POST["cedulaP"]) ? $_POST["cedulaP"] : "");
     $idRol = (isset($_POST["idRol"]) ? $_POST["idRol"] : "");
+    $contrasena = (isset($_POST["contrasena"]) ? $_POST["contrasena"] : "");
 
     // Inserción de los datos
-    $sentencia = $conexion->prepare("INSERT INTO persona (idPersona,nombreP,apellidosP,telefonoP,numeroP,correo,cedulaP,ROL_idRol)
-    VALUES (null, :nombreP, :apellidosP, :telefonoP, :numeroP, :correo, :cedulaP, :idRol) ");
+    $sentencia = $conexion->prepare("INSERT INTO persona (idPersona,nombreP,apellidosP,telefonoP,numeroP,correo,cedulaP,contrasena,ROL_idRol)
+    VALUES (null, :nombreP, :apellidosP, :telefonoP, :numeroP, :correo, :cedulaP, :contrasena, :idRol) ");
 
       // Asignar valores que tienen un solo :variable
     $sentencia->bindParam(":nombreP", $nombreP);
@@ -25,9 +26,11 @@ include("../../database.php");
     $sentencia->bindParam(":correo", $correo);
     $sentencia->bindParam(":cedulaP", $cedulaP);
     $sentencia->bindParam(":idRol", $idRol);
+    $sentencia->bindParam(":contrasena", $contrasena);
 
     $sentencia->execute();
-    header("location:index.php");
+    $mensaje="Registro agregado";
+    header("Location:index.php?mensaje=".$mensaje);
     }
       // Obtener roles desde la base de datos
       $sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
@@ -81,6 +84,11 @@ Datos del User
           <label for="cedulaP" class="form-label">Cedula:</label>
           <input type="text"
             class="form-control" name="cedulaP" id="cedulaP" aria-describedby="helpId" placeholder="Ingrese su cedula">
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contraseña:</label>
+          <input type="text"
+            class="form-control" name="contrasena" id="contrasena" aria-describedby="helpId" placeholder="Ingrese la contraseña deseada">
         </div>
         <!-- bs5formselectcustom sirve para hacer una seleccion del (Rol) eje:
         esto se tomara de una base de datos que tendra los roles abajo-->

@@ -8,7 +8,8 @@ if (isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM persona WHERE idPersona=:idPersona");
     $sentencia->bindParam(":idPersona", $txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 
 }
 //lectura de los registros de las tablas
@@ -19,6 +20,7 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 
 <?php include("../../Plantillas/header.php"); ?>
+
 
 <h1 class="text-center text-info text-dark">Usuarios</h1>
 <br>
@@ -32,7 +34,7 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="card-body">
     <div class="table-responsive-sm container-sm" >
-        <table class="table ">  <!-- bs5tabledefault  -->
+        <table class="table" id="tabla_id">  <!-- bs5tabledefault  -->
             <thead>
                 <tr>
                 <th scope="col">ID</th>
@@ -42,6 +44,7 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                     <th scope="col">Numero</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Cedula</th>
+                    <th scope="col">Contraseña</th>
                     
                     <th scope="col">Acciones</th>
                 </tr>
@@ -56,9 +59,11 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $registro['numeroP']?></td>
                     <td><?php echo $registro['correo']?></td>
                     <td><?php echo $registro['cedulaP']?></td>
+                    <td><?php echo $registro['contrasena']?></td>
                     <td>
                     <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPersona']?>" role="button">Editar</a>
-                        <a  class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idPersona']?>" role="button">Eliminar</a> 
+                        <a  class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPersona'];?>);" role="button">Eliminar</a> 
+                    </td>
                 </tr>
 
                 </tr>
@@ -70,5 +75,11 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="card-footer text-muted"></div>
 </div>
+<!-- <script> tabla anterior
+    var tabla = document.querySelector('#tabla_id1');
+    var dataTable = new DataTable(tabla_id1);
+</script> -->
+    
+
 
 <?php include("../../Plantillas/footer.php"); ?>

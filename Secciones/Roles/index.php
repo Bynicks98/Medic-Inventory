@@ -8,7 +8,8 @@ if (isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM rol WHERE idRol=:idRol");
     $sentencia->bindParam(":idRol", $txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 
 }
 
@@ -26,20 +27,20 @@ if ($sentencia->execute()) {
 ?>
 
 <?php include("../../Plantillas/header.php"); ?>
-
-<h4>Listar Roles</h4>
-<div class="card">
-    <div class="card-header">
+<br><br>
+<h2 style="text-align: center">Listar Roles</h2>
+<br><br>
+<div class="card" >
+    <div class="card-header" style="text-align: right">
         <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar User</a>
     </div>
     <div class="card-body">
-    <div class="table-responsive-sm">
-        <table class="table">
+    <div class="table-responsive-sm container-sm">
+        <table class="table" id="tabla_id">
             <thead>
                 <tr>
                     <th scope="col">idRol</th>
                     <th scope="col">nombreRol</th>
-                    <th scope="col">contraseña</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -48,10 +49,9 @@ if ($sentencia->execute()) {
                     <tr class="">
                     <td scope="row"><?php echo $registro['idRol']?></td>
                     <td><?php echo $registro['nombreRol']?></td>
-                    <td><?php echo $registro['contrasena']?></td>
-                     <td>       <!--bs5buttoninput abajo -->
+                    <td>       <!--bs5buttoninput abajo -->
                      <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idRol']?>" role="button">Editar</a>
-                        <a  class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idRol']?>" role="button">Eliminar</a> 
+                        <a  class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idRol'];?>);" role="button">Eliminar</a> 
                     </td>
                     
                 </tr>
@@ -65,14 +65,14 @@ if ($sentencia->execute()) {
             </tbody>
         </table>
     </div>
-    <div>
-        <a href="../../fpdf/Reportes.php" target="_blank" class="btn btn-success">Generar Reportes</a>
+    <div class="border-top" style="padding-top: 15px;text-align: center" >
+        <a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-success">Generar Reportes</a>
     </div>
     
     </div>
     <div class="card-footer text-muted">
-      
     </div>
 </div>
+
 
 <?php include("../../Plantillas/footer.php"); ?>

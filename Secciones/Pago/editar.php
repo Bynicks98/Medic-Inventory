@@ -30,7 +30,8 @@ if ($_POST) {
     $sentencia->bindParam(":idPAGO", $txtID);
 
     $sentencia->execute();
-    header("Location: index.php");
+    $mensaje="Registro Actualizado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 ?>
 

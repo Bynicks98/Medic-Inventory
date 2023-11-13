@@ -1,4 +1,4 @@
-<!-- <?php?> -->
+
 <?php
 include("../../database.php");
 if(isset($_GET['txtID'])){
@@ -6,7 +6,8 @@ if(isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM sucursalips WHERE idSUCURSAL=:idSUCURSAL");
     $sentencia->bindParam(":idSUCURSAL", $txtID);
     $sentencia->execute();
-    header("location:index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 
 
@@ -29,13 +30,14 @@ $lista_Sucursales=$sentencia->fetchall(PDO::FETCH_ASSOC);
     </div>
     <div class="card-body">
     <div class="table-responsive-sm container-sm" >
-        <table class="table ">  <!-- bs5tabledefault  -->
+        <table class="table " id="tabla_id">  <!-- bs5tabledefault  -->
             <thead>
                 <tr>
                 <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Nivel Sucursal</th>
                     <th scope="col">Direccion</th>
+                    <th scope="col">Acciones</th>
 
                 </tr>
             </thead> 
@@ -50,7 +52,7 @@ $lista_Sucursales=$sentencia->fetchall(PDO::FETCH_ASSOC);
 
                     <td>
                         <a  name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idSUCURSAL'] ?>" role="button">Editar</a>
-                        <a name="" id="" class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idSUCURSAL'] ?>" role="button">Eliminar</a></td>
+                        <a name="" id="" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idSUCURSAL'];?>);" role="button">Eliminar</a></td>
                 </tr>
                 <?php }?>
                 

@@ -37,7 +37,8 @@ if ($_POST) {
     $sentencia->bindParam(":idFORMULA", $txtID);
 
     $sentencia->execute();
-    header("Location: index.php");
+    $mensaje="Registro actualizado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 ?>
 

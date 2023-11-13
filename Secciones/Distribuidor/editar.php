@@ -35,7 +35,8 @@ if ($_POST) {
   $sentencia->bindParam(":celularDistri", $celularDistri);
   $sentencia->bindParam(":idDISTRIBUIDOR", $txtID);
   $sentencia->execute();
-  header("location:index.php");
+  $mensaje="Registro actualizado";
+  header("Location:index.php?mensaje=".$mensaje);
 }
 
 ?>

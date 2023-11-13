@@ -1,4 +1,4 @@
-<!-- <?php?> -->
+
 <?php
 include("../../database.php");
  if(isset($_GET['txtID'])){
@@ -6,7 +6,8 @@ include("../../database.php");
     $sentencia = $conexion->prepare("DELETE FROM distribuidor WHERE idDISTRIBUIDOR=:idDISTRIBUIDOR");
      $sentencia->bindParam(":idDISTRIBUIDOR", $txtID);
     $sentencia->execute();
-     header("location:index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
  }
 
 
@@ -29,7 +30,7 @@ $lista_SUBCATEGORIAS=$sentencia->fetchall(PDO::FETCH_ASSOC);
     </div>
     <div class="card-body">
     <div class="table-responsive-sm container-sm" >
-        <table class="table ">  <!-- bs5tabledefault  -->
+        <table class="tabla "id="tabla_id">  <!-- bs5tabledefault  -->
             <thead>
                 <tr>
                 <th scope="col">ID</th>
@@ -38,6 +39,7 @@ $lista_SUBCATEGORIAS=$sentencia->fetchall(PDO::FETCH_ASSOC);
                     <th scope="col">Direccion</th>
                     <th scope="col">Celular</th>
                     <th scope="col">Telefono</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +54,7 @@ $lista_SUBCATEGORIAS=$sentencia->fetchall(PDO::FETCH_ASSOC);
                     <td scope="row"><?php echo $registro['telefonoDistri'] ?></td>
                     <td>
                     <a  name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idDISTRIBUIDOR'] ?>" role="button">Editar</a>
-                        <a name="" id="" class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idDISTRIBUIDOR'] ?>" role="button">Eliminar</a></td>
+                        <a name="" id="" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idDISTRIBUIDOR'];?>);" role="button">Eliminar</a></td>
                  </tr>
                  <?php }?>
                 </tr>

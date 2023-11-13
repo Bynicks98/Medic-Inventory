@@ -8,7 +8,8 @@ if (isset($_GET['txtID'])){
     $sentencia = $conexion->prepare("DELETE FROM categoria WHERE idCATEGORIA=:idCATEGORIA");
     $sentencia->bindParam(":idCATEGORIA", $txtID);
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 
 }
 
@@ -37,12 +38,13 @@ if (isset($_GET['txtID'])){
     </div>
     <div class="card-body">
     <div class="table-responsive-sm container-sm" >
-        <table class="table ">  <!-- bs5tabledefault  -->
+        <table class="table " id="tabla_id">  <!-- bs5tabledefault  -->
             <thead>
                 <tr>
                 <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripcion</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +56,7 @@ if (isset($_GET['txtID'])){
                     <td scope="row"><?php echo $registro['DescripcionCate']?></td>
                     <td>
                      <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idCATEGORIA']?>" role="button">Editar</a>
-                        <a  class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idCATEGORIA']?>" role="button">Eliminar</a>
+                        <a  class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idCATEGORIA'];?>);" role="button">Eliminar</a>
                 </tr>
 
                 </tr>

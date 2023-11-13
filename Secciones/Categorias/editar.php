@@ -27,7 +27,8 @@ if ($_POST){
     $sentencia->bindParam(":idCATEGORIA", $txtID);
 
     $sentencia->execute();
-    header("Location:index.php");
+    $mensaje="Registro actualizado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 
 ?>

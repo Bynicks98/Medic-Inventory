@@ -28,7 +28,8 @@ if ($_POST) {
   $sentencia->bindParam(":direccionSucur", $DireccionSucurs);
   $sentencia->bindParam(":nivelSucursal", $NivelSucursal);
   $sentencia->execute();
-  header("Location:index.php");
+  $mensaje="Registro Actualizado";
+  header("Location:index.php?mensaje=".$mensaje);
 }
 
 ?>

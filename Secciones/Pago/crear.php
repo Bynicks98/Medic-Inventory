@@ -14,7 +14,8 @@ if ($_POST) {
     $sentencia->bindParam(":hechoPor", $hechoPor);
 
     $sentencia->execute();
-    header("Location: index.php");
+    $mensaje="Registro agregado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 ?>
 

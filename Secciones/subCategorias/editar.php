@@ -29,7 +29,8 @@ if ($_POST) {
   $sentencia->bindParam(":descripcionSubcat", $DescripcionSubcat);
   $sentencia->bindParam(":idSUBCATEGORIA", $txtID);
   $sentencia->execute();
-  header("location:index.php");
+  $mensaje="Registro Actualizado";
+  header("Location:index.php?mensaje=".$mensaje);
 }
 
 ?>

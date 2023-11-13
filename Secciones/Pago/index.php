@@ -7,7 +7,8 @@ if (isset($_GET['txtID'])) {
     $sentencia = $conexion->prepare("DELETE FROM pago WHERE idPAGO = :idPAGO");
     $sentencia->bindParam(":idPAGO", $txtID);
     $sentencia->execute();
-    header("Location: index.php");
+    $mensaje="Registro eliminado";
+    header("Location:index.php?mensaje=".$mensaje);
 }
 
 // Lectura de los registros de las tablas
@@ -27,7 +28,7 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="card-body">
         <div class="table-responsive-sm container-sm">
-            <table class="table">
+            <table class="table" id="tabla_id">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -46,7 +47,7 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <td scope="row"><?php echo $registro['hechoPor'] ?></td>
                             <td>
                             <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPAGO']?>" role="button">Editar</a>
-                            <a  class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idPAGO']?>" role="button">Eliminar</a> 
+                            <a  class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPAGO'];?>);" role="button">Eliminar</a> 
                             </td>
                         </tr>
                     <?php } ?>
