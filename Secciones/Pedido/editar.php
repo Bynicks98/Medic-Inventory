@@ -95,62 +95,161 @@ $Persona = $sentenciaPersona->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
-
+<?php include("../../Plantillas/header.php");?>
 <div class="card">
   <div class="card-header">
-    <h1>Editar Pedido</h1>
+    <h1>Nuevo Pedido</h1>
   </div>
   <div class="card-body">
     <form action="" method="post" enctype="multipart/form-data">
       <!--el enctype permite adjuntar archivos como fotos o pdfs de momento no-->
       <div class="mb-3">
-        <label for="" class="form-label">Fecha del Pedido</label>
-        <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Costo</label>
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-          placeholder="Ingresa el costo del pedido">
-      </div>
-      <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
-      <div class="mb-3">
-        <label for="" class="form-label">Nombre del Producto</label>
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-          placeholder="Ingresa el nombre del producto">
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Cantidad Unidades</label>
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-          placeholder="Ingresa la cantida del pedido">
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Fecha de entrega</label>
-        <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Fecha de envio</label>
-        <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-      </div>
-      <h6>Estado</h6>
-      <input type="text" class="form-control" id="opcion-seleccionada" readonly placeholder="Añade un estado al pedido">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Seleccionar
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#" data-value="opcion1">Completo</a></li>
-        <li><a class="dropdown-item" href="#" data-value="opcion2">En Reparto</a></li>
-        <li><a class="dropdown-item" href="#" data-value="opcion3">Incompleto</a></li>
-      </ul>
+        <label for="fechaPedido" class="form-label">Fecha del Pedido</label>
+        <input type="date" class="form-control" name="fechaPedido" id="fechaPedido" aria-describedby="helpId"
+          placeholder="">
+        <div class="mb-3">
+          <label for="costoPedido" class="form-label">Costo</label>
+          <input type="text" class="form-control" name="costoPedido" id="costoPedido" aria-describedby="helpId"
+            placeholder="Ingresa el costo del pedido">
+        </div>
+        <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
+        <div class="mb-3">
+          <label for="MEDICAMENTO_idMEDICAMENTO" class="form-label">Nombre del Producto</label>
+          <select class="form-select" name="MEDICAMENTO_idMEDICAMENTO" id="MEDICAMENTO_idMEDICAMENTO" required>
+            <option value="">Selecciona un medicamento</option>
+            <?php foreach ($nombresMedicamentos as $medicamento) { ?>
+              <option value="<?php echo $medicamento['idMEDICAMENTO']; ?>">
+                <?php echo $medicamento['nombreMedica']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="cantidadP" class="form-label">Cantidad</label>
+          <input type="text" class="form-control" name="cantidadP" id="cantidadP" aria-describedby="helpId"
+            placeholder="Ingresa la cantida del pedido">
+        </div>
+        <div class="mb-3">
+          <label for="Fecha_entrega" class="form-label">Fecha de entrega</label>
+          <input type="date" class="form-control" name="Fecha_entrega" id="Fecha_entrega" aria-describedby="helpId"
+            placeholder="">
+        </div>
+        <div class="mb-3">
+          <label for="Fecha_envio" class="form-label">Fecha de envio</label>
+          <input type="date" class="form-control" name="Fecha_envio" id="Fecha_envio" aria-describedby="helpId"
+            placeholder="">
+        </div>
+        <div class="mb-3">
+          <label for="SUCURSALIPS_idSUCURSALIPS" class="form-label">Sucursal</label>
+          <select class="form-select" name="SUCURSALIPS_idSUCURSALIPS" id="SUCURSALIPS_idSUCURSALIPS" required>
+            <option value="">Seleccion de sucursal</option>
+            <?php foreach ($idsucursal as $idSUCUR) { ?>
+              <option value="<?php echo $idSUCUR['idSUCURSAL']; ?>">
+                <?php echo $idSUCUR['nombreIps']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="DISTRIBUIDOR_idDISTRIBUIDOR" class="form-label">Distribuidor</label>
+          <select class="form-select" name="DISTRIBUIDOR_idDISTRIBUIDOR" id="DISTRIBUIDOR_idDISTRIBUIDOR" required>
+            <option value="">Selecciona un distribuidor</option>
+            <?php foreach ($distribuidores as $distribuidor) { ?>
+              <option value="<?php echo $distribuidor['idDISTRIBUIDOR']; ?>">
+                <?php echo $distribuidor['nombreDistri']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="PAGO_idPAGO" class="form-label">Referencia de pago</label>
+          <select class="form-select" name="PAGO_idPAGO" id="PAGO_idPAGO" required>
+            <option value="">Selecciona la Referencia</option>
+            <?php foreach ($pagos as $pago) { ?>
+              <option value="<?php echo $pago['idPAGO']; ?>">
+                <?php echo $pago['ReferenciaPago']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_Persona_idPersona" class="form-label">Nombre de la Persona</label>
+          <select class="form-select" name="MEDICAMENTO_Persona_idPersona" id="MEDICAMENTO_Persona_idPersona" required>
+            <option value="">Selecciona una persona</option>
+            <?php foreach ($personas as $persona) { ?>
+              <option value="<?php echo $persona['idPersona']; ?>">
+                <?php echo $persona['nombreP']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_PERSONA_ROL_idRol" class="form-label">Rol de la Persona</label>
+          <select class="form-select" name="MEDICAMENTO_PERSONA_ROL_idRol" id="MEDICAMENTO_PERSONA_ROL_idRol" required>
+            <option value="">Selecciona un rol</option>
+            <?php foreach ($roles as $rol) { ?>
+              <option value="<?php echo $rol['idRol']; ?>">
+                <?php echo $rol['nombreRol']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" class="form-label">Subcategoría del Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" required>
+            <option value="">Selecciona una subcategoría</option>
+            <?php foreach ($subcategorias as $subcategoria) { ?>
+              <option value="<?php echo $subcategoria['idSUBCATEGORIA']; ?>">
+                <?php echo $subcategoria['nombreSubcat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" class="form-label">Categoría del
+            Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" required>
+            <option value="">Selecciona una categoría</option>
+            <?php foreach ($categorias as $categoria) { ?>
+              <option value="<?php echo $categoria['idCATEGORIA']; ?>">
+                <?php echo $categoria['nombreCat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="FORMULAMEDICA_idFORMULA" class="form-label">Formula medica</label>
+          <select class="form-select" name="FORMULAMEDICA_idFORMULA" id="FORMULAMEDICA_idFORMULA" required>
+            <option value="">Selecciona la formula medica</option>
+            <?php foreach ($formulaM as $ForMed) { ?>
+              <option value="<?php echo $ForMed['idFORMULA']; ?>">
+                <?php echo $categoria['Referenciaformula']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <h6>Estado</h6>
+        <input type="text" class="form-control" id="opcion-seleccionada" readonly
+          placeholder="Añade un estado al pedido">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Seleccionar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" data-value="opcion1">Completo</a></li>
+          <li><a class="dropdown-item" href="#" data-value="opcion2">En Reparto</a></li>
+          <li><a class="dropdown-item" href="#" data-value="opcion3">Incompleto</a></li>
+        </ul>
+        <div class="card-footer text-muted">
+          <button type="submit" class="btn btn-success" name="agregarPed">Agregar Pedido</button>
+          <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
+          <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+        </div>
     </form>
   </div>
 
-  <div class="card-footer text-muted">
-    <a name="" id="" class="btn btn-success" href="index.php" role="button">Editar Pedido</a>
-    <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
-    <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
-  </div>
-</div>
 
+</div>
 <?php include("../../Plantillas/footer.php"); ?>

@@ -60,18 +60,17 @@ if ($_POST) {
   $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA = (isset($_POST["MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"]) ? $_POST["MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"] : "");
   $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA = (isset($_POST["MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"]) ? $_POST["MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"] : "");
   $FORMULAMEDICA_idFORMULA = (isset($_POST["FORMULAMEDICA_idFORMULA"]) ? $_POST["FORMULAMEDICA_idFORMULA"] : "");
-  $cantidad_devuelta = (isset($_POST["cantidad_devuelta"]) ? $_POST["cantidad_devuelta"] : "");
+  $nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
+  $estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
 
-  $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA, cantidad_devuelta)
-  VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA, :cantidad_devuelta)");
+  $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA)
+  VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA)");
 
   $sentencia->bindParam(":fechaPedido", $fechaPedido);
   $sentencia->bindParam(":costoPedido", $costoPedido);
-  $sentencia->bindParam(":Nombre_Producto", $Nombre_Producto);
   $sentencia->bindParam(":cantidadP", $cantidadP);
   $sentencia->bindParam(":Fecha_entrega", $Fecha_entrega);
   $sentencia->bindParam(":Fecha_envio", $Fecha_envio);
-  $sentencia->bindParam(":EstadoP", $EstadoP);
   $sentencia->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
   $sentencia->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
   $sentencia->bindParam(":PAGO_idPAGO", $PAGO_idPAGO);
@@ -81,7 +80,8 @@ if ($_POST) {
   $sentencia->bindParam(":MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
   $sentencia->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
   $sentencia->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
-  $sentencia->bindParam(":cantidad_devuelta", $cantidad_devuelta);
+  $sentencia->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
+  $sentencia->bindParam(":EstadoP", $estadoPedidoSeleccionado);
 
   if ($sentencia->execute()) {
     $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
@@ -148,7 +148,7 @@ if ($_POST) {
 </script>
 
 
-<?php include("../../Plantillas/header.php");?>
+<?php include("../../Plantillas/header.php"); ?>
 <div class="card">
   <div class="card-header">
     <h1>Nuevo Pedido</h1>

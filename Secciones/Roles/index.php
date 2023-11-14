@@ -71,9 +71,7 @@ if ($sentencia->execute()) {
                 </tbody>
             </table>
         </div>
-        <div class="border-top" style="padding-top: 15px;text-align: center">
-            <a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-success">Generar Reportes</a>
-        </div>
+        
 
     </div>
     <div class="card-footer text-muted">

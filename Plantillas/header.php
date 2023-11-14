@@ -1,7 +1,7 @@
 <?php
 $url_base = '/MedicInven';
 
-session_start();
+session_start(); 
 $varsesion = $_SESSION['idPersona'];
 
 if ($varsesion == null || $varsesion == '') {

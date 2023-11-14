@@ -1,43 +1,99 @@
 <?php
 include("../../database.php");
-include("procesar_devolucion.php");
+
 if ($_POST) {
+    // Recolectar datos (método post)
+    $cantidadD = (isset($_POST["cantidadD"]) ? $_POST["cantidadD"] : "");
+    $nombreProducto = (isset($_POST["nombreProducto"]) ? $_POST["nombreProducto"] : "");
+    $estadoD = (isset($_POST["estadoD"]) ? $_POST["estadoD"] : "");
+    $motivoD = (isset($_POST["motivoD"]) ? $_POST["motivoD"] : "");
+    $cantidadUD = (isset($_POST["cantidadUD"]) ? $_POST["cantidadUD"] : "");
+    $idPEDIDO = (isset($_POST["PEDIDO_idPEDIDO"]) ? $_POST["PEDIDO_idPEDIDO"] : "");
 
-  // Recolectar datos (método post)
-  // Recolectar datos (método post)
-  $cantidadD = (isset($_POST["cantidadD"]) ? $_POST["cantidadD"] : "");
-  $nombreProducto = (isset($_POST["nombreProducto"]) ? $_POST["nombreProducto"] : "");
-  $estadoD = (isset($_POST["estadoD"]) ? $_POST["estadoD"] : "");
-  $motivoD = (isset($_POST["motivoD"]) ? $_POST["motivoD"] : "");
-  $cantidadUD = (isset($_POST["cantidadUD"]) ? $_POST["cantidadUD"] : "");
-  $idPEDIDO = (isset($_POST["PEDIDO_idPEDIDO"]) ? $_POST["PEDIDO_idPEDIDO"] : "");
+    // Consultar la cantidad actual en la tabla de devoluciones
+    $consulta_devolucion = $conexion->prepare("SELECT cantidadDevueltaEnPedido FROM devoluciones WHERE PEDIDO_idPEDIDO = :idPEDIDO");
+    $consulta_devolucion->bindParam(":idPEDIDO", $idPEDIDO);
+    $consulta_devolucion->execute();
 
-  $sentencia = $conexion->prepare("INSERT INTO devoluciones (idDevoluciones, cantidadD, nombreProducto, estadoD, motivoD, PEDIDO_idPEDIDO)
-    VALUES (null, :cantidadD, :nombreProducto, :estadoD, :motivoD, :PEDIDO_idPEDIDO)");
+    // Verificar si la consulta se ejecuta correctamente
+    if ($consulta_devolucion) {
+        // Obtener el resultado de la consulta
+        $resultado_devolucion = $consulta_devolucion->fetch(PDO::FETCH_ASSOC);
 
+        // Verificar que el resultado es un array antes de acceder al índice
+        if (is_array($resultado_devolucion)) {
+            $cantidad_devuelta_actual = $resultado_devolucion['cantidadDevueltaEnPedido'];
 
+            // Calcular la nueva cantidad devuelta en la tabla de devoluciones
+            $nueva_cantidad_devolucion = $cantidad_devuelta_actual + $cantidadD;
 
+            // Actualizar la cantidad de unidades en la tabla de medicamentos
+            $consulta_medicamento = $conexion->prepare("SELECT cantidadUnidades FROM medicamento WHERE idMEDICAMENTO = :idMEDICAMENTO");
+            $consulta_medicamento->bindParam(":idMEDICAMENTO", $idPEDIDO);
+            $consulta_medicamento->execute();
 
-  // Asignar valores que tienen un solo :variable
-  $sentencia->bindParam(":cantidadD", $cantidadD);
-  $sentencia->bindParam(":nombreProducto", $nombreProducto);
-  $sentencia->bindParam(":estadoD", $estadoD);
-  $sentencia->bindParam(":motivoD", $motivoD);
-  $sentencia->bindParam(":cantidadUD", $cantidadUD);
-  $sentencia->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
-  $sentencia->execute();
-  $mensaje="Registro agregado";
-  header("Location:index.php?mensaje=".$mensaje);
+            // Verificar si la consulta se ejecuta correctamente
+            if ($consulta_medicamento) {
+                // Obtener el resultado de la consulta
+                $resultado_medicamento = $consulta_medicamento->fetch(PDO::FETCH_ASSOC);
+
+                // Verificar que el resultado es un array antes de acceder al índice
+                if (is_array($resultado_medicamento)) {
+                    $cantidad_medicamento_actual = $resultado_medicamento['cantidadUnidades'];
+
+                    // Verificar que no se devuelvan más medicamentos de los que se recibieron originalmente
+                    if ($cantidadD <= $cantidad_medicamento_actual) {
+                        // Calcular la nueva cantidad en la tabla de medicamentos (restar la cantidad devuelta)
+                        $nueva_cantidad_medicamento = $cantidad_medicamento_actual - $cantidadD;
+
+                        // Actualizar la cantidad en la tabla de medicamentos
+                        $actualizar_medicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = :nueva_cantidad_medicamento WHERE idMEDICAMENTO = :idMEDICAMENTO");
+                        $actualizar_medicamento->bindParam(":nueva_cantidad_medicamento", $nueva_cantidad_medicamento);
+                        $actualizar_medicamento->bindParam(":idMEDICAMENTO", $idPEDIDO);
+                        $actualizar_medicamento->execute();
+
+                        // Insertar la devolución en la tabla de devoluciones
+                        $insertar_devolucion = $conexion->prepare("INSERT INTO devoluciones (idDevoluciones, cantidadD, nombreProducto, estadoD, motivoD, cantidadDevueltaEnPedido, PEDIDO_idPEDIDO)
+                        VALUES (null, :cantidadD, :nombreProducto, :estadoD, :motivoD, :nueva_cantidad_devolucion, :PEDIDO_idPEDIDO)");
+
+                        // Asignar valores que tienen un solo :variable
+                        $insertar_devolucion->bindParam(":cantidadD", $cantidadD);
+                        $insertar_devolucion->bindParam(":nombreProducto", $nombreProducto);
+                        $insertar_devolucion->bindParam(":estadoD", $estadoD);
+                        $insertar_devolucion->bindParam(":motivoD", $motivoD);
+                        $insertar_devolucion->bindParam(":nueva_cantidad_devolucion", $nueva_cantidad_devolucion);
+                        $insertar_devolucion->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
+                        $insertar_devolucion->execute();
+
+                        $mensaje = "Registro agregado";
+                        header("Location: index.php?mensaje=" . $mensaje);
+                        exit();
+                    } else {
+                        // Manejo de error: La cantidad devuelta es mayor a la cantidad originalmente recibida
+                        die("Error: La cantidad devuelta es mayor a la cantidad originalmente recibida.");
+                    }
+                } else {
+                    // Manejo de error: El resultado de la consulta de medicamento no es un array
+                    die("Error: No se pudo obtener la cantidad de medicamento.");
+                }
+            } else {
+                // Manejo de error: Problema al ejecutar la consulta de medicamento
+                die("Error: Problema al consultar la cantidad de medicamento.");
+            }
+        } else {
+            // Manejo de error: El resultado de la consulta de devolución no es un array
+            die("Error: No se pudo obtener la cantidad devuelta.");
+        }
+    } else {
+        // Manejo de error: Problema al ejecutar la consulta de devolución
+        die("Error: Problema al consultar la cantidad devuelta.");
+    }
 }
+
 $sentenciaidPEDIDO = $conexion->prepare("SELECT idPEDIDO, Nombre_Producto FROM pedido");
 $sentenciaidPEDIDO->execute();
 $IdPEDIDO = $sentenciaidPEDIDO->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-
 ?>
-
 
 
 

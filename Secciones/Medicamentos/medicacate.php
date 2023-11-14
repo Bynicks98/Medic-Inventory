@@ -127,6 +127,7 @@ $lista_subcategorias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 </tbody>
             </table>
         </div>
+        
     </div>
     <div class="card-footer text-muted"></div>
 </div>

@@ -50,10 +50,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Medicamento</a>
-        <a class="btn btn-success" href="generacionpdf.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
-            role="button">Generar PDF</a>
+        <a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-success">Generar PDF</a>
     </div>
-
+    <div class="border-top" style="padding-top: 15px;text-align: center">
+        
+    </div>
     <div class="card-body">
         <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table" id="tabla_id">
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <th scope="col">Valor unidad Medicamento</th>
                         <th scope="col">Numero de Lote </th>
                         <th scope="col">Acciones</th>
-
+                        <th scope="col">Alerta de Vencimiento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -213,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- <h4 class="card-title">Title</h4> Otro estilo de la tabla
         <p class="card-text">Text</p> -->
     </div>
+    
     <!-- <div class="card-footer text-muted">Arriba
         Footer -->
 </div>
