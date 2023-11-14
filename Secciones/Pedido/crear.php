@@ -1,12 +1,45 @@
 <?php
 include("../../database.php");
 
-include("../../Plantillas/header.php");
+
 
 // Obtener nombres de medicamentos para el formulario
 $sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
 $sentenciaNombresMedicamentos->execute();
 $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaidsucursal = $conexion->prepare("SELECT idSUCURSAL, nombreIps  FROM sucursalips");
+$sentenciaidsucursal->execute();
+$idsucursal = $sentenciaidsucursal->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaDistribuidores = $conexion->prepare("SELECT idDISTRIBUIDOR, nombreDistri FROM distribuidor");
+$sentenciaDistribuidores->execute();
+$distribuidores = $sentenciaDistribuidores->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaPagos = $conexion->prepare("SELECT idPAGO, ReferenciaPago FROM pago");
+$sentenciaPagos->execute();
+$pagos = $sentenciaPagos->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaPersonas = $conexion->prepare("SELECT idPersona, nombreP FROM persona");
+$sentenciaPersonas->execute();
+$personas = $sentenciaPersonas->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
+$sentenciaRoles->execute();
+$roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaCategorias = $conexion->prepare("SELECT idCATEGORIA, nombreCat FROM categoria");
+$sentenciaCategorias->execute();
+$categorias = $sentenciaCategorias->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSubcategorias = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria");
+$sentenciaSubcategorias->execute();
+$subcategorias = $sentenciaSubcategorias->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaformula = $conexion->prepare("SELECT idFORMULA, Referenciaformula FROM formulamedica");
+$sentenciaformula->execute();
+$formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 if ($_POST) {
@@ -71,6 +104,51 @@ if ($_POST) {
 }
 ?>
 
+<script>
+  document.getElementById('MEDICAMENTO_idMEDICAMENTO').addEventListener('change', function () {
+    var selectedProductId = this.value;
+
+    // Enviar solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+
+          // Actualizar el select de categorías
+          var categorySelect = document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA');
+          categorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
+          response.categories.forEach(function (category) {
+            var option = document.createElement('option');
+            option.value = category.idCATEGORIA;
+            option.textContent = category.nombreCat;
+            categorySelect.appendChild(option);
+          });
+
+          // Actualizar el select de subcategorías
+          var subcategorySelect = document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA');
+          subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
+          response.subcategories.forEach(function (subcategory) {
+            var option = document.createElement('option');
+            option.value = subcategory.idSUBCATEGORIA;
+            option.textContent = subcategory.nombreSubcat;
+            subcategorySelect.appendChild(option);
+          });
+        } else {
+          console.error('Hubo un error al obtener las categorías y subcategorías.');
+        }
+      }
+    };
+
+    // Enviar la solicitud POST al servidor con el ID del producto seleccionado
+    xhr.open('POST', 'obtener_categorias_subcategorias.php');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('productoId=' + selectedProductId);
+  });
+</script>
+
+
+<?php include("../../Plantillas/header.php");?>
 <div class="card">
   <div class="card-header">
     <h1>Nuevo Pedido</h1>
@@ -114,6 +192,97 @@ if ($_POST) {
           <input type="date" class="form-control" name="Fecha_envio" id="Fecha_envio" aria-describedby="helpId"
             placeholder="">
         </div>
+        <div class="mb-3">
+          <label for="SUCURSALIPS_idSUCURSALIPS" class="form-label">Sucursal</label>
+          <select class="form-select" name="SUCURSALIPS_idSUCURSALIPS" id="SUCURSALIPS_idSUCURSALIPS" required>
+            <option value="">Seleccion de sucursal</option>
+            <?php foreach ($idsucursal as $idSUCUR) { ?>
+              <option value="<?php echo $idSUCUR['idSUCURSAL']; ?>">
+                <?php echo $idSUCUR['nombreIps']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="DISTRIBUIDOR_idDISTRIBUIDOR" class="form-label">Distribuidor</label>
+          <select class="form-select" name="DISTRIBUIDOR_idDISTRIBUIDOR" id="DISTRIBUIDOR_idDISTRIBUIDOR" required>
+            <option value="">Selecciona un distribuidor</option>
+            <?php foreach ($distribuidores as $distribuidor) { ?>
+              <option value="<?php echo $distribuidor['idDISTRIBUIDOR']; ?>">
+                <?php echo $distribuidor['nombreDistri']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="PAGO_idPAGO" class="form-label">Referencia de pago</label>
+          <select class="form-select" name="PAGO_idPAGO" id="PAGO_idPAGO" required>
+            <option value="">Selecciona la Referencia</option>
+            <?php foreach ($pagos as $pago) { ?>
+              <option value="<?php echo $pago['idPAGO']; ?>">
+                <?php echo $pago['ReferenciaPago']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_Persona_idPersona" class="form-label">Nombre de la Persona</label>
+          <select class="form-select" name="MEDICAMENTO_Persona_idPersona" id="MEDICAMENTO_Persona_idPersona" required>
+            <option value="">Selecciona una persona</option>
+            <?php foreach ($personas as $persona) { ?>
+              <option value="<?php echo $persona['idPersona']; ?>">
+                <?php echo $persona['nombreP']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_PERSONA_ROL_idRol" class="form-label">Rol de la Persona</label>
+          <select class="form-select" name="MEDICAMENTO_PERSONA_ROL_idRol" id="MEDICAMENTO_PERSONA_ROL_idRol" required>
+            <option value="">Selecciona un rol</option>
+            <?php foreach ($roles as $rol) { ?>
+              <option value="<?php echo $rol['idRol']; ?>">
+                <?php echo $rol['nombreRol']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" class="form-label">Subcategoría del Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" required>
+            <option value="">Selecciona una subcategoría</option>
+            <?php foreach ($subcategorias as $subcategoria) { ?>
+              <option value="<?php echo $subcategoria['idSUBCATEGORIA']; ?>">
+                <?php echo $subcategoria['nombreSubcat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" class="form-label">Categoría del
+            Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" required>
+            <option value="">Selecciona una categoría</option>
+            <?php foreach ($categorias as $categoria) { ?>
+              <option value="<?php echo $categoria['idCATEGORIA']; ?>">
+                <?php echo $categoria['nombreCat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="FORMULAMEDICA_idFORMULA" class="form-label">Formula medica</label>
+          <select class="form-select" name="FORMULAMEDICA_idFORMULA" id="FORMULAMEDICA_idFORMULA" required>
+            <option value="">Selecciona la formula medica</option>
+            <?php foreach ($formulaM as $ForMed) { ?>
+              <option value="<?php echo $ForMed['idFORMULA']; ?>">
+                <?php echo $categoria['Referenciaformula']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
         <h6>Estado</h6>
         <input type="text" class="form-control" id="opcion-seleccionada" readonly
           placeholder="Añade un estado al pedido">
@@ -126,14 +295,15 @@ if ($_POST) {
           <li><a class="dropdown-item" href="#" data-value="opcion2">En Reparto</a></li>
           <li><a class="dropdown-item" href="#" data-value="opcion3">Incompleto</a></li>
         </ul>
+        <div class="card-footer text-muted">
+          <button type="submit" class="btn btn-success" name="agregarPed">Agregar Pedido</button>
+          <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
+          <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+        </div>
     </form>
   </div>
 
-  <div class="card-footer text-muted">
-    <button type="submit" class="btn btn-success" name="agregarPed">Agregar Medicamento</button>
-    <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
-    <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
-  </div>
+
 </div>
 
 <?php include("../../Plantillas/footer.php"); ?>
