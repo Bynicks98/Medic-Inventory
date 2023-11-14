@@ -1,4 +1,14 @@
-<?php include("../../Plantillas/header.php");
+<?php
+include("../../database.php");
+
+include("../../Plantillas/header.php");
+
+// Obtener nombres de medicamentos para el formulario
+$sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
+$sentenciaNombresMedicamentos->execute();
+$nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);
+
+
 if ($_POST) {
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
   $fechaPedido = (isset($_POST["fechaPedido"]) ? $_POST["fechaPedido"] : "");
@@ -20,7 +30,7 @@ if ($_POST) {
   $cantidad_devuelta = (isset($_POST["cantidad_devuelta"]) ? $_POST["cantidad_devuelta"] : "");
 
   $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA, cantidad_devuelta)
-VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA, :cantidad_devuelta)");
+  VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA, :cantidad_devuelta)");
 
   $sentencia->bindParam(":fechaPedido", $fechaPedido);
   $sentencia->bindParam(":costoPedido", $costoPedido);
@@ -40,30 +50,24 @@ VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_e
   $sentencia->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
   $sentencia->bindParam(":cantidad_devuelta", $cantidad_devuelta);
 
-  $sentencia->execute();
-  header("location:index.php");
-}
+  if ($sentencia->execute()) {
+    $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
+    $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
+    $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+    if ($sentenciaUpdateMedicamento->execute()) {
+      // Cantidad de unidades actualizada correctamente
 
-$sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
-$sentenciaRoles->execute();
-$roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaPersona = $conexion->prepare("SELECT idPersona, nombreP FROM persona");
-$sentenciaPersona->execute();
-$Persona = $sentenciaPersona->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaCat = $conexion->prepare("SELECT idCATEGORIA, nombreCat  FROM categoria");
-$sentenciaCat->execute();
-$Categorias = $sentenciaCat->fetchAll(PDO::FETCH_ASSOC);
-
-
-$sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria ");
-$sentenciaSubcat->execute();
-$Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
-
-
-if (isset($_POST[""]) && $_POST[""]) {
-  $sentencia2 = $conexion->prepare("UPDATE medicamento set cantidadCajas = :cantidadCajas where idMEDICAMENTO = ");
+      // Redireccionar o mostrar mensaje de éxito
+      header("Location: index.php");
+      exit();
+    } else {
+      // Mensaje de error al actualizar la cantidad de unidades
+      echo "Error al actualizar la cantidad de unidades del medicamento.";
+    }
+  } else {
+    // Mensaje de error al insertar el pedido
+    echo "Error al insertar el pedido.";
+  }
 }
 ?>
 
@@ -79,28 +83,36 @@ if (isset($_POST[""]) && $_POST[""]) {
         <input type="date" class="form-control" name="fechaPedido" id="fechaPedido" aria-describedby="helpId"
           placeholder="">
         <div class="mb-3">
-          <label for="" class="form-label">Costo</label>
-          <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+          <label for="costoPedido" class="form-label">Costo</label>
+          <input type="text" class="form-control" name="costoPedido" id="costoPedido" aria-describedby="helpId"
             placeholder="Ingresa el costo del pedido">
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
         <div class="mb-3">
-          <label for="" class="form-label">Nombre del Producto</label>
-          <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
-            placeholder="Ingresa el nombre del producto">
+          <label for="MEDICAMENTO_idMEDICAMENTO" class="form-label">Nombre del Producto</label>
+          <select class="form-select" name="MEDICAMENTO_idMEDICAMENTO" id="MEDICAMENTO_idMEDICAMENTO" required>
+            <option value="">Selecciona un medicamento</option>
+            <?php foreach ($nombresMedicamentos as $medicamento) { ?>
+              <option value="<?php echo $medicamento['idMEDICAMENTO']; ?>">
+                <?php echo $medicamento['nombreMedica']; ?>
+              </option>
+            <?php } ?>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">Cantidad</label>
-          <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+          <label for="cantidadP" class="form-label">Cantidad</label>
+          <input type="text" class="form-control" name="cantidadP" id="cantidadP" aria-describedby="helpId"
             placeholder="Ingresa la cantida del pedido">
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">Fecha de entrega</label>
-          <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+          <label for="Fecha_entrega" class="form-label">Fecha de entrega</label>
+          <input type="date" class="form-control" name="Fecha_entrega" id="Fecha_entrega" aria-describedby="helpId"
+            placeholder="">
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">Fecha de envio</label>
-          <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+          <label for="Fecha_envio" class="form-label">Fecha de envio</label>
+          <input type="date" class="form-control" name="Fecha_envio" id="Fecha_envio" aria-describedby="helpId"
+            placeholder="">
         </div>
         <h6>Estado</h6>
         <input type="text" class="form-control" id="opcion-seleccionada" readonly
@@ -118,7 +130,7 @@ if (isset($_POST[""]) && $_POST[""]) {
   </div>
 
   <div class="card-footer text-muted">
-    <a name="" id="" class="btn btn-success" href="index.php" role="button">Agregar Pedido</a>
+    <button type="submit" class="btn btn-success" name="agregarPed">Agregar Medicamento</button>
     <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
     <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
   </div>
