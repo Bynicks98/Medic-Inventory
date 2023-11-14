@@ -50,9 +50,9 @@ $Categorias = $sentenciaCat->fetchAll(PDO::FETCH_ASSOC);
 
 
 $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria ");
-
 $sentenciaSubcat->execute();
 $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
+
 //   // Obtener roles desde la base de datos
 //   $sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
 //   $sentenciaRoles->execute();
@@ -60,12 +60,6 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
-
-
-
-
-
-
 
 
 

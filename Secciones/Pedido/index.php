@@ -23,7 +23,6 @@
                         <th scope="col">Fecha de envio</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
-                        
                     </tr>
                 </thead>
                 <tbody>
@@ -36,13 +35,11 @@
                         <td scope="row">3/11/2023</td>
                         <td scope="row">2/11/2023</td>
                         <td scope="row">En Reparto</td>
-                        
                         <td>
                             <a name="" id="" class="btn btn-info" href="editar.php" role="button">Editar</a>
                             <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
                         </td>
                     </tr>
-
                     </tr>
                 </tbody>
             </table>
