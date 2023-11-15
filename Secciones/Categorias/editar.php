@@ -45,12 +45,12 @@ if ($_POST){
 
         <div class="mb-3">
             <label for="nombreCat" class="form-label">Nombre Categoria</label>
-            <input type="text" class="form-control" name="nombreCat" value="<?php echo $nombreCat; ?>" aria-describedby="helpId" placeholder="Nuevo nombre de la Categoria">
+            <input type="text" value="<?php echo $nombreCat; ?>" class="form-control" name="nombreCat" value="<?php echo $nombreCat; ?>" aria-describedby="helpId" placeholder="Nuevo nombre de la Categoria">
         </div>
 
         <div class="mb-3">
             <label for="DescripcionCate" class="form-label">Descripcion</label>
-            <input type="text" class="form-control" name="DescripcionCate" value="<?php echo $DescripcionCate; ?>" aria-describedby="helpId" placeholder="Nueva descripcion de la Categoria">
+            <input type="text" value="<?php echo $DescripcionCate; ?>" class="form-control" name="DescripcionCate" value="<?php echo $DescripcionCate; ?>" aria-describedby="helpId" placeholder="Nueva descripcion de la Categoria">
         </div>
 
         <button type="submit" class="btn btn-success">Editar Categoria</button>

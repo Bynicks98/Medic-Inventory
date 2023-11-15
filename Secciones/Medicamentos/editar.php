@@ -82,50 +82,50 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div class="mb-3">
         <label for="nombreMedica" class="form-label">Nombre </label>
-        <input type="text" class="form-control" name="nombreMedica" id="nombreMedica" aria-describedby="helpId"
+        <input type="text" value="<?php echo $nombreMedica; ?>" class="form-control" name="nombreMedica" id="nombreMedica" aria-describedby="helpId"
           placeholder="Añade un nombre a tu medicamento">
 
       </div>
       <div class="mb-3">
         <label for="descripcionMedica" class="form-label">Descripcion del medicamento</label>
-        <input type="text" class="form-control" name="descripcionMedica" id="descripcionMedica"
+        <input type="text" value="<?php echo $descripcionMedica; ?>" class="form-control" name="descripcionMedica" id="descripcionMedica"
           aria-describedby="helpId" placeholder="Agrega el tipo de tu medicamento">
 
       </div>
       <div class="mb-3">
         <label for="fechaFabricacionMedica" class="form-label">Fecha de Fabricacion</label>
-        <input type="date" class="form-control" name="fechaFabricacionMedica" id="fechaFabricacionMedica"
+        <input type="date" value="<?php echo $fechaFabricacionMedica; ?>" class="form-control" name="fechaFabricacionMedica" id="fechaFabricacionMedica"
           aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
 
       </div>
       <div class="mb-3">
         <label for="fechaVencimientoMedica" class="form-label">Fecha de Vencimiento</label>
-        <input type="date" class="form-control" name="fechaVencimientoMedica" id="fechaVencimientoMedica"
+        <input type="date" value="<?php echo $fechaVencimientoMedica; ?>" class="form-control" name="fechaVencimientoMedica" id="fechaVencimientoMedica"
           aria-describedby="helpId" placeholder="elija la fecha de fabricacion.">
 
       </div>
   </div>
   <div class="mb-3">
     <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
-    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" placNumero
+    <input type="text" value="<?php echo $cantidadCajas; ?>" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" placholder="
       de cajasbricacion">
 
   </div>
   <div class="mb-3">
     <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
-    <input type="text" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
+    <input type="text" value="<?php echo $cantidadUnidades; ?>" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
       aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
 
   </div>
   <div class="mb-3">
     <label for="valorUnitMedica" class="form-label">valorUnitMedica</label>
-    <input type="text" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
+    <input type="text" value="<?php echo $valorUnitMedica; ?>" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
       aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
 
   </div>
   <div class="mb-3">
     <label for="noLoteMedica" class="form-label">noLoteMedica</label>
-    <input type="text" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
+    <input type="text" value="<?php echo $noLoteMedica; ?>" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
       placeholder="elija la fecha de fabricacion">
 
   </div>

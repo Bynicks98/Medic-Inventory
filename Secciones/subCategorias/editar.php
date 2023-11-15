@@ -48,14 +48,14 @@ if ($_POST) {
 
     </div>
     <div class="mb-3">
-      <label for="" class="form-label">Nombre SubCategoria</label>
-      <input type="text" class="form-control" name="nombreSubcat" id="" aria-describedby="helpId"
+      <label for="nombreSubcat" class="form-label">Nombre SubCategoria</label>
+      <input type="text" value="<?php echo isset($NombreSubcat) ? $NombreSubcat : ''; ?>" class="form-control" name="nombreSubcat" id="" aria-describedby="helpId"
         placeholder="Nuevo nombre de la SubCategoria">
 
     </div>
     <div class="mb-3">
       <label for="" class="form-label">Descripcion</label>
-      <input type="text" class="form-control" name="descripcionSubcat" id="" aria-describedby="helpId"
+      <input type="text" value="<?php echo $DescripcionSubcat; ?>" class="form-control" name="descripcionSubcat" id="" aria-describedby="helpId"
         placeholder="Nueva descripcion de la SubCategoria">
 
     </div>

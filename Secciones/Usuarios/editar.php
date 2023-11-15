@@ -71,36 +71,36 @@ Datos del User
       <div class="mb-3">
         <!--bs5forminput abajo-->
         <label for="nombreP" class="form-label">Nombre</label>
-        <input type="text" class="form-control" name="nombreP" id="nombreP" aria-describedby="helpId"
+        <input type="text" value="<?php echo $nombreP; ?>" class="form-control" name="nombreP" id="nombreP" aria-describedby="helpId"
           placeholder="Ingrese su nombre">
 
       </div>
       <div class="mb-3">
         <label for="apellidosP" class="form-label">Apellido</label>
-        <input type="text" class="form-control" name="apellidosP" id="apellidosP" aria-describedby="helpId"
+        <input type="text" value="<?php echo $apellidosP; ?>" class="form-control" name="apellidosP" id="apellidosP" aria-describedby="helpId"
           placeholder="Ingrese su apellido...">
 
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Telefono</label>
-        <input type="number" class="form-control" name="telefonoP" id="telefonoP" aria-describedby="helpId"
+        <input type="number" value="<?php echo $telefonoP; ?>" class="form-control" name="telefonoP" id="telefonoP" aria-describedby="helpId"
           placeholder="Ingrese su telefono">
 
       </div>
       <div class="mb-3">
         <label for="numeroP" class="form-label">Numero</label>
-        <input type="number" class="form-control" name="numeroP" id="numeroP" aria-describedby="helpId"
+        <input type="number" value="<?php echo $numeroP; ?>" class="form-control" name="numeroP" id="numeroP" aria-describedby="helpId"
           placeholder="Ingrese su telefono">
 
       </div>
       <div class="mb-3">
         <label for="correo" class="form-label">Correo:</label>
-        <input type="email" class="form-control" name="correo" id="correo" aria-describedby="helpId"
+        <input type="email" value="<?php echo $correo; ?>" class="form-control" name="correo" id="correo" aria-describedby="helpId"
           placeholder="Ingrese su correo">
       </div>
       <div class="mb-3">
         <label for="cedulaP" class="form-label">Cedula:</label>
-        <input type="text" class="form-control" name="cedulaP" id="cedulaP" aria-describedby="helpId"
+        <input type="text" value="<?php echo $cedulaP; ?>" class="form-control" name="cedulaP" id="cedulaP" aria-describedby="helpId"
           placeholder="Ingrese su cedula">
       </div>
       <div class="mb-3">

@@ -32,6 +32,7 @@ $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Referencia</th>
                         <th scope="col">Fecha de la Formula</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Observaciones</th>
@@ -43,6 +44,7 @@ $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($lista_formulamedica as $registro) { ?>
                         <tr>
                             <td scope="row"><?php echo $registro['idFORMULA']?></td>
+                            <td scope="row"><?php echo $registro['Referenciaformula']?></td>
                             <td scope="row"><?php echo $registro['fechaFormula']?></td>
                             <td scope="row"><?php echo $registro['estadoFormula']?></td>
                             <td scope="row"><?php echo $registro['observacionesFormula']?></td>

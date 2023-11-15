@@ -96,13 +96,13 @@ $IdPEDIDO = $sentenciaidPEDIDO->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div class="mb-3">
         <label for="nombreProducto" class="form-label">Nombre Producto</label>
-        <input type="text" class="form-control" name="nombreProducto" id="nombreProducto" aria-describedby="helpId"
+        <input type="text" value="<?php echo $nombreProducto; ?>" class="form-control" name="nombreProducto" id="nombreProducto" aria-describedby="helpId"
           placeholder="Nombre del Producto">
 
       </div>
       <div class="mb-3">
         <label for="motivoD" class="form-label">Motivo de la Devolucion</label>
-        <input type="text" class="form-control" name="motivoD" id="motivoD" aria-describedby="helpId"
+        <input type="text" value="<?php echo $motivoD; ?>" class="form-control" name="motivoD" id="motivoD" aria-describedby="helpId"
           placeholder="Agrega el motivo de la devolucion ">
 
       </div>
@@ -116,13 +116,13 @@ $IdPEDIDO = $sentenciaidPEDIDO->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div class="mb-3">
         <label for="cantidadD" class="form-label">Cantidad de cajas</label>
-        <input type="text" class="form-control" name="cantidadD" id="cantidadD" aria-describedby="helpId"
+        <input type="text" value="<?php echo $cantidadD; ?>" class="form-control" name="cantidadD" id="cantidadD" aria-describedby="helpId"
           placeholder="Cantidad de cajas del pedido">
 
         </div>
       <div class="mb-3">
         <label for="cantidadUD" class="form-label">Cantidad de unidades</label>
-        <input type="text" class="form-control" name="cantidadUD" id="cantidadUD" aria-describedby="helpId"
+        <input type="text" value="<?php echo $cantidadUD; ?>" class="form-control" name="cantidadUD" id="cantidadUD" aria-describedby="helpId"
           placeholder="Agrega la cantidad de unidades ">
 
       </div>

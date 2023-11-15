@@ -70,7 +70,7 @@ Datos del User
 
       </div>
       <div class="mb-3">
-        <label for="numeroP" class="form-label">Numero</label>
+        <label for="numeroP" class="form-label">Numero de Celular</label>
         <input type="number" class="form-control" name="numeroP" id="numeroP" aria-describedby="helpId"
           placeholder="Ingrese su telefono">
 

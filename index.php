@@ -1,6 +1,24 @@
 <?php include("Plantillas/header.php"); 
 
+// Verifica si la sesión está iniciada y el rol está definido
+if (isset($_SESSION['rol'])) 
+  $rol = $_SESSION['rol'];
 
+  // Dependiendo del rol, muestra contenido diferente
+  switch ($rol) {
+      case 1: // Administrador
+          echo "<h1 class='display-5 fw-bold'>Bienvenido a MedicInventory, Administrador</h1>";
+          break;
+      case 2: // Asistente de bodega
+          echo "<h1 class='display-5 fw-bold'>Bienvenido a MedicInventory, Asistente de Bodega</h1>";
+          break;
+      case 3: // Lector
+          echo "<h1 class='display-5 fw-bold'>Bienvenido a MedicInventory, Lector</h1>";
+          break;
+      default:
+          echo "<h1 class='display-5 fw-bold'>Bienvenido a MedicInventory</h1>";
+  }
+  
 ?><!--include para que el menu se muestre en todos los apartados -->
 
 <br>

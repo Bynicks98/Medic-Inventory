@@ -1,22 +1,37 @@
 <?php
 include("../../database.php");
-//Code para eliminar datos de la bd DELETE
+
+// Code para eliminar datos de la bd DELETE
 if (isset($_GET['txtID'])) {
-
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-
     $sentencia = $conexion->prepare("DELETE FROM rol WHERE idRol=:idRol");
     $sentencia->bindParam(":idRol", $txtID);
     $sentencia->execute();
     $mensaje = "Registro eliminado";
     header("Location:index.php?mensaje=" . $mensaje);
+}
+// Code para agregar roles si no existen
+$rolesIniciales = [
+    ['idRol' => 1, 'nombreRol' => 'Administrador'],
+    ['idRol' => 2, 'nombreRol' => 'Asistente'],
+    ['idRol' => 3, 'nombreRol' => 'Lector'],
+];
 
+foreach ($rolesIniciales as $rol) {
+    $sql = "INSERT INTO rol (idRol, nombreRol) VALUES (:idRol, :nombreRol)
+            ON DUPLICATE KEY UPDATE idRol = idRol";  // Ignorar duplicados
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':idRol', $rol['idRol']);
+    $stmt->bindParam(':nombreRol', $rol['nombreRol']);
+
+    if ($stmt->execute()) {
+        echo "Rol " . $rol['nombreRol'] . " agregado correctamente<br>";
+    } else {
+        echo "Error al agregar el rol " . $rol['nombreRol'] . ": " . implode(" ", $stmt->errorInfo()) . "<br>";
+    }
 }
 
-
-
-
-//code para que el contenido en la base de datos de la tabla rol se muestre en la pagina 
+// Code para que el contenido en la base de datos de la tabla rol se muestre en la pagina 
 $sentencia = $conexion->prepare("SELECT * FROM `rol`");
 if ($sentencia->execute()) {
     $lista_rol = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +39,10 @@ if ($sentencia->execute()) {
     // Manejo de errores
     echo "Error en la consulta SQL: " . $sentencia->errorInfo();
 }
+
+
 ?>
+
 
 <?php include("../../Plantillas/header.php"); ?>
 <br><br>

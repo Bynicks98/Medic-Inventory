@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
     if ($usuario) {
         // Verifica la contraseña sin usar password_verify
         if ($contrasena === $usuario['contrasena']) {

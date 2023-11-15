@@ -56,29 +56,29 @@ if ($_POST) {
         </div>    
     <div class="mb-3">
           <label for="" class="form-label">Nombre Distribuidor</label>
-          <input type="text"
+          <input type="text" value="<?php echo isset($NombreDistri) ? $NombreDistri : ''; ?>"
             class="form-control" name="nombreDistri" id="" aria-describedby="helpId" placeholder="Dale un nombre al Distribuidor">
 
         </div>
         <div class="mb-3">
           <label for="" class="form-label">NIT</label>
-          <input type="text"
+          <input type="text" value="<?php echo $NIT_distribuidor; ?>"
             class="form-control" name="NIT_distribuidor" id="" aria-describedby="helpId" placeholder="Ingresa el NIT del Distribuidor">
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
         <div class="mb-3">
           <label for="" class="form-label">Direccion</label>
-          <input type="text"
+          <input type="text" value="<?php echo $direccionDistri; ?>"
             class="form-control" name="direccionDistri" id="" aria-describedby="helpId" placeholder="Ingresa la direccion del Distribuidor">
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Celular</label>
-          <input type="text"
+          <input type="text" value="<?php echo $celularDistri; ?>"
             class="form-control" name="celularDistri" id="" aria-describedby="helpId" placeholder="Ingresa el celular del distribuidor">
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Telefono</label>
-          <input type="text"
+          <input type="text" value="<?php echo $telefonoDistri; ?>"
             class="form-control" name="telefonoDistri" id="" aria-describedby="helpId" placeholder="Ingresa el telefono del distribuidor">
         </div>
         <button type="submit" class="btn btn-success" >Agregar distribuidor</button>

@@ -306,7 +306,6 @@ if ($_POST) {
             <?php } ?>
           </select>
         </div>
-
         <div class="mb-3">
           <label for="FORMULAMEDICA_idFORMULA" class="form-label">Formula medica</label>
           <select class="form-select" name="FORMULAMEDICA_idFORMULA" id="FORMULAMEDICA_idFORMULA" required>

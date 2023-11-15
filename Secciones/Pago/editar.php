@@ -58,12 +58,12 @@ if ($_POST) {
 
             <div class="mb-3">
                 <label for="fechaPago" class="form-label">Fecha</label>
-                <input type="date" class="form-control" name="fechaPago" value="<?php echo $fechaPago; ?>" id="fechaPago" aria-describedby="helpId" placeholder="">
+                <input type="date" value="<?php echo $fechaPago; ?>" class="form-control" name="fechaPago" value="<?php echo $fechaPago; ?>" id="fechaPago" aria-describedby="helpId" placeholder="">
             </div>
 
             <div class="mb-3">
                 <label for="hechoPor" class="form-label">Persona que paga</label>
-                <input type="text" class="form-control" name="hechoPor" value="<?php echo $hechoPor; ?>" id="hechoPor" aria-describedby="helpId" placeholder="Ingresa el nombre de la persona que realiza el pago">
+                <input type="text" value="<?php echo $hechoPor; ?>" class="form-control" name="hechoPor" value="<?php echo $hechoPor; ?>" id="hechoPor" aria-describedby="helpId" placeholder="Ingresa el nombre de la persona que realiza el pago">
             </div>
 
             <button type="submit" class="btn btn-success">Editar Pago</button>

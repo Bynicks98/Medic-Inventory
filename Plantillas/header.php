@@ -1,7 +1,7 @@
 <?php
 $url_base = '/MedicInven';
 
-session_start(); 
+session_start();
 $varsesion = $_SESSION['idPersona'];
 
 if ($varsesion == null || $varsesion == '') {
@@ -113,11 +113,7 @@ if ($varsesion == null || $varsesion == '') {
             <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Pedidos</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Pedido/index.php">Envios</a></li>
-              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Pedido/index2.php">Ingresos de producto</a></li>
-            </ul>
+            <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
@@ -126,10 +122,14 @@ if ($varsesion == null || $varsesion == '') {
             <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Devoluciones/">Devoluciones</a>
           </li>
           <li class="nav-item dropdown">
+            <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Proveedores/">Proveedores</a>
+          </li>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorias</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Categorias/">Categoria</a></li>
-              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a></li>
+              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -137,7 +137,8 @@ if ($varsesion == null || $varsesion == '') {
       <div class="d-flex align-items-center alerta-container">
         <ul class="nav navbar-nav">
           <li>
-          <a href="vistafrontal.php"><i class="fas fa-exclamation-triangle text-warning alerta-icono" data-nombre="'  '" data-lote="'  '"></i></a>
+            <a href="vistafrontal.php"><i class="fas fa-exclamation-triangle text-warning alerta-icono"
+                data-nombre="'  '" data-lote="'  '"></i></a>
           </li>
         </ul>
       </div>
@@ -166,12 +167,12 @@ if ($varsesion == null || $varsesion == '') {
 
     <!-- llamado del mensaje para ejecutar la alerta de la determinada accion -->
     <main class="container">
-    <?php if(isset($_GET['mensaje']))  {  ?>
-<script>
-    Swal.fire({icon:"success", title:"<?php echo $_GET['mensaje']?>"});
+      <?php if (isset($_GET['mensaje'])) { ?>
+        <script>
+          Swal.fire({ icon: "success", title: "<?php echo $_GET['mensaje'] ?>" });
 
-</script>
-<?php }?>
+        </script>
+      <?php } ?>
 
     </main>
 

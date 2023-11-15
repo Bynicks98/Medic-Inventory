@@ -1,7 +1,6 @@
 <?php
 include("../../database.php");
 
-$idPedidoEditar = $_GET['idPedidoEditar'];
 
 $sentenciaPedidoEditar = $conexion->prepare("SELECT * FROM pedido WHERE idPEDIDO = :idPedido");
 $sentenciaPedidoEditar->bindParam(":idPedido", $idPedidoEditar);
@@ -44,8 +43,6 @@ $sentenciaformula = $conexion->prepare("SELECT idFORMULA, Referenciaformula FROM
 $sentenciaformula->execute();
 $formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
 
-
-
 if ($_POST) {
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
   $Tipo_pedido = (isset($_POST["Tipo_pedido"]) ? $_POST["Tipo_pedido"] : "");
@@ -68,27 +65,7 @@ if ($_POST) {
   $nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
   $estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
 
-  $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, Fecha_envio = :Fecha_envio, EstadoP = :EstadoP WHERE idPEDIDO = :idPedido");
-
-  $sentencia->bindParam(":Tipo_pedido", $Tipo_pedido);
-  $sentencia->bindParam(":fechaPedido", $fechaPedido);
-  $sentencia->bindParam(":costoPedido", $costoPedido);
-  $sentencia->bindParam(":cantidadP", $cantidadP);
-  $sentencia->bindParam(":Fecha_entrega", $Fecha_entrega);
-  $sentencia->bindParam(":Fecha_envio", $Fecha_envio);
-  $sentencia->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
-  $sentencia->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
-  $sentencia->bindParam(":PAGO_idPAGO", $PAGO_idPAGO);
-  $sentencia->bindParam(":MEDICAMENTO_idMEDICAMENTO", $MEDICAMENTO_idMEDICAMENTO);
-  $sentencia->bindParam(":MEDICAMENTO_Persona_idPersona", $MEDICAMENTO_Persona_idPersona);
-  $sentencia->bindParam(":MEDICAMENTO_PERSONA_ROL_idRol", $MEDICAMENTO_PERSONA_ROL_idRol);
-  $sentencia->bindParam(":MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
-  $sentencia->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
-  $sentencia->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
-  $sentencia->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
-  $sentencia->bindParam(":EstadoP", $estadoPedidoSeleccionado);
-
-  $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, Fecha_envio = :Fecha_envio, EstadoP = :EstadoP WHERE idPEDIDO = :idPedido");
+  
 
   $sentenciaActualizarPedido->bindParam(":Tipo_pedido", $Tipo_pedido);
   $sentenciaActualizarPedido->bindParam(":fechaPedido", $fechaPedido);
@@ -183,6 +160,7 @@ if ($_POST) {
 </script>
 
 
+
 <?php include("../../Plantillas/header.php"); ?>
 <div class="card">
   <div class="card-header">
@@ -254,7 +232,7 @@ if ($_POST) {
           <select class="form-select" name="MEDICAMENTO_idMEDICAMENTO" id="MEDICAMENTO_idMEDICAMENTO" required>
             <option value="">Selecciona un medicamento</option>
             <?php foreach ($nombresMedicamentos as $medicamento) { ?>
-              <option value="<?php echo $medicamento['idMEDICAMENTO']; ?>">
+              <option value="<?php echo $medicamento['idMEDICAMENTO']; ?>" <?php if($medicamento['nombreMedica'] == $pedidoEditar['nombreMedica']) echo 'selected="selected"';?>>
                 <?php echo $medicamento['nombreMedica']; ?>
               </option>
             <?php } ?>

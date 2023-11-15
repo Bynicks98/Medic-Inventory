@@ -22,7 +22,7 @@ function Header()
 	$this->Cell(30,10, 'Descripcion', 1, 0,'C', 0);
 	$this->Cell(30,10, 'fFabricacion', 1, 0,'C', 0);
 	$this->Cell(30,10, 'fVencimiento', 1, 0,'C', 0);
-	$this->Cell(20,10, 'CantidadCajas', 1, 0, 	'C', 0);
+	$this->Cell(20,10, 'cantidadCajas', 1, 0, 	'C', 0);
 	$this->Cell(20,10, 'valorUnit', 1, 0,'C', 0);
 	$this->Cell(20,10, 'noLote', 1, 1,'C', 0);
 }
