@@ -1,7 +1,7 @@
 <?php
 include("../../database.php");
-if (isset($_GET['txtID'])) {
 
+if (isset($_GET['txtID'])) {
   $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 
   $sentencia = $conexion->prepare("SELECT * FROM devoluciones WHERE idDevoluciones = :idDevoluciones");
@@ -13,14 +13,12 @@ if (isset($_GET['txtID'])) {
     $nombreProducto = $registro["nombreProducto"];
     $estadoD = $registro["estadoD"];
     $motivoD = $registro["motivoD"];
-    $cantidadD = $registro["cantidadUD"];
-    $idPEDIDO = $registro["idPEDIDO"];
+    $cantidadUD = $registro["cantidadUD"];
+    $idPEDIDO = $registro["PEDIDO_idPEDIDO"];
   }
 }
 
 if ($_POST) {
-
-  // Recolectar datos (método post)
   // Recolectar datos (método post)
   $cantidadD = (isset($_POST["cantidadD"]) ? $_POST["cantidadD"] : "");
   $nombreProducto = (isset($_POST["nombreProducto"]) ? $_POST["nombreProducto"] : "");
@@ -29,25 +27,53 @@ if ($_POST) {
   $cantidadUD = (isset($_POST["cantidadUD"]) ? $_POST["cantidadUD"] : "");
   $idPEDIDO = (isset($_POST["PEDIDO_idPEDIDO"]) ? $_POST["PEDIDO_idPEDIDO"] : "");
 
-  $sentencia = $conexion->prepare("UPDATE devoluciones SET cantidadD = :cantidadD, nombreProducto = :nombreProducto, estadoD = :estadoD, motivoD = :motivoD, cantidadUD = :cantidadUD, PEDIDO_idPEDIDO = :PEDIDO_idPEDIDO where idDevoluciones = :idDevoluciones");
+  // Obtener la cantidad original del medicamento
+  $sentenciaGetMedicamentoCantidad = $conexion->prepare("SELECT cantidadUnidades FROM medicamento WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
+  $sentenciaGetMedicamentoCantidad->bindParam(":idPedido", $idPEDIDO);
+  $sentenciaGetMedicamentoCantidad->execute();
+  $resultado = $sentenciaGetMedicamentoCantidad->fetch(PDO::FETCH_ASSOC);
 
+  if ($resultado) {
+    $cantidadOriginal = $resultado["cantidadUnidades"];
 
-  // Asignar valores que tienen un solo :variable
-  $sentencia->bindParam(":cantidadD", $cantidadD);
-  $sentencia->bindParam(":nombreProducto", $nombreProducto);
-  $sentencia->bindParam(":estadoD", $estadoD);
-  $sentencia->bindParam(":motivoD", $motivoD);
-  $sentencia->bindParam(":cantidadUD", $cantidadUD);
-  $sentencia->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
-  $sentencia->bindParam(":idDevoluciones", $txtID);
-  $sentencia->execute();
-  $mensaje="Registro Actualizado";
-  header("Location:index.php?mensaje=".$mensaje);
+    // Calcular la nueva cantidad del medicamento restando la cantidad devuelta
+    $nuevaCantidad = $cantidadOriginal - $cantidadUD;
+
+    // Actualizar la cantidad del medicamento
+    $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = :nuevaCantidad WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
+    $sentenciaUpdateMedicamento->bindParam(":nuevaCantidad", $nuevaCantidad);
+    $sentenciaUpdateMedicamento->bindParam(":idPedido", $idPEDIDO);
+
+    if ($sentenciaUpdateMedicamento->execute()) {
+      // Actualizar la devolución
+      $sentenciaUpdateDevolucion = $conexion->prepare("UPDATE devoluciones SET cantidadD = :cantidadD, nombreProducto = :nombreProducto, estadoD = :estadoD, motivoD = :motivoD, cantidadUD = :cantidadUD, PEDIDO_idPEDIDO = :PEDIDO_idPEDIDO WHERE idDevoluciones = :idDevoluciones");
+
+      $sentenciaUpdateDevolucion->bindParam(":cantidadD", $cantidadD);
+      $sentenciaUpdateDevolucion->bindParam(":nombreProducto", $nombreProducto);
+      $sentenciaUpdateDevolucion->bindParam(":estadoD", $estadoD);
+      $sentenciaUpdateDevolucion->bindParam(":motivoD", $motivoD);
+      $sentenciaUpdateDevolucion->bindParam(":cantidadUD", $cantidadUD);
+      $sentenciaUpdateDevolucion->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
+      $sentenciaUpdateDevolucion->bindParam(":idDevoluciones", $txtID);
+
+      if ($sentenciaUpdateDevolucion->execute()) {
+        $mensaje = "Registro Actualizado";
+        header("Location:index.php?mensaje=" . $mensaje);
+        exit();
+      } else {
+        echo "Error al actualizar la devolución.";
+      }
+    } else {
+      echo "Error al actualizar la cantidad del medicamento.";
+    }
+  } else {
+    echo "Error al obtener la cantidad original del medicamento.";
+  }
 }
+
 $sentenciaidPEDIDO = $conexion->prepare("SELECT idPEDIDO, Nombre_Producto FROM pedido");
 $sentenciaidPEDIDO->execute();
 $IdPEDIDO = $sentenciaidPEDIDO->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <?php include("../../Plantillas/header.php"); ?>

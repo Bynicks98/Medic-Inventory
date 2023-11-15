@@ -44,6 +44,7 @@ $formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_POST) {
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
+  $Tipo_pedido = (isset($_POST["Tipo_pedido"]) ? $_POST["Tipo_pedido"] : "");
   $fechaPedido = (isset($_POST["fechaPedido"]) ? $_POST["fechaPedido"] : "");
   $costoPedido = (isset($_POST["costoPedido"]) ? $_POST["costoPedido"] : "");
   $Nombre_Producto = (isset($_POST["Nombre_Producto"]) ? $_POST["Nombre_Producto"] : "");
@@ -63,9 +64,10 @@ if ($_POST) {
   $nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
   $estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
 
-  $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA)
-  VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA)");
+  $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, Tipo_pedido, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA)
+  VALUES (null, :Tipo_pedido,:fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA)");
 
+  $sentencia->bindParam(":Tipo_pedido", $Tipo_pedido);
   $sentencia->bindParam(":fechaPedido", $fechaPedido);
   $sentencia->bindParam(":costoPedido", $costoPedido);
   $sentencia->bindParam(":cantidadP", $cantidadP);
@@ -83,10 +85,19 @@ if ($_POST) {
   $sentencia->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
   $sentencia->bindParam(":EstadoP", $estadoPedidoSeleccionado);
 
-  if ($sentencia->execute()) {
+  if ($Tipo_pedido === "Entrada") {
+    // Lógica para una entrada de medicamento
+    $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades + :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
+    $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
+    $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+  } elseif ($Tipo_pedido === "Salida") {
+    // Lógica para una salida de medicamento
     $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
     $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
     $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+  }
+
+  if ($sentencia->execute()) {
     if ($sentenciaUpdateMedicamento->execute()) {
       // Cantidad de unidades actualizada correctamente
 
@@ -156,6 +167,29 @@ if ($_POST) {
   <div class="card-body">
     <form action="" method="post" enctype="multipart/form-data">
       <!--el enctype permite adjuntar archivos como fotos o pdfs de momento no-->
+      <input type="hidden" name="Tipo_pedido" id="Tipo_pedido" value="">
+      <div>
+        <h6>Tipo de Pedido</h6>
+        <input type="text" class="form-control" id="opcion-seleccionada" readonly
+          placeholder="Añade un estado al pedido">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Seleccionar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" data-value="Entrada">Entrada de medicamento</a></li>
+          <li><a class="dropdown-item" href="#" data-value="Salida">Salida de medicamento</a></li>
+        </ul>
+      </div>
+      <script>
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+          item.addEventListener('click', event => {
+            const selectedValue = event.target.dataset.value;
+            document.getElementById('Tipo_pedido').value = selectedValue;
+            document.getElementById('opcion-seleccionada').value = selectedValue;
+          });
+        });
+      </script>
       <div class="mb-3">
         <label for="fechaPedido" class="form-label">Fecha del Pedido</label>
         <input type="date" class="form-control" name="fechaPedido" id="fechaPedido" aria-describedby="helpId"
@@ -166,6 +200,31 @@ if ($_POST) {
             placeholder="Ingresa el costo del pedido">
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" class="form-label">Categoría del
+            Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" required>
+            <option value="">Selecciona una categoría</option>
+            <?php foreach ($categorias as $categoria) { ?>
+              <option value="<?php echo $categoria['idCATEGORIA']; ?>">
+                <?php echo $categoria['nombreCat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" class="form-label">Subcategoría del Medicamento</label>
+          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"
+            id="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" required>
+            <option value="">Selecciona una subcategoría</option>
+            <?php foreach ($subcategorias as $subcategoria) { ?>
+              <option value="<?php echo $subcategoria['idSUBCATEGORIA']; ?>">
+                <?php echo $subcategoria['nombreSubcat']; ?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
         <div class="mb-3">
           <label for="MEDICAMENTO_idMEDICAMENTO" class="form-label">Nombre del Producto</label>
           <select class="form-select" name="MEDICAMENTO_idMEDICAMENTO" id="MEDICAMENTO_idMEDICAMENTO" required>
@@ -247,58 +306,48 @@ if ($_POST) {
             <?php } ?>
           </select>
         </div>
-        <div class="mb-3">
-          <label for="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" class="form-label">Subcategoría del Medicamento</label>
-          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"
-            id="MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA" required>
-            <option value="">Selecciona una subcategoría</option>
-            <?php foreach ($subcategorias as $subcategoria) { ?>
-              <option value="<?php echo $subcategoria['idSUBCATEGORIA']; ?>">
-                <?php echo $subcategoria['nombreSubcat']; ?>
-              </option>
-            <?php } ?>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" class="form-label">Categoría del
-            Medicamento</label>
-          <select class="form-select" name="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"
-            id="MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA" required>
-            <option value="">Selecciona una categoría</option>
-            <?php foreach ($categorias as $categoria) { ?>
-              <option value="<?php echo $categoria['idCATEGORIA']; ?>">
-                <?php echo $categoria['nombreCat']; ?>
-              </option>
-            <?php } ?>
-          </select>
-        </div>
+
         <div class="mb-3">
           <label for="FORMULAMEDICA_idFORMULA" class="form-label">Formula medica</label>
           <select class="form-select" name="FORMULAMEDICA_idFORMULA" id="FORMULAMEDICA_idFORMULA" required>
             <option value="">Selecciona la formula medica</option>
             <?php foreach ($formulaM as $ForMed) { ?>
               <option value="<?php echo $ForMed['idFORMULA']; ?>">
-                <?php echo $categoria['Referenciaformula']; ?>
+                <?php echo $ForMed['Referenciaformula']; ?>
               </option>
             <?php } ?>
           </select>
         </div>
-        <h6>Estado</h6>
-        <input type="text" class="form-control" id="opcion-seleccionada" readonly
-          placeholder="Añade un estado al pedido">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Seleccionar
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" data-value="opcion1">Completo</a></li>
-          <li><a class="dropdown-item" href="#" data-value="opcion2">En Reparto</a></li>
-          <li><a class="dropdown-item" href="#" data-value="opcion3">Incompleto</a></li>
-        </ul>
-        <div class="card-footer text-muted">
-          <button type="submit" class="btn btn-success" name="agregarPed">Agregar Pedido</button>
-          <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
-          <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+        <div>
+          <input type="hidden" name="EstadoP" id="EstadoP" value="">
+          <div>
+            <h6>Estado</h6>
+            <input type="text" class="form-control" id="opcion-seleccionada" readonly
+              placeholder="Añade un estado al pedido">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Seleccionar
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" data-value="Completo">Completo</a></li>
+              <li><a class="dropdown-item" href="#" data-value="En Reparto">En Reparto</a></li>
+              <li><a class="dropdown-item" href="#" data-value="Incompleto">Incompleto</a></li>
+            </ul>
+          </div>
+          <script>
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+              item.addEventListener('click', event => {
+                const selectedValue = event.target.dataset.value;
+                document.getElementById('EstadoP').value = selectedValue;
+                document.getElementById('opcion-seleccionada').value = selectedValue;
+              });
+            });
+          </script>
+          <div class="card-footer text-muted">
+            <button type="submit" class="btn btn-success" name="agregarPed">Agregar Pedido</button>
+            <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
+            <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+          </div>
         </div>
     </form>
   </div>

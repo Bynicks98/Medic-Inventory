@@ -7,8 +7,8 @@ if (isset($_GET['txtID'])) {
     $sentencia = $conexion->prepare("DELETE FROM pedido WHERE idPEDIDO =:idPEDIDO");
     $sentencia->bindParam(":idPEDIDO", $txtID);
     $sentencia->execute();
-    $mensaje="Registro eliminado";
-    header("Location:index.php?mensaje=".$mensaje);
+    $mensaje = "Registro eliminado";
+    header("Location:index.php?mensaje=" . $mensaje);
 }
 
 
@@ -21,25 +21,54 @@ $sentencia = $conexion->prepare("SELECT * FROM `pedido`");
 $sentencia->execute();
 $lista_pedido = $sentencia->fetchall(PDO::FETCH_ASSOC);
 
-$sentenciaPedidos = $conexion->prepare("
-  SELECT 
-    p.idPEDIDO, 
-    p.fechaPedido, 
-    p.costoPedido, 
-    COALESCE(m.nombreMedica, medicamento.nombreMedica) AS Nombre_Producto, 
-    p.cantidadP, 
-    p.Fecha_entrega, 
-    p.Fecha_envio, 
-    p.EstadoP 
-    /* Otras columnas */
-  FROM pedido p
-  LEFT JOIN medicamento m ON p.MEDICAMENTO_idMEDICAMENTO = m.idMEDICAMENTO
-  LEFT JOIN medicamento ON p.MEDICAMENTO_idMEDICAMENTO = medicamento.idMEDICAMENTO
-  /* Resto de la consulta (joins con otras tablas, condiciones, etc.) */
+$tipoPedido = isset($_GET['tipoPedido']) ? $_GET['tipoPedido'] : null;
+
+$sentencia = $conexion->prepare("
+    SELECT 
+        p.idPEDIDO, 
+        p.Tipo_pedido, 
+        p.fechaPedido, 
+        p.costoPedido, 
+        p.MEDICAMENTO_idMEDICAMENTO, /* Asegúrate de incluir esta columna en la selección */
+        COALESCE(m.nombreMedica) AS Nombre_Producto, 
+        p.cantidadP, 
+        p.Fecha_entrega, 
+        p.Fecha_envio, 
+        p.EstadoP 
+        /* Otras columnas */
+    FROM pedido p
+    LEFT JOIN medicamento m ON p.MEDICAMENTO_idMEDICAMENTO = m.idMEDICAMENTO
 ");
 
-$sentenciaPedidos->execute();
-$pedidos = $sentenciaPedidos->fetchAll(PDO::FETCH_ASSOC);
+
+if ($tipoPedido) {
+    // Agregar la condición de filtrado si se ha seleccionado un tipo de pedido
+    $sentencia = $conexion->prepare("
+        SELECT 
+            p.idPEDIDO, 
+            p.Tipo_pedido, 
+            p.fechaPedido, 
+            p.costoPedido, 
+            p.MEDICAMENTO_idMEDICAMENTO, /* Asegúrate de incluir esta columna en la selección */
+            COALESCE(m.nombreMedica) AS Nombre_Producto, 
+            p.cantidadP, 
+            p.Fecha_entrega, 
+            p.Fecha_envio, 
+            p.EstadoP 
+            /* Otras columnas */
+        FROM pedido p
+        LEFT JOIN medicamento m ON p.MEDICAMENTO_idMEDICAMENTO = m.idMEDICAMENTO
+        WHERE p.Tipo_pedido = :tipoPedido
+    ");
+
+    $sentencia->bindValue(":tipoPedido", $tipoPedido);
+    $sentencia->execute();
+    $lista_pedido = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Si no hay filtro, ejecutar la consulta sin ninguna condición adicional
+    $sentencia->execute();
+    $lista_pedido = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+}
 
 include("../../Plantillas/header.php");
 ?>
@@ -52,13 +81,17 @@ include("../../Plantillas/header.php");
     <div class="card-header" style="text-align: right">
         <!-- bs5button-a  -->
         <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar un nuevo Pedido</a>
+        <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
+        <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
     </div>
+
     <div class="card-body">
         <div class="table-responsive-sm container-sm">
             <table class="table " id="tabla_id"> <!-- bs5tabledefault  -->
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">tipo de pedido</th>
                         <th scope="col">Fecha del Pedido</th>
                         <th scope="col">Costo</th>
                         <th scope="col">Nombre del producto</th>
@@ -76,6 +109,9 @@ include("../../Plantillas/header.php");
 
                             <td scope="row">
                                 <?php echo $registro['idPEDIDO'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['Tipo_pedido'] ?>
                             </td>
                             <td>
                                 <?php echo $registro['fechaPedido'] ?>
@@ -110,7 +146,9 @@ include("../../Plantillas/header.php");
                             </td>
                             <td>
                                 <a name="" id="" class="btn btn-info" href="editar.php" role="button">Editar</a>
-                                <a name="" id="" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPEDIDO']; ?>);" role="button">Eliminar</a>
+                                <a name="" id="" class="btn btn-danger"
+                                    href="javascript:borrar(<?php echo $registro['idPEDIDO']; ?>);"
+                                    role="button">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>

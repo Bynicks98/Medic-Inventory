@@ -11,7 +11,7 @@ function Header()
 	// Movernos a la derecha
 	$this->Cell(80);
 	// T�tulo
-	$this->Cell(30,10,'Reportes',1,0,'C');
+	$this->Cell(40,10,'Medicamentos Por Vencer',1,0,'C');
 	// Salto de l�nea
 	$this->Ln(20);
 	// Color del texto
@@ -39,7 +39,7 @@ function Footer()
 }
 }
 require 'bd.php';
-$consulta= "SELECT * FROM medicamento";
+$consulta= "SELECT * FROM medicamento WHERE fechaVencimientoMedica >= CURDATE() ORDER BY fechaVencimientoMedica  ";//ASC LIMIT 10-->  limita el resultado a las primeras 10 filas, puede ajustarse al numero deseado. 
 $resultado= $mysqli->query($consulta);
 
 $pdf = new PDF();

@@ -11,3 +11,4 @@ session_destroy();
 header("Location: /MedicInven/login.php");
 exit();
 ?>
+

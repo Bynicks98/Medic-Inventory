@@ -46,11 +46,16 @@ document.addEventListener("DOMContentLoaded", function() {
 <br>
 <h1 style="text-align: center">Medicamentos</h1>
 <div class="card">
-    <div class="card-header" style="text-align: right">
+<div class="btn-group">
+  
+</div>
+    <div class="card-header, btn-group" style="text-align: right">
+        <button type="button" class="btn btn-primary"><a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Medicamento</a></button>
+        <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-primary">PDF Medicamentos</a></button>
+        <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicPorVencer.php" target="_blank" class="btn btn-primary">PDF MedPorVencer</a></button>
 
-
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Medicamento</a>
-        <a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-success">Generar PDF</a>
+        
+        
     </div>
     <div class="border-top" style="padding-top: 15px;text-align: center">
         

@@ -113,7 +113,11 @@ if ($varsesion == null || $varsesion == '') {
             <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Pedidos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Pedido/index.php">Envios</a></li>
+              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Pedido/index2.php">Ingresos de producto</a></li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
@@ -125,10 +129,8 @@ if ($varsesion == null || $varsesion == '') {
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorias</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Categorias/">Categoria</a></li>
-              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a>
-              </li>
+              <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a></li>
             </ul>
-
           </li>
         </ul>
       </div>

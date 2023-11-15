@@ -1,12 +1,8 @@
 <?php
 include("../../database.php");
 
-$idPedidoEditar = $_GET['idPedidoEditar'];
 
-$sentenciaPedidoEditar = $conexion->prepare("SELECT * FROM pedido WHERE idPEDIDO = :idPedido");
-$sentenciaPedidoEditar->bindParam(":idPedido", $idPedidoEditar);
-$sentenciaPedidoEditar->execute();
-$pedidoEditar = $sentenciaPedidoEditar->fetch(PDO::FETCH_ASSOC);
+
 // Obtener nombres de medicamentos para el formulario
 $sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
 $sentenciaNombresMedicamentos->execute();
@@ -48,7 +44,6 @@ $formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_POST) {
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
-  $Tipo_pedido = (isset($_POST["Tipo_pedido"]) ? $_POST["Tipo_pedido"] : "");
   $fechaPedido = (isset($_POST["fechaPedido"]) ? $_POST["fechaPedido"] : "");
   $costoPedido = (isset($_POST["costoPedido"]) ? $_POST["costoPedido"] : "");
   $Nombre_Producto = (isset($_POST["Nombre_Producto"]) ? $_POST["Nombre_Producto"] : "");
@@ -68,9 +63,9 @@ if ($_POST) {
   $nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
   $estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
 
-  $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, Fecha_envio = :Fecha_envio, EstadoP = :EstadoP WHERE idPEDIDO = :idPedido");
+  $sentencia = $conexion->prepare("INSERT INTO pedido (idPEDIDO, fechaPedido, costoPedido, Nombre_Producto, cantidadP, Fecha_entrega, Fecha_envio, EstadoP, SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR, PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO, MEDICAMENTO_Persona_idPersona, MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA)
+  VALUES (null, :fechaPedido, :costoPedido, :Nombre_Producto, :cantidadP, :Fecha_entrega, :Fecha_envio, :EstadoP, :SUCURSALIPS_idSUCURSALIPS, :DISTRIBUIDOR_idDISTRIBUIDOR, :PAGO_idPAGO, :MEDICAMENTO_idMEDICAMENTO, :MEDICAMENTO_Persona_idPersona, :MEDICAMENTO_PERSONA_ROL_idRol, :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA, :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, :FORMULAMEDICA_idFORMULA)");
 
-  $sentencia->bindParam(":Tipo_pedido", $Tipo_pedido);
   $sentencia->bindParam(":fechaPedido", $fechaPedido);
   $sentencia->bindParam(":costoPedido", $costoPedido);
   $sentencia->bindParam(":cantidadP", $cantidadP);
@@ -88,54 +83,24 @@ if ($_POST) {
   $sentencia->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
   $sentencia->bindParam(":EstadoP", $estadoPedidoSeleccionado);
 
-  $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, Fecha_envio = :Fecha_envio, EstadoP = :EstadoP WHERE idPEDIDO = :idPedido");
-
-  $sentenciaActualizarPedido->bindParam(":Tipo_pedido", $Tipo_pedido);
-  $sentenciaActualizarPedido->bindParam(":fechaPedido", $fechaPedido);
-  $sentenciaActualizarPedido->bindParam(":costoPedido", $costoPedido);
-  $sentenciaActualizarPedido->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
-  $sentenciaActualizarPedido->bindParam(":cantidadP", $cantidadP);
-  $sentenciaActualizarPedido->bindParam(":Fecha_entrega", $Fecha_entrega);
-  $sentenciaActualizarPedido->bindParam(":Fecha_envio", $Fecha_envio);
-  $sentenciaActualizarPedido->bindParam(":EstadoP", $estadoPedidoSeleccionado);
-  $sentenciaActualizarPedido->bindParam(":idPedido", $idPedidoEditar);
-  $sentenciaActualizarPedido->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
-  $sentenciaActualizarPedido->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
-  $sentenciaActualizarPedido->bindParam(":PAGO_idPAGO", $PAGO_idPAGO);
-  $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_idMEDICAMENTO", $MEDICAMENTO_idMEDICAMENTO);
-  $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_Persona_idPersona", $MEDICAMENTO_Persona_idPersona);
-  $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_PERSONA_ROL_idRol", $MEDICAMENTO_PERSONA_ROL_idRol);
-  $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
-  $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
-  $sentenciaActualizarPedido->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
-
-
-  if ($sentenciaActualizarPedido->execute()) {
-    // Lógica para actualizar la cantidad de unidades en la tabla 'medicamento' según el tipo de pedido
-    if ($Tipo_pedido === "Entrada") {
-        // Lógica para una entrada de medicamento
-        $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades + :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
-        $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
-        $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
-    } elseif ($Tipo_pedido === "Salida") {
-        // Lógica para una salida de medicamento
-        $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
-        $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
-        $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
-    }
-
+  if ($sentencia->execute()) {
+    $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :cantidadPedido WHERE idMEDICAMENTO = :medicamentoID");
+    $sentenciaUpdateMedicamento->bindParam(":cantidadPedido", $cantidadP);
+    $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
     if ($sentenciaUpdateMedicamento->execute()) {
-        // Redireccionar a la página principal después de editar el pedido
-        header("Location: index.php");
-        exit();
+      // Cantidad de unidades actualizada correctamente
+
+      // Redireccionar o mostrar mensaje de éxito
+      header("Location: index.php");
+      exit();
     } else {
-        // Mensaje de error al actualizar la cantidad de unidades
-        echo "Error al actualizar la cantidad de unidades del medicamento.";
+      // Mensaje de error al actualizar la cantidad de unidades
+      echo "Error al actualizar la cantidad de unidades del medicamento.";
     }
-} else {
-    // Mensaje de error al actualizar el pedido
-    echo "Error al actualizar el pedido.";
-}
+  } else {
+    // Mensaje de error al insertar el pedido
+    echo "Error al insertar el pedido.";
+  }
 }
 ?>
 
@@ -191,29 +156,6 @@ if ($_POST) {
   <div class="card-body">
     <form action="" method="post" enctype="multipart/form-data">
       <!--el enctype permite adjuntar archivos como fotos o pdfs de momento no-->
-      <input type="hidden" name="Tipo_pedido" id="Tipo_pedido" value="">
-      <div>
-        <h6>Tipo de Pedido</h6>
-        <input type="text" class="form-control" id="opcion-seleccionada" readonly
-          placeholder="Añade un estado al pedido">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Seleccionar
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" data-value="Entrada">Entrada de medicamento</a></li>
-          <li><a class="dropdown-item" href="#" data-value="Salida">Salida de medicamento</a></li>
-        </ul>
-      </div>
-      <script>
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-          item.addEventListener('click', event => {
-            const selectedValue = event.target.dataset.value;
-            document.getElementById('Tipo_pedido').value = selectedValue;
-            document.getElementById('opcion-seleccionada').value = selectedValue;
-          });
-        });
-      </script>
       <div class="mb-3">
         <label for="fechaPedido" class="form-label">Fecha del Pedido</label>
         <input type="date" class="form-control" name="fechaPedido" id="fechaPedido" aria-describedby="helpId"
@@ -330,7 +272,7 @@ if ($_POST) {
             <?php } ?>
           </select>
         </div>
-
+       
         <div class="mb-3">
           <label for="FORMULAMEDICA_idFORMULA" class="form-label">Formula medica</label>
           <select class="form-select" name="FORMULAMEDICA_idFORMULA" id="FORMULAMEDICA_idFORMULA" required>
