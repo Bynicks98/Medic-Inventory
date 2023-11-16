@@ -10,5 +10,6 @@ session_destroy();
 // Redirigir a la página de inicio de sesión
 header("Location: /MedicInven/login.php");
 exit();
-?>
 
+//$sentenciaUpdateMedicamento && $sentenciaUpdateMedicamento->execute()
+?>

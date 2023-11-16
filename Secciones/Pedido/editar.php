@@ -46,6 +46,7 @@ if (isset($_GET['txtID'])) {
 
   if ($registro) {
 
+    $cantidadPedidoOriginal = $registro["cantidadP"];
     $idPEDIDO = $registro["idPEDIDO"];
     $Tipo_pedido = $registro["Tipo_pedido"];
     $fechaPedido = $registro["fechaPedido"];
@@ -68,6 +69,8 @@ if (isset($_GET['txtID'])) {
     $estadoPedidoSeleccionado = $registro["EstadoP"];
   }
 }
+
+$sentenciaUpdateMedicamento = null;
 
 if ($_POST) {
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
@@ -117,6 +120,24 @@ if ($_POST) {
   $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
   $sentenciaActualizarPedido->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
 
+  var_dump($Tipo_pedido);
+  var_dump($fechaPedido);
+  var_dump($costoPedido);
+  var_dump($nombreProductoSeleccionado);
+  var_dump($cantidadP);
+  var_dump($Fecha_entrega);
+  var_dump($Fecha_envio);
+  var_dump($estadoPedidoSeleccionado);
+  var_dump($idPedidoEditar);
+  var_dump($SUCURSALIPS_idSUCURSALIPS);
+  var_dump($DISTRIBUIDOR_idDISTRIBUIDOR);
+  var_dump($PAGO_idPAGO);
+  var_dump($MEDICAMENTO_idMEDICAMENTO);
+  var_dump($MEDICAMENTO_Persona_idPersona);
+  var_dump($MEDICAMENTO_PERSONA_ROL_idRol);
+  var_dump($MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
+  var_dump($MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
+  var_dump($FORMULAMEDICA_idFORMULA);
 
 
 
@@ -129,28 +150,51 @@ if ($_POST) {
 
       // Lógica para una entrada de medicamento
       $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades + :diferenciaCantidad WHERE idMEDICAMENTO = :medicamentoID");
-      $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
-      $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+
     } elseif ($Tipo_pedido === "Salida") {
       $diferenciaCantidad = $cantidadPedidoOriginal - $cantidadP;
 
       // Lógica para una salida de medicamento
       $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :diferenciaCantidad WHERE idMEDICAMENTO = :medicamentoID");
-      $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
-      $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+
     }
 
-    if ($sentenciaUpdateMedicamento->execute()) {
+    if (isset($sentenciaUpdateMedicamento)) {
       // Redireccionar a la página principal después de editar el pedido
-      header("Location: index.php");
-      exit();
+      $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
+      $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+      if ($sentenciaUpdateMedicamento->execute()) {
+        header("Location: index.php");
+        exit();
+      } else {
+        // Mensaje de error al actualizar la cantidad de unidades
+        echo "Error al actualizar la cantidad de unidades del medicamento.";
+        print_r($sentenciaUpdateMedicamento->errorInfo());
+      }
     } else {
-      // Mensaje de error al actualizar la cantidad de unidades
-      echo "Error al actualizar la cantidad de unidades del medicamento.";
+      echo "Error: La sentencia para actualizar el medicamento no está definida.";
     }
   } else {
     // Mensaje de error al actualizar el pedido
     echo "Error al actualizar el pedido.";
+    var_dump($Tipo_pedido);
+    var_dump($fechaPedido);
+    var_dump($costoPedido);
+    var_dump($nombreProductoSeleccionado);
+    var_dump($cantidadP);
+    var_dump($Fecha_entrega);
+    var_dump($Fecha_envio);
+    var_dump($estadoPedidoSeleccionado);
+    var_dump($idPedidoEditar);
+    var_dump($SUCURSALIPS_idSUCURSALIPS);
+    var_dump($DISTRIBUIDOR_idDISTRIBUIDOR);
+    var_dump($PAGO_idPAGO);
+    var_dump($MEDICAMENTO_idMEDICAMENTO);
+    var_dump($MEDICAMENTO_Persona_idPersona);
+    var_dump($MEDICAMENTO_PERSONA_ROL_idRol);
+    var_dump($MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
+    var_dump($MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
+    var_dump($FORMULAMEDICA_idFORMULA);
   }
 }
 ?>
