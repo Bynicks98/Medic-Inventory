@@ -1,41 +1,6 @@
 <?php
 include("../../database.php");
 
-$sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
-$sentenciaNombresMedicamentos->execute();
-$nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaidsucursal = $conexion->prepare("SELECT idSUCURSAL, nombreIps  FROM sucursalips");
-$sentenciaidsucursal->execute();
-$idsucursal = $sentenciaidsucursal->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaDistribuidores = $conexion->prepare("SELECT idDISTRIBUIDOR, nombreDistri FROM distribuidor");
-$sentenciaDistribuidores->execute();
-$distribuidores = $sentenciaDistribuidores->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaPagos = $conexion->prepare("SELECT idPAGO, ReferenciaPago FROM pago");
-$sentenciaPagos->execute();
-$pagos = $sentenciaPagos->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaPersonas = $conexion->prepare("SELECT idPersona, nombreP FROM persona");
-$sentenciaPersonas->execute();
-$personas = $sentenciaPersonas->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
-$sentenciaRoles->execute();
-$roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaCategorias = $conexion->prepare("SELECT idCATEGORIA, nombreCat FROM categoria");
-$sentenciaCategorias->execute();
-$categorias = $sentenciaCategorias->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaSubcategorias = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria");
-$sentenciaSubcategorias->execute();
-$subcategorias = $sentenciaSubcategorias->fetchAll(PDO::FETCH_ASSOC);
-
-$sentenciaformula = $conexion->prepare("SELECT idFORMULA, Referenciaformula FROM formulamedica");
-$sentenciaformula->execute();
-$formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_GET['txtID'])) {
   $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : '';
@@ -45,7 +10,7 @@ if (isset($_GET['txtID'])) {
   $registro = $sentencia->fetch(PDO::FETCH_LAZY);
 
   if ($registro) {
-
+    $cantidadPedidoOriginal = $registro["cantidadP"];
     $idPEDIDO = $registro["idPEDIDO"];
     $Tipo_pedido = $registro["Tipo_pedido"];
     $fechaPedido = $registro["fechaPedido"];
@@ -101,11 +66,11 @@ if ($_POST) {
   $sentenciaActualizarPedido->bindParam(":Tipo_pedido", $Tipo_pedido);
   $sentenciaActualizarPedido->bindParam(":fechaPedido", $fechaPedido);
   $sentenciaActualizarPedido->bindParam(":costoPedido", $costoPedido);
-  $sentenciaActualizarPedido->bindParam(":Nombre_Producto", $nombreProductoSeleccionado);
+  $sentenciaActualizarPedido->bindParam(":Nombre_Producto", $Nombre_Producto);
   $sentenciaActualizarPedido->bindParam(":cantidadP", $cantidadP);
   $sentenciaActualizarPedido->bindParam(":Fecha_entrega", $Fecha_entrega);
   $sentenciaActualizarPedido->bindParam(":Fecha_envio", $Fecha_envio);
-  $sentenciaActualizarPedido->bindParam(":EstadoP", $estadoPedidoSeleccionado);
+  $sentenciaActualizarPedido->bindParam(":EstadoP", $EstadoP);
   $sentenciaActualizarPedido->bindParam(":idPedido", $idPedidoEditar);
   $sentenciaActualizarPedido->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
   $sentenciaActualizarPedido->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
@@ -116,12 +81,101 @@ if ($_POST) {
   $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
   $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
   $sentenciaActualizarPedido->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
+  
 
-  $sentenciaActualizarPedido->execute();
+  if ($sentenciaActualizarPedido->execute()) {
+    
 
-  $mensaje = "Registro actualizado";
-  header("Location:index.php?mensaje=" . $mensaje);
+    // Lógica para actualizar la cantidad de unidades en la tabla 'medicamento' según el tipo de pedido
+    if ($Tipo_pedido === "Entrada") {
+      $diferenciaCantidad = $cantidadP - $cantidadPedidoOriginal;
+
+      // Lógica para una entrada de medicamento
+      $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades + :diferenciaCantidad WHERE idMEDICAMENTO = :medicamentoID");
+
+    } elseif ($Tipo_pedido === "Salida") {
+      $diferenciaCantidad = $cantidadPedidoOriginal - $cantidadP;
+
+      // Lógica para una salida de medicamento
+      $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = cantidadUnidades - :diferenciaCantidad WHERE idMEDICAMENTO = :medicamentoID");
+
+    }
+
+    if (isset($sentenciaUpdateMedicamento)) {
+      // Redireccionar a la página principal después de editar el pedido
+      $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
+      $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
+      if ($sentenciaUpdateMedicamento->execute()) {
+        header("Location: index.php");
+        exit();
+      } else {
+        // Mensaje de error al actualizar la cantidad de unidades
+        echo "Error al actualizar la cantidad de unidades del medicamento.";
+        print_r($sentenciaUpdateMedicamento->errorInfo());
+      }
+    } else {
+      echo "Error: La sentencia para actualizar el medicamento no está definida.";
+    }
+  } else {
+    // Mensaje de error al actualizar el pedido
+    echo "Error al actualizar el pedido.";
+    // var_dump($Tipo_pedido);
+    // var_dump($fechaPedido);
+    // var_dump($costoPedido);
+    // var_dump($nombreProductoSeleccionado);
+    // var_dump($cantidadP);
+    // var_dump($Fecha_entrega);
+    // var_dump($Fecha_envio);
+    // var_dump($estadoPedidoSeleccionado);
+    // var_dump($idPedidoEditar);
+    // var_dump($SUCURSALIPS_idSUCURSALIPS);
+    // var_dump($DISTRIBUIDOR_idDISTRIBUIDOR);
+    // var_dump($PAGO_idPAGO);
+    // var_dump($MEDICAMENTO_idMEDICAMENTO);
+    // var_dump($MEDICAMENTO_Persona_idPersona);
+    // var_dump($MEDICAMENTO_PERSONA_ROL_idRol);
+    // var_dump($MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
+    // var_dump($MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
+    // var_dump($FORMULAMEDICA_idFORMULA);
+  }
 }
+
+$sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
+$sentenciaNombresMedicamentos->execute();
+$nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaidsucursal = $conexion->prepare("SELECT idSUCURSAL, nombreIps  FROM sucursalips");
+$sentenciaidsucursal->execute();
+$idsucursal = $sentenciaidsucursal->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaDistribuidores = $conexion->prepare("SELECT idDISTRIBUIDOR, nombreDistri FROM distribuidor");
+$sentenciaDistribuidores->execute();
+$distribuidores = $sentenciaDistribuidores->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaPagos = $conexion->prepare("SELECT idPAGO, ReferenciaPago FROM pago");
+$sentenciaPagos->execute();
+$pagos = $sentenciaPagos->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaPersonas = $conexion->prepare("SELECT idPersona, nombreP FROM persona");
+$sentenciaPersonas->execute();
+$personas = $sentenciaPersonas->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
+$sentenciaRoles->execute();
+$roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaCategorias = $conexion->prepare("SELECT idCATEGORIA, nombreCat FROM categoria");
+$sentenciaCategorias->execute();
+$categorias = $sentenciaCategorias->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaSubcategorias = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria");
+$sentenciaSubcategorias->execute();
+$subcategorias = $sentenciaSubcategorias->fetchAll(PDO::FETCH_ASSOC);
+
+$sentenciaformula = $conexion->prepare("SELECT idFORMULA, Referenciaformula FROM formulamedica");
+$sentenciaformula->execute();
+$formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <script>
@@ -344,9 +398,9 @@ if ($_POST) {
         <input type="hidden" name="EstadoP" id="EstadoP" value="">
         <div>
           <h6>Estado</h6>
-          <input type="text" class="form-control" id="opcion-seleccionada" readonly
+          <input type="text" class="form-control" id="opcion-seleccion" readonly
             placeholder="Añade un estado al pedido"
-            value="<?php echo isset($estadoPedidoSeleccionado) ? $estadoPedidoSeleccionado : ''; ?>">
+            value="<?php echo isset($EstadoP) ? $EstadoP : ''; ?>">
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             Seleccionar
@@ -362,12 +416,12 @@ if ($_POST) {
             item.addEventListener('click', event => {
               const selectedValue = event.target.dataset.value;
               document.getElementById('EstadoP').value = selectedValue;
-              document.getElementById('opcion-seleccionada').value = selectedValue;
+              document.getElementById('opcion-seleccion').value = selectedValue;
             });
           });
         </script>
         <div class="card-footer text-muted">
-          <button type="submit" class="btn btn-success" name="agregarPed">Agregar Pedido</button>
+          <button type="submit" class="btn btn-success" >Agregar Pedido</button>
           <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
           <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </div>

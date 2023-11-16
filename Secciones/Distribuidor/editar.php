@@ -57,11 +57,10 @@ if ($_POST) {
       <div class="mb-3">
         <label for="" class="form-label">Nombre Distribuidor</label>
         <input type="text" value="<?php echo isset($NombreDistri) ? $NombreDistri : ''; ?>" class="form-control"
-          name="nombreDistri" id="" aria-describedby="helpId" placeholder="Dale un nombre al Distribuidor">
-
+          name="nombreDistri" id="nombreDistri" aria-describedby="helpId" placeholder="Dale un nombre al Distribuidor">
       </div>
       <div class="mb-3">
-        <label for="" class="form-label">NIT</label>
+        <label for="NIT_distribuidor" class="form-label">NIT</label>
         <input type="text" value="<?php echo $NIT_distribuidor; ?>" class="form-control" name="NIT_distribuidor" id=""
           aria-describedby="helpId" placeholder="Ingresa el NIT del Distribuidor">
       </div>

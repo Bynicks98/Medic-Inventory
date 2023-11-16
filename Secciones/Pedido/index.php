@@ -145,7 +145,7 @@ include("../../Plantillas/header.php");
                                 <?php echo $registro['EstadoP'] ?>
                             </td>
                             <td>
-                            <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPEDIDO']; ?>" role="button">Editar</a>;
+                            <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPEDIDO']; ?>" role="button">Editar</a>
                                 <a name="" id="" class="btn btn-danger"
                                     href="javascript:borrar(<?php echo $registro['idPEDIDO']; ?>);"
                                     role="button">Eliminar</a>
