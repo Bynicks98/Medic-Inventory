@@ -87,12 +87,6 @@ $lista_subcategorias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <td scope="row">
                                 <?= $categoria['DescripcionCate'] ?>
                             </td>
-                            <td>
-                                <a class="btn btn-info" href="editar.php?txtID=<?= $categoria['idCATEGORIA'] ?>"
-                                    role="button">Editar</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?= $categoria['idCATEGORIA'] ?>"
-                                    role="button">Eliminar</a>
-                            </td>
                         </tr>
                         <!-- Subcategorías asociadas a esta categoría -->
                         <?php $subcategoriasMostradas = false; ?>

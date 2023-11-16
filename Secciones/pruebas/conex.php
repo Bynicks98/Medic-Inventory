@@ -1,6 +1,6 @@
 <?php
  $conex= mysqli_connect("localhost","root","","medicinventory");
- $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, Fecha_envio = :Fecha_envio, EstadoP = :EstadoP WHERE idPEDIDO = :idPedido");
+
 ?>
 
 // funcion para indicar la alerta de los Medicamentos
