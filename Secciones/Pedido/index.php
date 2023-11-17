@@ -78,15 +78,28 @@ include("../../Plantillas/header.php");
 
 
 <div class="card"> <!-- bs5cardheadfoot -->
-    <div class="card-header" style="text-align: right">
-        <!-- bs5button-a  -->
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar un nuevo Pedido</a>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar un Nuevo Pedido</a>
+            <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
+            <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
+        </div>
+        <?php
+    } else if ($rolUsuario == 'Lector'){
+        ?>
+        <div class="card-header" style="text-align: right">
         <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
         <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
-    </div>
+        </div>
+        <?php
+    }
+    ?>
+
 
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table " id="tabla_id"> <!-- bs5tabledefault  -->
                 <thead>
                     <tr>
@@ -145,7 +158,8 @@ include("../../Plantillas/header.php");
                                 <?php echo $registro['EstadoP'] ?>
                             </td>
                             <td>
-                            <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPEDIDO']; ?>" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-info"
+                                    href="editar.php?txtID=<?php echo $registro['idPEDIDO']; ?>" role="button">Editar</a>
                                 <a name="" id="" class="btn btn-danger"
                                     href="javascript:borrar(<?php echo $registro['idPEDIDO']; ?>);"
                                     role="button">Eliminar</a>

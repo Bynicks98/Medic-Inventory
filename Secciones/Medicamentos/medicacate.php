@@ -63,7 +63,7 @@ $lista_subcategorias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Categoria</a>
     </div>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table">
                 <thead>
                     <tr>
@@ -103,7 +103,7 @@ $lista_subcategorias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                     <?php $subcategoriasMostradas = true; ?>
                                 <?php endif; ?>
                                 <tr class="subcategories-row" data-parent="<?= $categoria['idCATEGORIA'] ?>" style="display: none;">
-                                    <td></td>
+                                <td></td>
                                     <td colspan="">
                                     <td scope="row" class="subcategories-row text-center">
                                         <a

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../../database.php');
 
 if (isset($_GET['txtID'])) {
@@ -7,12 +7,12 @@ if (isset($_GET['txtID'])) {
     $sentencia = $conexion->prepare("DELETE FROM formulamedica WHERE idFORMULA = :idFORMULA");
     $sentencia->bindParam(":idFORMULA", $txtID);
     $sentencia->execute();
-    $mensaje="Registro eliminado";
-    header("Location:index.php?mensaje=".$mensaje);
+    $mensaje = "Registro eliminado";
+    header("Location:index.php?mensaje=" . $mensaje);
 }
 
 // Lectura de los registros de las tablas
-$sentencia = $conexion->prepare("SELECT * FROM formulamedica"); 
+$sentencia = $conexion->prepare("SELECT * FROM formulamedica");
 $sentencia->execute();
 $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -23,11 +23,17 @@ $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 <br>
 
 <div class="card">
-    <div class="card-header" style="text-align: right">
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Formula</a>
-    </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Formula</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table" id="tabla_id">
                 <thead>
                     <tr>
@@ -43,18 +49,33 @@ $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($lista_formulamedica as $registro) { ?>
                         <tr>
-                            <td scope="row"><?php echo $registro['idFORMULA']?></td>
-                            <td scope="row"><?php echo $registro['Referenciaformula']?></td>
-                            <td scope="row"><?php echo $registro['fechaFormula']?></td>
-                            <td scope="row"><?php echo $registro['estadoFormula']?></td>
-                            <td scope="row"><?php echo $registro['observacionesFormula']?></td>
-                            <td scope="row"><?php echo $registro['pagoFormula']?></td>
+                            <td scope="row">
+                                <?php echo $registro['idFORMULA'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['Referenciaformula'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['fechaFormula'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['estadoFormula'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['observacionesFormula'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['pagoFormula'] ?>
+                            </td>
                             <td>
-                                <a name="" id="" class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idFORMULA']; ?>" role="button">Editar</a>
-                                <a name="" id="" class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idFORMULA'];?>);" role="button">Eliminar</a>
+                                <a name="" id="" class="btn btn-info"
+                                    href="editar.php?txtID=<?php echo $registro['idFORMULA']; ?>" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-danger"
+                                    href="javascript:borrar(<?php echo $registro['idFORMULA']; ?>);"
+                                    role="button">Eliminar</a>
                             </td>
                         </tr>
-                    <?php }?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

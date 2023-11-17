@@ -7,8 +7,8 @@ if (isset($_GET['txtID'])) {
     $sentencia = $conexion->prepare("DELETE FROM pago WHERE idPAGO = :idPAGO");
     $sentencia->bindParam(":idPAGO", $txtID);
     $sentencia->execute();
-    $mensaje="Registro eliminado";
-    header("Location:index.php?mensaje=".$mensaje);
+    $mensaje = "Registro eliminado";
+    header("Location:index.php?mensaje=" . $mensaje);
 }
 
 // Lectura de los registros de las tablas
@@ -23,11 +23,17 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 <br>
 
 <div class="card">
-    <div class="card-header" style="text-align: right">
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar un nuevo Pago</a>
-    </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Pago</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table" id="tabla_id">
                 <thead>
                     <tr>
@@ -41,13 +47,23 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($lista_pago as $registro) { ?>
                         <tr>
-                            <td scope="row"><?php echo $registro['idPAGO'] ?></td>
-                            <td scope="row"><?php echo $registro['estadoPago'] ?></td>
-                            <td scope="row"><?php echo $registro['fechaPago'] ?></td>
-                            <td scope="row"><?php echo $registro['hechoPor'] ?></td>
+                            <td scope="row">
+                                <?php echo $registro['idPAGO'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['estadoPago'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['fechaPago'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['hechoPor'] ?>
+                            </td>
                             <td>
-                            <a  class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPAGO']?>" role="button">Editar</a>
-                            <a  class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPAGO'];?>);" role="button">Eliminar</a> 
+                                <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPAGO'] ?>"
+                                    role="button">Editar</a>
+                                <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPAGO']; ?>);"
+                                    role="button">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>

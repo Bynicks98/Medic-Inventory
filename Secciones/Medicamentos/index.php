@@ -46,19 +46,26 @@ document.addEventListener("DOMContentLoaded", function() {
 <br>
 <h1 style="text-align: center">Medicamentos</h1>
 <div class="card">
-<div class="btn-group">
-  
-</div>
-    <div class="card-header, btn-group" style="text-align: right">
-        <button type="button" class="btn btn-primary"><a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Medicamento</a></button>
-        <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/index.php" target="_blank" class="btn btn-primary">PDF Medicamentos</a></button>
-        <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicPorVencer.php" target="_blank" class="btn btn-primary">PDF MedPorVencer</a></button>
+    <div class="btn-group">
 
-        
-        
     </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+
+            <button type="button" class="btn btn-primary"><a name="" id="" class="btn btn-primary" href="crear.php"
+                    role="button">Agregar Medicamento</a></button>
+            <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/index.php" target="_blank"
+                    class="btn btn-primary">PDF Medicamentos</a></button>
+            <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicPorVencer.php" target="_blank"
+                    class="btn btn-primary">PDF MedPorVencer</a></button>
+        </div>
+        <?php
+    }
+    ?>
     <div class="border-top" style="padding-top: 15px;text-align: center">
-        
+
     </div>
     <div class="card-body">
         <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
@@ -79,8 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     </tr>
                 </thead>
                 <tbody>
-
-
                     <?php foreach ($lista_medicamento as $registro) { ?>
                         <tr class="">
                             <td scope="row">
@@ -219,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <!-- <h4 class="card-title">Title</h4> Otro estilo de la tabla
         <p class="card-text">Text</p> -->
     </div>
-    
+
     <!-- <div class="card-footer text-muted">Arriba
         Footer -->
 </div>

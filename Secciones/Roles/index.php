@@ -25,7 +25,7 @@ foreach ($rolesIniciales as $rol) {
     $stmt->bindParam(':nombreRol', $rol['nombreRol']);
 
     if ($stmt->execute()) {
-        echo "Rol " . $rol['nombreRol'] . " agregado correctamente<br>";
+        //echo "Rol " . $rol['nombreRol'] . " agregado correctamente<br>";
     } else {
         echo "Error al agregar el rol " . $rol['nombreRol'] . ": " . implode(" ", $stmt->errorInfo()) . "<br>";
     }
@@ -49,11 +49,17 @@ if ($sentencia->execute()) {
 <h2 style="text-align: center">Listar Roles</h2>
 <br><br>
 <div class="card">
-    <div class="card-header" style="text-align: right">
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar User</a>
-    </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Rol</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table" id="tabla_id">
                 <thead>
                     <tr>
@@ -89,7 +95,7 @@ if ($sentencia->execute()) {
                 </tbody>
             </table>
         </div>
-        
+
 
     </div>
     <div class="card-footer text-muted">

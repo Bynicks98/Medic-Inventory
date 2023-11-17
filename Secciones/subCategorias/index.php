@@ -22,12 +22,17 @@ $lista_SUBCATEGORIAS = $sentencia->fetchall(PDO::FETCH_ASSOC);
 
 
 <div class="card"> <!-- bs5cardheadfoot -->
-    <div class="card-header" style="text-align: right">
-        <!-- bs5button-a  -->
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva SubCategoria</a>
-    </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva SubCategoria</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm">
+        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table " id="tabla_id"> <!-- bs5tabledefault  -->
                 <thead>
                     <tr>

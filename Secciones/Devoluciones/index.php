@@ -8,8 +8,8 @@ if (isset($_GET['txtID'])) {
     $sentencia = $conexion->prepare("DELETE FROM devoluciones WHERE idDevoluciones =:idDevoluciones");
     $sentencia->bindParam(":idDevoluciones", $txtID);
     $sentencia->execute();
-    $mensaje="Registro eliminado";
-    header("Location:index.php?mensaje=".$mensaje);
+    $mensaje = "Registro eliminado";
+    header("Location:index.php?mensaje=" . $mensaje);
 
 }
 //lectura de los registros de las tablas
@@ -24,11 +24,15 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 <br>
 <h1 style="text-align: center">Devoluciones</h1>
 <div class="card">
-    <div class="card-header" style="text-align: right">
-
-
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva devolucion</a>
-    </div>
+    <?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Devolucion</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
         <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table" id="tabla_id">
@@ -69,7 +73,8 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <td>
                                 <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idDevoluciones'] ?>"
                                     role="button">Editar</a>
-                                <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idDevoluciones'];?>);"
+                                <a class="btn btn-danger"
+                                    href="javascript:borrar(<?php echo $registro['idDevoluciones']; ?>);"
                                     role="button">Eliminar</a>
 
                         </tr>
