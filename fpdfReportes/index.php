@@ -24,7 +24,7 @@ function Header()
 	$this->Cell(30,10, 'fVencimiento', 1, 0,'C', 0);
 	$this->Cell(20,10, 'cantidadCajas', 1, 0, 	'C', 0);
 	$this->Cell(20,10, 'valorUnit', 1, 0,'C', 0);
-	$this->Cell(20,10, 'noLote', 1, 1,'C', 0);
+	$this->Cell(20,10, 'NoLote', 1, 1,'C', 0);
 }
 
 // Pie de p�gina

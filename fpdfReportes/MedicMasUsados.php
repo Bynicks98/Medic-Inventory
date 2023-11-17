@@ -11,7 +11,7 @@ function Header()
 	// Movernos a la derecha
 	$this->Cell(80);
 	// T�tulo
-	$this->Cell(40,10,'Medicamentos Por Vencer',1,0,'C');
+	$this->Cell(40,10,utf8_decode('Medicamentos Más Usados'),1,0,'C');
 	// Salto de l�nea
 	$this->Ln(20);
 	// Color del texto
@@ -24,7 +24,7 @@ function Header()
 	$this->Cell(30,10, 'fVencimiento', 1, 0,'C', 0);
 	$this->Cell(20,10, 'cantidadCajas', 1, 0, 	'C', 0);
 	$this->Cell(20,10, 'valorUnit', 1, 0,'C', 0);
-	$this->Cell(20,10, 'noLote', 1, 1,'C', 0);
+	$this->Cell(20,10, 'NoLote', 1, 1,'C', 0);
 }
 
 // Pie de p�gina
@@ -39,9 +39,8 @@ function Footer()
 }
 }
 require 'bd.php';
-$consulta= "SELECT * FROM medicamento WHERE fechaVencimientoMedica >= CURDATE() ORDER BY fechaVencimientoMedica  ";//ASC LIMIT 10-->  limita el resultado a las primeras 10 filas, puede ajustarse al numero deseado. 
+$consulta= "SELECT * FROM medicamento JOIN pedido ON MEDICAMENTO_idMEDICAMENTO GROUP BY MEDICAMENTO_idMEDICAMENTO ORDER BY cantidadP DESC;";
 $resultado= $mysqli->query($consulta);
-
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();

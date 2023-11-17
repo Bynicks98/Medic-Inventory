@@ -71,7 +71,7 @@ if ($_POST) {
   $sentenciaActualizarPedido->bindParam(":Fecha_entrega", $Fecha_entrega);
   $sentenciaActualizarPedido->bindParam(":Fecha_envio", $Fecha_envio);
   $sentenciaActualizarPedido->bindParam(":EstadoP", $EstadoP);
-  $sentenciaActualizarPedido->bindParam(":idPedido", $idPedidoEditar);
+  $sentenciaActualizarPedido->bindParam(":idPedido", $idPedidoEditar);//idPedidoEditar
   $sentenciaActualizarPedido->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
   $sentenciaActualizarPedido->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
   $sentenciaActualizarPedido->bindParam(":PAGO_idPAGO", $PAGO_idPAGO);
@@ -102,6 +102,7 @@ if ($_POST) {
     }
 
     if (isset($sentenciaUpdateMedicamento)) {
+      
       // Redireccionar a la página principal después de editar el pedido
       $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
       $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
@@ -115,6 +116,7 @@ if ($_POST) {
       }
     } else {
       echo "Error: La sentencia para actualizar el medicamento no está definida.";
+      
     }
   } else {
     // Mensaje de error al actualizar el pedido

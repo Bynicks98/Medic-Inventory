@@ -2,73 +2,80 @@
 include("../../database.php");
 
 if (isset($_GET['txtID'])) {
-  $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+    $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 
-  $sentencia = $conexion->prepare("SELECT * FROM devoluciones WHERE idDevoluciones = :idDevoluciones");
-  $sentencia->bindParam(":idDevoluciones", $txtID);
-  $sentencia->execute();
-  $registro = $sentencia->fetch(PDO::FETCH_LAZY);
-  if ($registro) {
-    $cantidadD = $registro["cantidadD"];
-    $nombreProducto = $registro["nombreProducto"];
-    $estadoD = $registro["estadoD"];
-    $motivoD = $registro["motivoD"];
-    $cantidadUD = $registro["cantidadUD"];
-    $idPEDIDO = $registro["PEDIDO_idPEDIDO"];
-  }
+    $sentencia = $conexion->prepare("SELECT * FROM devoluciones WHERE idDevoluciones = :idDevoluciones");
+    $sentencia->bindParam(":idDevoluciones", $txtID);
+    $sentencia->execute();
+    $registro = $sentencia->fetch(PDO::FETCH_LAZY);
+
+    if ($registro) {
+        $cantidadD = $registro["cantidadD"];
+        $nombreProducto = $registro["nombreProducto"];
+        $estadoD = $registro["estadoD"];
+        $motivoD = $registro["motivoD"];
+        $cantidadUD = $registro["cantidadUD"];
+        $idPEDIDO = $registro["PEDIDO_idPEDIDO"];
+    }
 }
 
 if ($_POST) {
-  // Recolectar datos (método post)
-  $cantidadD = (isset($_POST["cantidadD"]) ? $_POST["cantidadD"] : "");
-  $nombreProducto = (isset($_POST["nombreProducto"]) ? $_POST["nombreProducto"] : "");
-  $estadoD = (isset($_POST["estadoD"]) ? $_POST["estadoD"] : "");
-  $motivoD = (isset($_POST["motivoD"]) ? $_POST["motivoD"] : "");
-  $cantidadUD = (isset($_POST["cantidadUD"]) ? $_POST["cantidadUD"] : "");
-  $idPEDIDO = (isset($_POST["PEDIDO_idPEDIDO"]) ? $_POST["PEDIDO_idPEDIDO"] : "");
+    // Recolectar datos (método post)
+    $cantidadD = (isset($_POST["cantidadD"]) ? $_POST["cantidadD"] : "");
+    $nombreProducto = (isset($_POST["nombreProducto"]) ? $_POST["nombreProducto"] : "");
+    $estadoD = (isset($_POST["estadoD"]) ? $_POST["estadoD"] : "");
+    $motivoD = (isset($_POST["motivoD"]) ? $_POST["motivoD"] : "");
+    $cantidadUD = (isset($_POST["cantidadUD"]) ? $_POST["cantidadUD"] : "");
+    $idPEDIDO = (isset($_POST["PEDIDO_idPEDIDO"]) ? $_POST["PEDIDO_idPEDIDO"] : "");
 
-  // Obtener la cantidad original del medicamento
-  $sentenciaGetMedicamentoCantidad = $conexion->prepare("SELECT cantidadUnidades FROM medicamento WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
-  $sentenciaGetMedicamentoCantidad->bindParam(":idPedido", $idPEDIDO);
-  $sentenciaGetMedicamentoCantidad->execute();
-  $resultado = $sentenciaGetMedicamentoCantidad->fetch(PDO::FETCH_ASSOC);
+// Obtener la cantidad original del medicamento
+$sentenciaGetMedicamentoCantidad = $conexion->prepare("SELECT cantidadUnidades FROM medicamento WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
+$sentenciaGetMedicamentoCantidad->bindParam(":idPedido", $idPEDIDO);
+$sentenciaGetMedicamentoCantidad->execute();
+$resultado = $sentenciaGetMedicamentoCantidad->fetch(PDO::FETCH_ASSOC);
 
-  if ($resultado) {
-    $cantidadOriginal = $resultado["cantidadUnidades"];
+if ($resultado) {
+  // Convertir a números enteros
+  $cantidadOriginal = intval($resultado["cantidadUnidades"]);
+  $cantidadUD = intval($cantidadUD);
+  $cantidadD = intval($cantidadD);
 
-    // Calcular la nueva cantidad del medicamento restando la cantidad devuelta
-    $nuevaCantidad = $cantidadOriginal - $cantidadUD;
+  // Calcular la diferencia entre la cantidad original y la cantidad devuelta
+  $diferenciaCantidad = $cantidadUD - $cantidadD;
 
-    // Actualizar la cantidad del medicamento
-    $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = :nuevaCantidad WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
-    $sentenciaUpdateMedicamento->bindParam(":nuevaCantidad", $nuevaCantidad);
-    $sentenciaUpdateMedicamento->bindParam(":idPedido", $idPEDIDO);
+  // Calcular la nueva cantidad del medicamento sumando la diferencia
+  $nuevaCantidad = $cantidadOriginal + $diferenciaCantidad;
 
-    if ($sentenciaUpdateMedicamento->execute()) {
-      // Actualizar la devolución
-      $sentenciaUpdateDevolucion = $conexion->prepare("UPDATE devoluciones SET cantidadD = :cantidadD, nombreProducto = :nombreProducto, estadoD = :estadoD, motivoD = :motivoD, cantidadUD = :cantidadUD, PEDIDO_idPEDIDO = :PEDIDO_idPEDIDO WHERE idDevoluciones = :idDevoluciones");
+        // Actualizar la cantidad del medicamento
+        $sentenciaUpdateMedicamento = $conexion->prepare("UPDATE medicamento SET cantidadUnidades = :nuevaCantidad WHERE idMEDICAMENTO IN (SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido)");
+        $sentenciaUpdateMedicamento->bindParam(":nuevaCantidad", $nuevaCantidad);
+        $sentenciaUpdateMedicamento->bindParam(":idPedido", $idPEDIDO);
 
-      $sentenciaUpdateDevolucion->bindParam(":cantidadD", $cantidadD);
-      $sentenciaUpdateDevolucion->bindParam(":nombreProducto", $nombreProducto);
-      $sentenciaUpdateDevolucion->bindParam(":estadoD", $estadoD);
-      $sentenciaUpdateDevolucion->bindParam(":motivoD", $motivoD);
-      $sentenciaUpdateDevolucion->bindParam(":cantidadUD", $cantidadUD);
-      $sentenciaUpdateDevolucion->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
-      $sentenciaUpdateDevolucion->bindParam(":idDevoluciones", $txtID);
+        if ($sentenciaUpdateMedicamento->execute()) {
+            // Actualizar la devolución
+            $sentenciaUpdateDevolucion = $conexion->prepare("UPDATE devoluciones SET cantidadD = :cantidadD, nombreProducto = :nombreProducto, estadoD = :estadoD, motivoD = :motivoD, cantidadUD = :cantidadUD, PEDIDO_idPEDIDO = :PEDIDO_idPEDIDO WHERE idDevoluciones = :idDevoluciones");
 
-      if ($sentenciaUpdateDevolucion->execute()) {
-        $mensaje = "Registro Actualizado";
-        header("Location:index.php?mensaje=" . $mensaje);
-        exit();
-      } else {
-        echo "Error al actualizar la devolución.";
-      }
+            $sentenciaUpdateDevolucion->bindParam(":cantidadD", $cantidadD);
+            $sentenciaUpdateDevolucion->bindParam(":nombreProducto", $nombreProducto);
+            $sentenciaUpdateDevolucion->bindParam(":estadoD", $estadoD);
+            $sentenciaUpdateDevolucion->bindParam(":motivoD", $motivoD);
+            $sentenciaUpdateDevolucion->bindParam(":cantidadUD", $cantidadUD);
+            $sentenciaUpdateDevolucion->bindParam(":PEDIDO_idPEDIDO", $idPEDIDO);
+            $sentenciaUpdateDevolucion->bindParam(":idDevoluciones", $txtID);
+
+            if ($sentenciaUpdateDevolucion->execute()) {
+                $mensaje = "Registro Actualizado";
+                header("Location:index.php?mensaje=" . $mensaje);
+                exit();
+            } else {
+                echo "Error al actualizar la devolución.";
+            }
+        } else {
+            echo "Error al actualizar la cantidad del medicamento.";
+        }
     } else {
-      echo "Error al actualizar la cantidad del medicamento.";
+        echo "Error al obtener la cantidad original del medicamento.";
     }
-  } else {
-    echo "Error al obtener la cantidad original del medicamento.";
-  }
 }
 
 $sentenciaidPEDIDO = $conexion->prepare("SELECT idPEDIDO, Nombre_Producto FROM pedido");
@@ -114,12 +121,12 @@ $IdPEDIDO = $sentenciaidPEDIDO->fetchAll(PDO::FETCH_ASSOC);
         <!-- Agrega más opciones según tus necesidades -->
         </select>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="cantidadD" class="form-label">Cantidad de cajas</label>
-        <input type="text" value="<?php echo $cantidadD; ?>" class="form-control" name="cantidadD" id="cantidadD" aria-describedby="helpId"
+        <input type="text" value="" class="form-control" name="cantidadD" id="cantidadD" aria-describedby="helpId"
           placeholder="Cantidad de cajas del pedido">
 
-        </div>
+        </div> -->
       <div class="mb-3">
         <label for="cantidadUD" class="form-label">Cantidad de unidades</label>
         <input type="text" value="<?php echo $cantidadUD; ?>" class="form-control" name="cantidadUD" id="cantidadUD" aria-describedby="helpId"

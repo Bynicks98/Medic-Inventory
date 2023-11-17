@@ -1,16 +1,53 @@
 <?php
+$GLOBALS['database_path'] = "/ruta/a/tu/database.php";
 $url_base = '/MedicInven';
+include_once("funciones.php");
 
-session_start();
-$varsesion = $_SESSION['idPersona'];
 
-if ($varsesion == null || $varsesion == '') {
-  echo "no tiene autorizacion";
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+// Verifica si la sesión está establecida y contiene 'idPersona'
+if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
+  echo "No tiene autorización";
   header("Location: /MedicInven/login.php");
   die();
-
 } else {
+  // Aquí asumo que $conexion está definido y conectado a la base de datos
+  $rolUsuario = obtenerRolUsuario($conexion);
+    $_SESSION['nombreRol'] = $rolUsuario;
+    
+  
 }
+
+// if (session_status() == PHP_SESSION_NONE) {
+//   session_start();
+// }
+
+// $varsesion = $_SESSION['idPersona'];
+
+// if ($varsesion == null || $varsesion == '') {
+//   echo "no tiene autorizacion";
+//   header("Location: /MedicInven/login.php");
+//   die();
+
+// } else {
+//   function obtenerRolUsuario($conexion)
+//   {
+
+//     $idPersona = $_SESSION['idPersona'];
+//     $sentencia = $conexion->prepare("SELECT ROL_idRol FROM persona WHERE idPersona = :idPersona");
+//     $sentencia->bindParam(":idPersona", $idPersona);
+//     $sentencia->execute();
+//     $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+//     return isset($resultado['ROL_idRol']) ? $resultado['ROL_idRol'] : 'Administrador';
+//   }
+
+//   $_SESSION['idPersona'] = obtenerRolUsuario($conexion);
+//   var_dump($_SESSION['idPersona']);
+// }
 
 
 ?>
