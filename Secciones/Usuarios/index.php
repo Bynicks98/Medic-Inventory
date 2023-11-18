@@ -81,10 +81,28 @@ $lista_persona = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                 <?php echo $registro['contrasena'] ?>
                             </td>
                             <td>
-                                <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idPersona'] ?>"
-                                    role="button">Editar</a>
-                                <a class="btn btn-danger" href="javascript:borrar(<?php echo $registro['idPersona']; ?>);"
-                                    role="button">Eliminar</a>
+                            <?php
+                                // Comprobar el rol del usuario para mostrar los botones correspondientes
+                                if ($rolUsuario == 'Administrador') {
+                                    // Mostrar botones para el rol de Administrador
+                                    ?>
+                                    <a name="" id="" class="btn btn-info"
+                                        href="editar.php?txtID=<?php echo $registro['idPersona'] ?>" role="button">Editar</a>
+                                    <a name="" id="" class="btn btn-danger"
+                                        href="javascript:borrar(<?php echo $registro['idPersona']; ?>);"
+                                        role="button">Eliminar</a>
+                                    <?php
+                                } elseif ($rolUsuario == 'Asistente') {
+                                    // Mostrar botón de edición solo para el rol de Asistente
+                                    ?>
+                                    <a name="" id="" class="btn btn-info"
+                                        href="editar.php?txtID=<?php echo $registro['idPersona'] ?>" role="button">Editar</a>
+                                    <?php
+                                } elseif ($rolUsuario == 'Lector') {
+                                    // Mostrar botón de lectura solo para el rol de Lector
+                                    // ...
+                                }
+                                ?>
                             </td>
                         </tr>
 

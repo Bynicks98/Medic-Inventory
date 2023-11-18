@@ -116,11 +116,28 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <?php echo $registro['noLoteMedica'] ?>
                             </td>
                             <td>
-                                <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
-                                    role="button">Editar</a>
-                                <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
-                                    role="button">Eliminar</a>
-                            </td>
+                            <?php
+                                // Comprobar el rol del usuario para mostrar los botones correspondientes
+                                if ($rolUsuario == 'Administrador') {
+                                    // Mostrar botones para el rol de Administrador
+                                    ?>
+                                    <a name="" id="" class="btn btn-info"
+                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMNETO'] ?>" role="button">Editar</a>
+                                    <a name="" id="" class="btn btn-danger"
+                                        href="javascript:borrar(<?php echo $registro['idMEDICAMENTO']; ?>);"
+                                        role="button">Eliminar</a>
+                                    <?php
+                                } elseif ($rolUsuario == 'Asistente') {
+                                    // Mostrar botón de edición solo para el rol de Asistente
+                                    ?>
+                                    <a name="" id="" class="btn btn-info"
+                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>" role="button">Editar</a>
+                                    <?php
+                                } elseif ($rolUsuario == 'Lector') {
+                                    // Mostrar botón de lectura solo para el rol de Lector
+                                    // ...
+                                }
+                                ?></td>
                             <td>
                                 <?php
                                 // Inicializa variables para almacenar nombre y lote

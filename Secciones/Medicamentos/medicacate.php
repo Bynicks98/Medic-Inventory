@@ -55,13 +55,19 @@ $lista_subcategorias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 </script>
 
 <br>
-<h1 class="text-center text-info text-Blue">Categorias</h1>
+<h1 class="text-center text-info text-dark">Categorias</h1>
 <br>
 
 <div class="card">
-    <div class="card-header" style="text-align: right">
-        <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Categoria</a>
-    </div>
+<?php
+    if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
+        ?>
+        <div class="card-header" style="text-align: right">
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Categoria</a>
+        </div>
+        <?php
+    }
+    ?>
     <div class="card-body">
         <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
             <table class="table">
