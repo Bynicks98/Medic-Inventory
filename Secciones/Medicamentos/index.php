@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     class="btn btn-primary">PDF Medicamentos</a></button>
             <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicPorVencer.php" target="_blank"
                     class="btn btn-primary">PDF MedPorVencer</a></button>
+            <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicMasUsados.php" target="_blank"
+                    class="btn btn-primary">PDF MedMasUsados</a></button>
         </div>
         <?php
     }

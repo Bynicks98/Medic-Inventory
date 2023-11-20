@@ -321,7 +321,7 @@ if ($_POST) {
           <input type="hidden" name="EstadoP" id="EstadoP" value="">
           <div>
             <h6>Estado</h6>
-            <input type="text" class="form-control" id="opcion-seleccionada" readonly
+            <input type="text" class="form-control" id="opcion-seleccion" readonly
               placeholder="Añade un estado al pedido">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -338,7 +338,7 @@ if ($_POST) {
               item.addEventListener('click', event => {
                 const selectedValue = event.target.dataset.value;
                 document.getElementById('EstadoP').value = selectedValue;
-                document.getElementById('opcion-seleccionada').value = selectedValue;
+                document.getElementById('opcion-seleccion').value = selectedValue;
               });
             });
           </script>

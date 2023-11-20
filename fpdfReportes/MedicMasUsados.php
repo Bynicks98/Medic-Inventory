@@ -39,7 +39,8 @@ function Footer()
 }
 }
 require 'bd.php';
-$consulta= "SELECT * FROM medicamento JOIN pedido ON MEDICAMENTO_idMEDICAMENTO GROUP BY MEDICAMENTO_idMEDICAMENTO ORDER BY cantidadP DESC;";
+$consulta = "SELECT * FROM medicamento INNER JOIN pedido ON medicamento.idMEDICAMENTO = pedido.MEDICAMENTO_idMEDICAMENTO GROUP BY medicamento.idMEDICAMENTO ORDER BY cantidadP DESC;";
+
 $resultado= $mysqli->query($consulta);
 $pdf = new PDF();
 $pdf->AliasNbPages();

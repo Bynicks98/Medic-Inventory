@@ -302,6 +302,18 @@ if ($_POST) {
           <?php } ?>
         </select>
       </div>
+      <div style="display: none:">
+        <label for="Nombre_Producto" class="form-label">Nombre del Producto</label>
+        <select class="form-select" name="Nombre_Producto" id="Nombre_Producto" required>
+          <option value="">Selecciona un medicamento</option>
+          <?php foreach ($nombresMedicamentos as $medicamento) { ?>
+            <option value="<?php echo $medicamento['nombreMedica']; ?>" <?php if (isset($MEDICAMENTO_idMEDICAMENTO) && $MEDICAMENTO_idMEDICAMENTO == $medicamento['idMEDICAMENTO'])
+                 echo 'selected'; ?>>
+              <?php echo $medicamento['nombreMedica']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
       <div class="mb-3">
         <label for="cantidadP" class="form-label">Cantidad</label>
         <input type="text" class="form-control" name="cantidadP" id="cantidadP" aria-describedby="helpId"
@@ -404,6 +416,7 @@ if ($_POST) {
             <li><a class="dropdown-item" href="#" data-value="Completo">Completo</a></li>
             <li><a class="dropdown-item" href="#" data-value="En Reparto">En Reparto</a></li>
             <li><a class="dropdown-item" href="#" data-value="Incompleto">Incompleto</a></li>
+            <li><a class="dropdown-item" href="#" data-value="Incompleto">Devuelto</a></li>
           </ul>
         </div>
         <script>
@@ -437,6 +450,16 @@ if ($_POST) {
               option.selected = true;
             }
           });
+        }
+      });
+    });
+  </script>
+  <script>
+    document.getElementById('MEDICAMENTO_idMEDICAMENTO').addEventListener('change', function () {
+      var selectedValue = this.value;
+      document.querySelectorAll('#Nombre_Producto option').forEach(function (option) {
+        if (option.value === selectedValue) {
+          option.selected = true;
         }
       });
     });

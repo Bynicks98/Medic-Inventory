@@ -1,6 +1,15 @@
 <?php
 include('../../database.php');
 
+function obtenerIdMedicamentoDesdePedido($idPedido)
+{
+    global $conexion;
+    $sentencia = $conexion->prepare("SELECT MEDICAMENTO_idMEDICAMENTO FROM pedido WHERE idPEDIDO = :idPedido");
+    $sentencia->bindParam(":idPedido", $idPedido);
+    $sentencia->execute();
+    $resultado = $sentencia->fetch(PDO::FETCH_ASSOC);
+    return $resultado['MEDICAMENTO_idMEDICAMENTO'];
+}
 if (isset($_GET['txtID'])) {
 
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
@@ -12,6 +21,10 @@ if (isset($_GET['txtID'])) {
     header("Location:index.php?mensaje=" . $mensaje);
 
 }
+
+$sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
+$sentenciaNombresMedicamentos->execute();
+$nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);
 //lectura de los registros de las tablas
 $sentencia = $conexion->prepare("SELECT * FROM devoluciones");
 $sentencia->execute();
@@ -42,13 +55,12 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <th scope="col">Nombre del producto</th>
                         <th scope="col">Motivo</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Cantidad de Cajas</th>
+                        <th scope="col" style="display: none;">Cantidad de Cajas</th>
                         <th scope="col">Cantidad de Unidades</th>
                         <th scope="col">acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-
 
                     <?php foreach ($lista_devoluciones as $registro) { ?>
                         <tr class="">
@@ -56,7 +68,22 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                 <?php echo $registro['idDevoluciones'] ?>
                             </td>
                             <td>
-                                <?php echo $registro['nombreProducto'] ?>
+                                <?php
+                                // Buscar el nombre del medicamento utilizando el ID correspondiente
+                                $nombreMedicamento = "";
+                                if (isset($registro['PEDIDO_idPEDIDO'])) {
+                                    // Obtener el ID del medicamento asociado con el pedido
+                                    $idMedicamento = obtenerIdMedicamentoDesdePedido($registro['PEDIDO_idPEDIDO']);
+                                    // Buscar el nombre del medicamento utilizando el ID
+                                    foreach ($nombresMedicamentos as $medicamento) {
+                                        if ($medicamento['idMEDICAMENTO'] == $idMedicamento) {
+                                            $nombreMedicamento = $medicamento['nombreMedica'];
+                                            break;
+                                        }
+                                    }
+                                }
+                                echo $nombreMedicamento;
+                                ?>
                             </td>
                             <td scope="row">
                                 <?php echo $registro['motivoD'] ?>
@@ -64,20 +91,21 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                             <td>
                                 <?php echo $registro['estadoD'] ?>
                             </td>
-                            <td>
+                            <td style="display: none;">
                                 <?php echo $registro['cantidadD'] ?>
                             </td>
                             <td>
                                 <?php echo $registro['cantidadUD'] ?>
                             </td>
                             <td>
-                            <?php
+                                <?php
                                 // Comprobar el rol del usuario para mostrar los botones correspondientes
                                 if ($rolUsuario == 'Administrador') {
                                     // Mostrar botones para el rol de Administrador
                                     ?>
                                     <a name="" id="" class="btn btn-info"
-                                        href="editar.php?txtID=<?php echo $registro['idDevoluciones'] ?>" role="button">Editar</a>
+                                        href="editar.php?txtID=<?php echo $registro['idDevoluciones'] ?>"
+                                        role="button">Editar</a>
                                     <a name="" id="" class="btn btn-danger"
                                         href="javascript:borrar(<?php echo $registro['idDevoluciones']; ?>);"
                                         role="button">Eliminar</a>
@@ -86,7 +114,8 @@ $lista_devoluciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                     // Mostrar botón de edición solo para el rol de Asistente
                                     ?>
                                     <a name="" id="" class="btn btn-info"
-                                        href="editar.php?txtID=<?php echo $registro['idDevoluciones'] ?>" role="button">Editar</a>
+                                        href="editar.php?txtID=<?php echo $registro['idDevoluciones'] ?>"
+                                        role="button">Editar</a>
                                     <?php
                                 } elseif ($rolUsuario == 'Lector') {
                                     // Mostrar botón de lectura solo para el rol de Lector
