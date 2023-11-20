@@ -156,7 +156,9 @@ if ($_POST && isset($_POST["idCategoria"])) {
   <div class="mb-3">
     <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
+    <option value="">Selecciona una categoría</option>
       <?php foreach ($Categorias as $medicamento) { ?>
+        
         <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
           <?php echo $medicamento['nombreCat']; ?>
         </option>
@@ -167,6 +169,7 @@ if ($_POST && isset($_POST["idCategoria"])) {
   <div class="mb-3">
     <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
+    <option value="">Selecciona una Subcategoría</option>
       <?php foreach ($Subcategorias as $medicamento) { ?>
         <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
           <?php echo $medicamento['nombreSubcat']; ?>
@@ -221,7 +224,7 @@ $(document).ready(function() {
         var categoriaSeleccionada = $(this).val();
 
         $.ajax({
-            url: "obtener_subcategorias.php",
+            url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
             type: "POST",
             data: { idCategoria: categoriaSeleccionada },
             success: function(data) {
@@ -234,5 +237,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 <?php include("../../Plantillas/footer.php"); ?>

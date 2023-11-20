@@ -121,8 +121,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 if ($rolUsuario == 'Administrador') {
                                     // Mostrar botones para el rol de Administrador
                                     ?>
-                                    <a name="" id="" class="btn btn-info"
-                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMNETO'] ?>" role="button">Editar</a>
+                                     <a name="" id="" class="btn btn-info"
+                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO']; ?>"
+                                        role="button">Editar</a>
                                     <a name="" id="" class="btn btn-danger"
                                         href="javascript:borrar(<?php echo $registro['idMEDICAMENTO']; ?>);"
                                         role="button">Eliminar</a>

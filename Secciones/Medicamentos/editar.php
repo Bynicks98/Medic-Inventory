@@ -132,6 +132,7 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
   <div class="mb-3">
     <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
+    <option value="">Selecciona una categoría</option>
       <?php foreach ($Categorias as $medicamento) { ?>
         <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
           <?php echo $medicamento['nombreCat']; ?>
@@ -142,6 +143,7 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
   <div class="mb-3">
     <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
+    <option value="">Selecciona una Subcategoría</option>
       <?php foreach ($Subcategorias as $medicamento) { ?>
         <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
           <?php echo $medicamento['nombreSubcat']; ?>
@@ -163,5 +165,27 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <div class="card-footer text-muted"></div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#idCATEGORIA").change(function() {
+        var categoriaSeleccionada = $(this).val();
+
+        $.ajax({
+            url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
+            type: "POST",
+            data: { idCategoria: categoriaSeleccionada },
+            success: function(data) {
+                $("#idSUBCATEGORIA").html(data);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al obtener subcategorías:", error);
+            }
+        });
+    });
+});
+</script>
+
 
 <?php include("../../Plantillas/footer.php"); ?>

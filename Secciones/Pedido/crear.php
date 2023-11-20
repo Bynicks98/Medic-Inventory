@@ -115,7 +115,7 @@ if ($_POST) {
 }
 ?>
 
-<script>
+<!-- <script>
   document.getElementById('MEDICAMENTO_idMEDICAMENTO').addEventListener('change', function () {
     var selectedProductId = this.value;
 
@@ -156,7 +156,7 @@ if ($_POST) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('productoId=' + selectedProductId);
   });
-</script>
+</script> -->
 
 
 <?php include("../../Plantillas/header.php"); ?>
@@ -353,5 +353,27 @@ if ($_POST) {
 
 
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#idCATEGORIA").change(function() {
+        var categoriaSeleccionada = $(this).val();
+
+        $.ajax({
+            url: "../Medicamentos/obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
+            type: "POST",
+            data: { idCategoria: categoriaSeleccionada },
+            success: function(data) {
+                $("#idSUBCATEGORIA").html(data);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al obtener subcategorías:", error);
+            }
+        });
+    });
+});
+</script>
 
 <?php include("../../Plantillas/footer.php"); ?>

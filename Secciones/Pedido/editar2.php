@@ -35,6 +35,9 @@ if (isset($_GET['txtID'])) {
 }
 
 if ($_POST) {
+
+  var_dump($_POST);
+
   $idPEDIDO = (isset($_POST["idPEDIDO"]) ? $_POST["idPEDIDO"] : "");
   $Tipo_pedido = (isset($_POST["Tipo_pedido"]) ? $_POST["Tipo_pedido"] : "");
   $fechaPedido = (isset($_POST["fechaPedido"]) ? $_POST["fechaPedido"] : "");
@@ -53,25 +56,44 @@ if ($_POST) {
   $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA = (isset($_POST["MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"]) ? $_POST["MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA"] : "");
   $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA = (isset($_POST["MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"]) ? $_POST["MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA"] : "");
   $FORMULAMEDICA_idFORMULA = (isset($_POST["FORMULAMEDICA_idFORMULA"]) ? $_POST["FORMULAMEDICA_idFORMULA"] : "");
-  $nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
-  $estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
+  //$nombreProductoSeleccionado = (isset($_POST["MEDICAMENTO_idMEDICAMENTO"])) ? $_POST["MEDICAMENTO_idMEDICAMENTO"] : "";
+  //$estadoPedidoSeleccionado = (isset($_POST["EstadoP"])) ? $_POST["EstadoP"] : "";
+  var_dump($_POST);
+  echo "ID del Pedido: " . $idPEDIDO . "<br>";
+  echo "Nuevo Tipo de Pedido: " . $Tipo_pedido . "<br>";
+  echo "Nueva Fecha del Pedido: " . $fechaPedido . "<br>";
+  echo "Nueva Fecha del Pedido: " . $costoPedido . "<br>";
+  echo "Nueva Fecha del Pedido: " . $Nombre_Producto . "<br>";
+  echo "Nueva Fecha del Pedido: " . $cantidadP . "<br>";
+  echo "Nueva Fecha del Pedido: " . $Fecha_entrega . "<br>";
+  echo "Nueva Fecha del Pedido: " . $EstadoP . "<br>";
+  echo "Nueva Fecha del Pedido: " . $SUCURSALIPS_idSUCURSALIPS . "<br>";
+  echo "Nueva Fecha del Pedido: " . $DISTRIBUIDOR_idDISTRIBUIDOR . "<br>";
+  echo "Nueva Fecha del Pedido: " . $PAGO_idPAGO . "<br>";
+  echo "Nueva Fecha del Pedido: " . $MEDICAMENTO_idMEDICAMENTO . "<br>";
+  echo "Nueva Fecha del Pedido: " . $MEDICAMENTO_Persona_idPersona . "<br>";
+  echo "Nueva Fecha del Pedido: " . $MEDICAMENTO_PERSONA_ROL_idRol . "<br>";
+  echo "Nueva Fecha del Pedido: " . $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA . "<br>";
+  echo "Nueva Fecha del Pedido: " . $FORMULAMEDICA_idFORMULA . "<br>";
+  echo "Nueva Fecha del Pedido: " . $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA . "<br>";
+  
 
   $sentenciaActualizarPedido = $conexion->prepare("UPDATE pedido SET Tipo_pedido = :Tipo_pedido, fechaPedido = :fechaPedido, 
   costoPedido = :costoPedido, Nombre_Producto = :Nombre_Producto, cantidadP = :cantidadP, Fecha_entrega = :Fecha_entrega, 
   Fecha_envio = :Fecha_envio, EstadoP = :EstadoP, SUCURSALIPS_idSUCURSALIPS = :SUCURSALIPS_idSUCURSALIPS, DISTRIBUIDOR_idDISTRIBUIDOR = :DISTRIBUIDOR_idDISTRIBUIDOR
   , PAGO_idPAGO = :PAGO_idPAGO, MEDICAMENTO_idMEDICAMENTO = :MEDICAMENTO_idMEDICAMENTO ,MEDICAMENTO_Persona_idPersona = :MEDICAMENTO_Persona_idPersona, 
   MEDICAMENTO_PERSONA_ROL_idRol = :MEDICAMENTO_PERSONA_ROL_idRol, MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA = :MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA
-  , MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA = :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA = :FORMULAMEDICA_idFORMULA WHERE idPEDIDO = :idPedido");
+  , MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA = :MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA, FORMULAMEDICA_idFORMULA = :FORMULAMEDICA_idFORMULA WHERE idPEDIDO = :idPEDIDO");
 
   $sentenciaActualizarPedido->bindParam(":Tipo_pedido", $Tipo_pedido);
   $sentenciaActualizarPedido->bindParam(":fechaPedido", $fechaPedido);
-  $sentenciaActualizarPedido->bindParam(":costoPedido", $costoPedido);
+  $sentenciaActualizarPedido->bindParam(":costoPedido", $costoPedido); 
   $sentenciaActualizarPedido->bindParam(":Nombre_Producto", $Nombre_Producto);
   $sentenciaActualizarPedido->bindParam(":cantidadP", $cantidadP);
   $sentenciaActualizarPedido->bindParam(":Fecha_entrega", $Fecha_entrega);
   $sentenciaActualizarPedido->bindParam(":Fecha_envio", $Fecha_envio);
   $sentenciaActualizarPedido->bindParam(":EstadoP", $EstadoP);
-  $sentenciaActualizarPedido->bindParam(":idPedido", $idPedidoEditar);
+  $sentenciaActualizarPedido->bindParam(":idPEDIDO", $idPEDIDO);
   $sentenciaActualizarPedido->bindParam(":SUCURSALIPS_idSUCURSALIPS", $SUCURSALIPS_idSUCURSALIPS);
   $sentenciaActualizarPedido->bindParam(":DISTRIBUIDOR_idDISTRIBUIDOR", $DISTRIBUIDOR_idDISTRIBUIDOR);
   $sentenciaActualizarPedido->bindParam(":PAGO_idPAGO", $PAGO_idPAGO);
@@ -81,11 +103,14 @@ if ($_POST) {
   $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
   $sentenciaActualizarPedido->bindParam(":MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA", $MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
   $sentenciaActualizarPedido->bindParam(":FORMULAMEDICA_idFORMULA", $FORMULAMEDICA_idFORMULA);
-  
+
+  echo "Error al actualizar el pedido.";
+ 
 
   if ($sentenciaActualizarPedido->execute()) {
     
 
+  
     // Lógica para actualizar la cantidad de unidades en la tabla 'medicamento' según el tipo de pedido
     if ($Tipo_pedido === "Entrada") {
       $diferenciaCantidad = $cantidadP - $cantidadPedidoOriginal;
@@ -118,25 +143,7 @@ if ($_POST) {
     }
   } else {
     // Mensaje de error al actualizar el pedido
-    echo "Error al actualizar el pedido.";
-    // var_dump($Tipo_pedido);
-    // var_dump($fechaPedido);
-    // var_dump($costoPedido);
-    // var_dump($nombreProductoSeleccionado);
-    // var_dump($cantidadP);
-    // var_dump($Fecha_entrega);
-    // var_dump($Fecha_envio);
-    // var_dump($estadoPedidoSeleccionado);
-    // var_dump($idPedidoEditar);
-    // var_dump($SUCURSALIPS_idSUCURSALIPS);
-    // var_dump($DISTRIBUIDOR_idDISTRIBUIDOR);
-    // var_dump($PAGO_idPAGO);
-    // var_dump($MEDICAMENTO_idMEDICAMENTO);
-    // var_dump($MEDICAMENTO_Persona_idPersona);
-    // var_dump($MEDICAMENTO_PERSONA_ROL_idRol);
-    // var_dump($MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA);
-    // var_dump($MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA);
-    // var_dump($FORMULAMEDICA_idFORMULA);
+   
   }
 }
 
@@ -305,7 +312,6 @@ $formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
           <?php } ?>
         </select>
       </div>
-
       <div class="mb-3">
         <label for="cantidadP" class="form-label">Cantidad</label>
         <input type="text" class="form-control" name="cantidadP" id="cantidadP" aria-describedby="helpId"
@@ -421,9 +427,9 @@ $formulaM = $sentenciaformula->fetchAll(PDO::FETCH_ASSOC);
           });
         </script>
         <div class="card-footer text-muted">
-          <button type="submit" class="btn btn-success" >Agregar Pedido</button>
+          <button type="submit" class="btn btn-success" >Editar Pedido</button>
           <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
-          <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
+          <a name="" id="" class="btn btn-primary" href="" role="button">Cancelar</a>
         </div>
       </div>
     </form>
