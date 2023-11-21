@@ -123,7 +123,7 @@ $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC)
       </div>
       <!-- <div class="mb-3">
         <label for="nombreProducto" class="form-label">Nombre Producto</label>
-        <input type="text" value="<?php// echo $nombreProducto; ?>" class="form-control" name="nombreProducto"
+        <input type="text" value="" class="form-control" name="nombreProducto"
           id="nombreProducto" aria-describedby="helpId" placeholder="Nombre del Producto">
 
       </div> -->
