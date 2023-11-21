@@ -138,33 +138,6 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
             <li class="nav-item">
               <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Medicamentos/medicacate.php">Medicamentos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Roles/">Roles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Usuarios/">Usuarios</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Formula Medica/">Formula Medica</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Distribuidor/">Distribuidor</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Devoluciones/">Devoluciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Proveedores/">Proveedores</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorias</a>
               <ul class="dropdown-menu">
@@ -172,6 +145,33 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
                 <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Devoluciones/">Devoluciones</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Distribuidor/">Distribuidor</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Formula Medica/">Formula Medica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Proveedores/">Proveedores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Roles/">Roles</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Usuarios/">Usuarios</a>
             </li>
             <?php
           } elseif ($rolUsuario == 'Asistente') {
@@ -180,33 +180,33 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
               <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Medicamentos/medicacate.php">Medicamentos</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Formula Medica/">Formula Medica</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Distribuidor/">Distribuidor</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Devoluciones/">Devoluciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Proveedores/">Proveedores</a>
-            </li>
-            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categorias</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Categorias/">Categoria</a></li>
                 <li><a class="dropdown-item" href="<?php echo $url_base; ?>/Secciones/Subcategorias/">SubCategoria</a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Distribuidor/">Distribuidor</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Devoluciones/">Devoluciones</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Formula Medica/">Formula Medica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pago/">Pagos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Pedido/">Pedidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Proveedores/">Proveedores</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo $url_base; ?>/Secciones/Sucursales/">Sucursal</a>
             </li>
             <?php
           } elseif ($rolUsuario == 'Lector') {

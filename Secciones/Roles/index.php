@@ -59,7 +59,7 @@ if ($sentencia->execute()) {
     }
     ?>
     <div class="card-body">
-        <div class="table-responsive-sm container-sm" style="max-width: 100%; overflow-x: auto;">
+        <div class="table-responsive-sm container-sm" style="max-width: 60%; overflow-x: auto;">
             <table class="table" id="tabla_id">
                 <thead>
                     <tr>
@@ -77,7 +77,7 @@ if ($sentencia->execute()) {
                             <td>
                                 <?php echo $registro['nombreRol'] ?>
                             </td>
-                            <td> <!--bs5buttoninput abajo -->
+                            <td style="width: 30%"> <!--bs5buttoninput abajo -->
                             <?php
                                 // Comprobar el rol del usuario para mostrar los botones correspondientes
                                 if ($rolUsuario == 'Administrador') {

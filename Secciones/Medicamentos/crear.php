@@ -127,28 +127,27 @@ if ($_POST && isset($_POST["idCategoria"])) {
 
       </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-3" style="display: none;">
     <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
-    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" placNumero
-      de cajasbricacion">
+    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" >
 
   </div>
   <div class="mb-3">
     <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
     <input type="text" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
-      aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+      aria-describedby="helpId" placeholder="">
 
   </div>
   <div class="mb-3">
-    <label for="valorUnitMedica" class="form-label">valorUnitMedica</label>
+    <label for="valorUnitMedica" class="form-label">Valor unitario</label>
     <input type="text" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
-      aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+      aria-describedby="helpId" placeholder="">
 
   </div>
   <div class="mb-3">
-    <label for="noLoteMedica" class="form-label">noLoteMedica</label>
+    <label for="noLoteMedica" class="form-label">Numero de lote</label>
     <input type="text" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
-      placeholder="elija la fecha de fabricacion">
+      placeholder="">
 
   </div>
 

@@ -38,6 +38,7 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Referencia de Pago</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Fecha de Pago</th>
                         <th scope="col">Persona que pagó</th>
@@ -49,6 +50,9 @@ $lista_pago = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td scope="row">
                                 <?php echo $registro['idPAGO'] ?>
+                            </td>
+                            <td scope="row">
+                                <?php echo $registro['ReferenciaPago'] ?>
                             </td>
                             <td scope="row">
                                 <?php echo $registro['estadoPago'] ?>

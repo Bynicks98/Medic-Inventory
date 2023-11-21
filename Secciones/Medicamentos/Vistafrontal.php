@@ -52,11 +52,12 @@ document.addEventListener("DOMContentLoaded", function() {
             <th scope="col">Descripcion</th>
             <th scope="col">fechaFabricacionMedica</th>
             <th scope="col">fecha de Vencimiento</th>
-            <th scope="col">Cantidad de Cajas</th>
+            <th scope="col" style="display: none:">Cantidad de Cajas</th>
             <th scope="col">Cantidad de unidades</th>
             <th scope="col">Valor unidad Medicamento</th>
             <th scope="col">Numero de Lote </th>
             <th scope="col">Acciones</th>
+            <th>Alerta</th>
 
           </tr>
         </thead>
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           <?php foreach ($lista_medicamento as $registro) { ?>
             <tr class="">
-              <td scope="row">
+              <td scope="row" >
                 <?php echo $registro['idMEDICAMENTO'] ?>
               </td>
               <td>
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <td>
                 <?php echo $registro['fechaVencimientoMedica'] ?>
               </td>
-              <td>
+              <td style="display: none:">
                 <?php echo $registro['cantidadCajas'] ?>
               </td>
               <td>

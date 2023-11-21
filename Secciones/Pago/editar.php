@@ -13,6 +13,7 @@ if (isset($_GET['txtID'])) {
         $estadoPago = $registro["estadoPago"];
         $fechaPago = $registro["fechaPago"];
         $hechoPor = $registro["hechoPor"];
+        $ReferenciaPago = $registro["ReferenciaPago"];
     }
 }
 
@@ -21,13 +22,15 @@ if ($_POST) {
     $estadoPago = (isset($_POST["estadoPago"]) ? $_POST["estadoPago"] : "");
     $fechaPago = (isset($_POST["fechaPago"]) ? $_POST["fechaPago"] : "");
     $hechoPor = (isset($_POST["hechoPor"]) ? $_POST["hechoPor"] : "");
+    $ReferenciaPago = (isset($_POST["ReferenciaPago"]) ? $_POST["ReferenciaPago"] : "");
 
-    $sentencia = $conexion->prepare("UPDATE pago SET estadoPago = :estadoPago, fechaPago = :fechaPago, hechoPor = :hechoPor WHERE idPAGO = :idPAGO");
+    $sentencia = $conexion->prepare("UPDATE pago SET estadoPago = :estadoPago, fechaPago = :fechaPago, hechoPor = :hechoPor , ReferenciaPago = :ReferenciaPago WHERE idPAGO = :idPAGO");
 
     $sentencia->bindParam(":estadoPago", $estadoPago);
     $sentencia->bindParam(":fechaPago", $fechaPago);
     $sentencia->bindParam(":hechoPor", $hechoPor);
     $sentencia->bindParam(":idPAGO", $txtID);
+    $sentencia->bindParam("ReferenciaPago", $ReferenciaPago);
 
     $sentencia->execute();
     $mensaje="Registro Actualizado";
@@ -47,7 +50,11 @@ if ($_POST) {
                 <label for="txtID" class="form-label">ID</label>
                 <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID" id="txtID" aria-describedby="helpId" placeholder="ID">
             </div>
-
+            <div class="mb-3">
+                <label for="ReferenciaPago" class="form-label">Referencia de pago</label>
+                <input type="text" class="form-control" name="ReferenciaPago" id="ReferenciaPago" aria-describedby="helpId"
+                    placeholder="" value="<?php echo $ReferenciaPago; ?>">
+            </div>
             <div class="mb-3">
                 <label for="estadoPago" class="form-label">Estado</label>
                 <select name="estadoPago" class="form-select">

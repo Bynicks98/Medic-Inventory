@@ -74,82 +74,86 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
   <div class="card-body">
 
     <form action="" method="post">
-      <div class="mb-3">
+      <div class="mb-3" style="display: none;">
         <label for="txtID" class="form-label">ID</label>
         <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID" id="txtID"
           aria-describedby="helpId" placeholder="ID">
 
       </div>
       <div class="mb-3">
-        <label for="nombreMedica" class="form-label">Nombre </label>
-        <input type="text" value="<?php echo $nombreMedica; ?>" class="form-control" name="nombreMedica" id="nombreMedica" aria-describedby="helpId"
-          placeholder="Añade un nombre a tu medicamento">
+        <label for="nombreMedica" class="form-label">Nombre del producto</label>
+        <input type="text" value="<?php echo $nombreMedica; ?>" class="form-control" name="nombreMedica"
+          id="nombreMedica" aria-describedby="helpId" placeholder="Añade un nombre a tu medicamento">
 
       </div>
       <div class="mb-3">
         <label for="descripcionMedica" class="form-label">Descripcion del medicamento</label>
-        <input type="text" value="<?php echo $descripcionMedica; ?>" class="form-control" name="descripcionMedica" id="descripcionMedica"
-          aria-describedby="helpId" placeholder="Agrega el tipo de tu medicamento">
+        <input type="text" value="<?php echo $descripcionMedica; ?>" class="form-control" name="descripcionMedica"
+          id="descripcionMedica" aria-describedby="helpId" placeholder="Agrega el tipo de tu medicamento">
 
       </div>
       <div class="mb-3">
         <label for="fechaFabricacionMedica" class="form-label">Fecha de Fabricacion</label>
-        <input type="date" value="<?php echo $fechaFabricacionMedica; ?>" class="form-control" name="fechaFabricacionMedica" id="fechaFabricacionMedica"
-          aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+        <input type="date" value="<?php echo $fechaFabricacionMedica; ?>" class="form-control"
+          name="fechaFabricacionMedica" id="fechaFabricacionMedica" aria-describedby="helpId"
+          placeholder="elija la fecha de fabricacion">
 
       </div>
       <div class="mb-3">
         <label for="fechaVencimientoMedica" class="form-label">Fecha de Vencimiento</label>
-        <input type="date" value="<?php echo $fechaVencimientoMedica; ?>" class="form-control" name="fechaVencimientoMedica" id="fechaVencimientoMedica"
-          aria-describedby="helpId" placeholder="elija la fecha de fabricacion.">
+        <input type="date" value="<?php echo $fechaVencimientoMedica; ?>" class="form-control"
+          name="fechaVencimientoMedica" id="fechaVencimientoMedica" aria-describedby="helpId"
+          placeholder="elija la fecha de fabricacion.">
 
       </div>
-  </div>
-  <div class="mb-3">
-    <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
-    <input type="text" value="<?php echo $cantidadCajas; ?>" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" placholder="
-      de cajasbricacion">
 
-  </div>
-  <div class="mb-3">
-    <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
-    <input type="text" value="<?php echo $cantidadUnidades; ?>" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
-      aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+      <div class="mb-3" style="display: none;">
+        <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
+        <input type="text" value="<?php echo $cantidadCajas; ?>" class="form-control" name="cantidadCajas"
+          id="cantidadCajas" aria-describedby="helpId">
+      </div>
+      <div class="mb-3">
+        <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
+        <input type="text" value="<?php echo $cantidadUnidades; ?>" class="form-control" name="cantidadUnidades"
+          id="ica" id="cantidadUnidades" aria-describedby="helpId" placeholder="">
 
-  </div>
-  <div class="mb-3">
-    <label for="valorUnitMedica" class="form-label">valorUnitMedica</label>
-    <input type="text" value="<?php echo $valorUnitMedica; ?>" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
-      aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+      </div>
+      <div class="mb-3">
+        <label for="valorUnitMedica" class="form-label">Valor unitario</label>
+        <input type="text" value="<?php echo $valorUnitMedica; ?>" class="form-control" name="valorUnitMedica" id="ica"
+          id="valorUnitMedica" aria-describedby="helpId" placeholder="">
 
-  </div>
-  <div class="mb-3">
-    <label for="noLoteMedica" class="form-label">noLoteMedica</label>
-    <input type="text" value="<?php echo $noLoteMedica; ?>" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
-      placeholder="elija la fecha de fabricacion">
+      </div>
+      <div class="mb-3">
+        <label for="noLoteMedica" class="form-label">Numero de lote</label>
+        <input type="text" value="<?php echo $noLoteMedica; ?>" class="form-control" name="noLoteMedica" id="ica"
+          id="noLoteMedica" aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
 
-  </div>
-  <div class="mb-3">
-    <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
-    <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
-    <option value="">Selecciona una categoría</option>
-      <?php foreach ($Categorias as $medicamento) { ?>
-        <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
-          <?php echo $medicamento['nombreCat']; ?>
-        </option>
-      <?php } ?>
-    </select>
-  </div>
-  <div class="mb-3">
-    <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
-    <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
-    <option value="">Selecciona una Subcategoría</option>
-      <?php foreach ($Subcategorias as $medicamento) { ?>
-        <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
-          <?php echo $medicamento['nombreSubcat']; ?>
-        </option>
-      <?php } ?>
-    </select>
+      </div>
+      <div class="mb-3">
+        <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
+        <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
+          <option value="">Selecciona una categoría</option>
+          <?php foreach ($Categorias as $categoria) { ?>
+            <option value="<?php echo $categoria['idCATEGORIA']; ?>" <?php if ($categoria['idCATEGORIA'] == $idCATEGORIA)
+                 echo 'selected'; ?>>
+              <?php echo $categoria['nombreCat']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
+        <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
+          <option value="">Selecciona una Subcategoría</option>
+          <?php foreach ($Subcategorias as $subcategoria) { ?>
+            <option value="<?php echo $subcategoria['idSUBCATEGORIA']; ?>" <?php if ($subcategoria['idSUBCATEGORIA'] == $idSUBCATEGORIA)
+                 echo 'selected'; ?>>
+              <?php echo $subcategoria['nombreSubcat']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
   </div>
 
   <!-- FK categoria y subcategoria -->
@@ -168,23 +172,23 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#idCATEGORIA").change(function() {
-        var categoriaSeleccionada = $(this).val();
+  $(document).ready(function () {
+    $("#idCATEGORIA").change(function () {
+      var categoriaSeleccionada = $(this).val();
 
-        $.ajax({
-            url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
-            type: "POST",
-            data: { idCategoria: categoriaSeleccionada },
-            success: function(data) {
-                $("#idSUBCATEGORIA").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error("Error al obtener subcategorías:", error);
-            }
-        });
+      $.ajax({
+        url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
+        type: "POST",
+        data: { idCategoria: categoriaSeleccionada },
+        success: function (data) {
+          $("#idSUBCATEGORIA").html(data);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al obtener subcategorías:", error);
+        }
+      });
     });
-});
+  });
 </script>
 
 

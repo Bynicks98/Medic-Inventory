@@ -74,12 +74,14 @@ document.addEventListener("DOMContentLoaded", function() {
             <table class="table" id="tabla_id">
                 <thead>
                     <tr>
+                        <th scope="col" style="display: none;">subcategoria</th>
+                        <th scope="col" style="display: none;">categoria</th>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre Medicamento</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">fechaFabricacionMedica</th>
                         <th scope="col">fecha de Vencimiento</th>
-                        <th scope="col">Cantidad de Cajas</th>
+                        <th scope="col" style="display: none;">Cantidad de Cajas</th>
                         <th scope="col">Cantidad de unidades</th>
                         <th scope="col">Valor unidad Medicamento</th>
                         <th scope="col">Numero de Lote </th>
@@ -90,6 +92,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 <tbody>
                     <?php foreach ($lista_medicamento as $registro) { ?>
                         <tr class="">
+                            <td scope="row" style="display: none;">
+                                <?php echo $registro['idSUBCATEGORIA'] ?>
+                            </td>
+                            <td scope="row" style="display: none;">
+                                <?php echo $registro['idCATEGORIA'] ?>
+                            </td>
                             <td scope="row">
                                 <?php echo $registro['idMEDICAMENTO'] ?>
                             </td>
@@ -105,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <td>
                                 <?php echo $registro['fechaVencimientoMedica'] ?>
                             </td>
-                            <td>
+                            <td style="display: none;">
                                 <?php echo $registro['cantidadCajas'] ?>
                             </td>
                             <td>
@@ -118,12 +126,12 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <?php echo $registro['noLoteMedica'] ?>
                             </td>
                             <td>
-                            <?php
+                                <?php
                                 // Comprobar el rol del usuario para mostrar los botones correspondientes
                                 if ($rolUsuario == 'Administrador') {
                                     // Mostrar botones para el rol de Administrador
                                     ?>
-                                     <a name="" id="" class="btn btn-info"
+                                    <a name="" id="" class="btn btn-info"
                                         href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO']; ?>"
                                         role="button">Editar</a>
                                     <a name="" id="" class="btn btn-danger"
@@ -134,13 +142,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                     // Mostrar botón de edición solo para el rol de Asistente
                                     ?>
                                     <a name="" id="" class="btn btn-info"
-                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>" role="button">Editar</a>
+                                        href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
+                                        role="button">Editar</a>
                                     <?php
                                 } elseif ($rolUsuario == 'Lector') {
                                     // Mostrar botón de lectura solo para el rol de Lector
                                     // ...
                                 }
-                                ?></td>
+                                ?>
+                            </td>
                             <td>
                                 <?php
                                 // Inicializa variables para almacenar nombre y lote
@@ -178,8 +188,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 }
                                 ?>
 
-                                <div class="alerta-icono" data-nombre="<?php echo $nombreAlerta; ?>"
-                                    data-lote="<?php echo $loteAlerta; ?>" data-tipo="<?php echo $tipoAlerta; ?>">
+                                <div class="alerta-icono" data-nombre="<?php echo $nombreAlerta; ?> "
+                                    style="text-align: center" data-lote="<?php echo $loteAlerta; ?>"
+                                    data-tipo="<?php echo $tipoAlerta; ?>">
                                     <?php
                                     // Muestra el ícono de alerta dependiendo de las condiciones
                                     if ($alertaFechaVencimiento && $alertaCantidad) {
