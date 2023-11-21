@@ -230,7 +230,7 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
       <div class="d-flex align-items-center alerta-container">
         <ul class="nav navbar-nav">
           <li>
-            <a href="vistafrontal.php"><i class="fas fa-exclamation-triangle text-warning alerta-icono"
+            <a href="../Medicamentos/vistafrontal.php"><i class="fas fa-exclamation-triangle text-warning alerta-icono"
                 data-nombre="'  '" data-lote="'  '"></i></a>
           </li>
         </ul>
