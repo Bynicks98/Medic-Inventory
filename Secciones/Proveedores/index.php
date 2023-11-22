@@ -26,7 +26,7 @@ $lista_PROVEEDOR = $sentencia->fetchall(PDO::FETCH_ASSOC);
     if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
         ?>
         <div class="card-header" style="text-align: right">
-            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nuevo proveedor</a>
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nuevo Proveedor</a>
         </div>
         <?php
     }

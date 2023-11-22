@@ -150,7 +150,8 @@ if ($_POST) {
       $sentenciaUpdateMedicamento->bindParam(":diferenciaCantidad", $diferenciaCantidad);
       $sentenciaUpdateMedicamento->bindParam(":medicamentoID", $MEDICAMENTO_idMEDICAMENTO);
       if ($sentenciaUpdateMedicamento->execute()) {
-        header("Location: index.php");
+        $mensaje = "Registro Actualizado";
+        header("Location: index.php?mensaje=" . $mensaje);
         exit();
       } else {
         // Mensaje de error al actualizar la cantidad de unidades
@@ -464,7 +465,23 @@ if ($_POST) {
       });
     });
   </script>
+    <script>
+  document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA').addEventListener('change', function () {
+    var categoriaId = this.value;
 
+    // Realizar la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // Actualizar las opciones del campo de subcategorías
+        document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA').innerHTML = this.responseText;
+      }
+    };
+    xhr.open('POST', 'obtenerSub.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send('idCategoria=' + categoriaId);
+  });
+</script>
 </div>
 
 <?php include("../../Plantillas/footer.php"); ?>

@@ -57,7 +57,7 @@ Edit
                 <input type="text" value="<?php echo $nombreRol; ?>" class="form-control" name="nombreRol" id="nombreRol"
                     aria-describedby="helpId" placeholder="Nombre del Rol...">
             </div>
-            <button type="submit" class="btn btn-primary">Actualizar Rol</button>
+            <button type="submit" class="btn btn-primary">Editar Rol</button>
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </form>
     </div>

@@ -39,14 +39,13 @@ if (isset($_SESSION['rol']))
 
 </html>
 <!-- abajo nombre de la persona iniciada -->
-<div class="p-5 mb-4 bg-light rounded-3">
-  <div class="container-fluid py-5">
+<div class="p-5 mb-4 bg-light rounded-3" style="text-align: center;">
+  <div class="container-fluid py-5" >
     <?php if (isset($_SESSION['nombreP'])) { ?>
-      <h1 class="display-5 fw-bold">Bienvenido a MedicInventory</h1>
-      <p class="col-md-8 fs-4">Usuario: <?php echo $_SESSION['nombreP']; ?></p>
-      <button class="btn btn-primary btn-lg" type="button">Example button</button>
-      <img src="Imagenes/stich.jpg">
-      <a href="Imagenes/hola.php" clase="btn btn success">Hola</a>
+      <h1 class="display-5 fw-bold" >Bienvenido a MedicInventory</h1>
+      <p  style="text-align: center; ">Usuario: <?php echo $_SESSION['nombreP']; ?></p>
+      <img  src="./imagenes/logoMI.png" class="img1">
+      <a href="MedicInven/Imagenes/hola.php" clase="btn btn success"></a>
     <?php } else { ?>
       <p>No has iniciado sesión.</p>
     <?php } ?>

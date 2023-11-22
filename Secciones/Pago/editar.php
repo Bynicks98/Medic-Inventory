@@ -46,7 +46,7 @@ if ($_POST) {
     </div>
     <div class="card-body">
         <form action="" method="post">
-            <div class="mb-3">
+            <div class="mb-3" style="display: none;">
                 <label for="txtID" class="form-label">ID</label>
                 <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID" id="txtID" aria-describedby="helpId" placeholder="ID">
             </div>

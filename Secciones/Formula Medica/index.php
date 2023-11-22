@@ -27,7 +27,7 @@ $lista_formulamedica = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
         ?>
         <div class="card-header" style="text-align: right">
-            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Formula</a>
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar nueva Fórmula</a>
         </div>
         <?php
     }

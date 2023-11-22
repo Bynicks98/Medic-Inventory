@@ -108,6 +108,8 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
 <!-- Alertas de borrado custom -->
 <script>
         function borrar(id){

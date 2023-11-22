@@ -53,7 +53,7 @@ if ($sentencia->execute()) {
     if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
         ?>
         <div class="card-header" style="text-align: right">
-            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Rol</a>
+            <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Nuevo Rol</a>
         </div>
         <?php
     }

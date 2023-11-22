@@ -270,6 +270,7 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
     </main>
 
 
+
     <!-- Bootstrap JS v5.2.1 (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
       integrity="sha384-cSHfF1hGYyzxcWpSS5n5n5OApmf3p4pD9b2F8f5xJlVbVHYotMWa4HjgStC2vO5e"

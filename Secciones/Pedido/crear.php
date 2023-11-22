@@ -112,52 +112,36 @@ if ($_POST) {
     // Mensaje de error al insertar el pedido
     echo "Error al insertar el pedido.";
   }
+
 }
+header("Location:index.php?mensaje=" . $mensaje);
 ?>
 
-<!-- <script>
-  document.getElementById('MEDICAMENTO_idMEDICAMENTO').addEventListener('change', function () {
-    var selectedProductId = this.value;
 
-    // Enviar solicitud AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          var response = JSON.parse(xhr.responseText);
+<?php
+include("../../database.php");
 
-          // Actualizar el select de categorías
-          var categorySelect = document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA');
-          categorySelect.innerHTML = '<option value="">Selecciona una categoría</option>';
-          response.categories.forEach(function (category) {
-            var option = document.createElement('option');
-            option.value = category.idCATEGORIA;
-            option.textContent = category.nombreCat;
-            categorySelect.appendChild(option);
-          });
+if ($_POST && isset($_POST["idCategoria"])) {
+    $idCategoria = filter_var($_POST["idCategoria"], FILTER_VALIDATE_INT);
 
-          // Actualizar el select de subcategorías
-          var subcategorySelect = document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA');
-          subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
-          response.subcategories.forEach(function (subcategory) {
-            var option = document.createElement('option');
-            option.value = subcategory.idSUBCATEGORIA;
-            option.textContent = subcategory.nombreSubcat;
-            subcategorySelect.appendChild(option);
-          });
+    if ($idCategoria !== false) {
+        $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria WHERE CATEGORIA_idCATEGORIA = :idCategoria");
+        $sentenciaSubcat->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
+        $sentenciaSubcat->execute();
+        $subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!empty($subcategorias)) {
+            foreach ($subcategorias as $subcategoria) {
+                echo '<option value="' . $subcategoria['idSUBCATEGORIA'] . '">' . $subcategoria['nombreSubcat'] . '</option>';
+            }
         } else {
-          console.error('Hubo un error al obtener las categorías y subcategorías.');
+            echo '<option value="">No hay subcategorías disponibles</option>';
         }
-      }
-    };
-
-    // Enviar la solicitud POST al servidor con el ID del producto seleccionado
-    xhr.open('POST', 'obtener_categorias_subcategorias.php');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('productoId=' + selectedProductId);
-  });
-</script> -->
-
+    } else {
+        echo '<option value="">Error: Categoría no válida</option>';
+    }
+}
+?>
 
 <?php include("../../Plantillas/header.php"); ?>
 <div class="card">
@@ -348,6 +332,23 @@ if ($_POST) {
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
           </div>
         </div>
+        <script>
+  document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA').addEventListener('change', function () {
+    var categoriaId = this.value;
+
+    // Realizar la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // Actualizar las opciones del campo de subcategorías
+        document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA').innerHTML = this.responseText;
+      }
+    };
+    xhr.open('POST', 'obtenerSub.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send('idCategoria=' + categoriaId);
+  });
+</script>
     </form>
   </div>
 
@@ -355,25 +356,6 @@ if ($_POST) {
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-$(document).ready(function() {
-    $("#idCATEGORIA").change(function() {
-        var categoriaSeleccionada = $(this).val();
 
-        $.ajax({
-            url: "../Medicamentos/obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
-            type: "POST",
-            data: { idCategoria: categoriaSeleccionada },
-            success: function(data) {
-                $("#idSUBCATEGORIA").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error("Error al obtener subcategorías:", error);
-            }
-        });
-    });
-});
-</script>
 
 <?php include("../../Plantillas/footer.php"); ?>

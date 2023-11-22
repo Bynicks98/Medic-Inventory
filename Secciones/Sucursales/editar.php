@@ -68,7 +68,7 @@ if ($_POST) {
           aria-describedby="helpId" placeholder="Ingresa la direccion de la Sucursal">
       </div>
       <div class="card-footer text-muted">
-        <button type="submit" class="btn btn-primary">Actualizar Sucursal</button>
+        <button type="submit" class="btn btn-primary">Editar Sucursal</button>
         <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
         <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
       </div>

@@ -37,7 +37,7 @@ if ($_POST) {
             <div class="mb-3">
                 <label for="estadoPago" class="form-label">Estado</label>
                 <select name="estadoPago" class="form-select">
-                    <option value="Completo">Completo</option>
+                    <option value="Completo">Aceptado</option>
                     <option value="Incompleto">Incompleto</option>
                 </select>
             </div>

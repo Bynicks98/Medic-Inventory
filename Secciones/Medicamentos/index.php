@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="card-header" style="text-align: right">
 
             <button type="button" class="btn btn-primary"><a name="" id="" class="btn btn-primary" href="crear.php"
-                    role="button">Agregar Medicamento</a></button>
+                    role="button">Agregar Nuevo Medicamento</a></button>
             <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/index.php" target="_blank"
                     class="btn btn-primary">PDF Medicamentos</a></button>
             <button type="button" class="btn btn-primary"><a href="../../fpdfReportes/MedicPorVencer.php" target="_blank"

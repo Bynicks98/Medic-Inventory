@@ -80,7 +80,7 @@ if ($_POST) {
         <input type="text" value="<?php echo $telefonoDistri; ?>" class="form-control" name="telefonoDistri" id=""
           aria-describedby="helpId" placeholder="Ingresa el telefono del distribuidor">
       </div>
-      <button type="submit" class="btn btn-success">Agregar distribuidor</button>
+      <button type="submit" class="btn btn-success">Editar distribuidor</button>
       <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
       <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
     </form>
