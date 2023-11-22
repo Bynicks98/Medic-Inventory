@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             .login-container img {
-                max-width: 100px;
+                max-width: 1000px;
                 margin-bottom: 20px;
             }
 
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="login-container">
-        <img src="tu_logo.png" alt="Logo de la empresa">
+        <img src="./imagenes/logoMI.png" alt="Logo de la empresa" style="width: 400px; height: 400px;">
 
         <h2>Login</h2>
         
