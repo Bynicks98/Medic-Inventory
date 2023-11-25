@@ -40,6 +40,7 @@ $lista_SUBCATEGORIAS = $sentencia->fetchall(PDO::FETCH_ASSOC);
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Acciones</th>
+                        <th scope="col" style="display: none;">Categoria</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,9 @@ $lista_SUBCATEGORIAS = $sentencia->fetchall(PDO::FETCH_ASSOC);
                             </td>
                             <td scope="row">
                                 <?php echo $registro['descripcionSubcat'] ?>
+                            </td>
+                            <td scope="row" style="display: none;">
+                                <?php echo $registro['CATEGORIA_idCATEGORIA'] ?>
                             </td>
                             <td>
                             <?php

@@ -7,7 +7,7 @@ if ($_POST) {
   $DescripcionSubcat = (isset($_POST["descripcionSubcat"]) ? $_POST["descripcionSubcat"] : "");
   $idCATEGORIA = (isset($_POST["CATEGORIA_idCATEGORIA"]) ? $_POST["CATEGORIA_idCATEGORIA"] : "");
   // Insertar datos 
-  $sentencia = $conexion->prepare("INSERT INTO subcategoria(idSUBCATEGORIA, descripcionSubcat, nombreSubcat , CATEGORIA_idCATEGORIA)
+  $sentencia = $conexion->prepare("INSERT INTO subcategoria(idSUBCATEGORIA, nombreSubcat,descripcionSubcat, CATEGORIA_idCATEGORIA)
    VALUES (null, :nombreSubcat, :descripcionSubcat, :idCATEGORIA)");
   // Asignación de valores
   $sentencia->bindParam(":nombreSubcat", $NombreSubcat);
@@ -31,14 +31,14 @@ $CATEGORIA = $sentenciaCat->fetchAll(PDO::FETCH_ASSOC);
     <form action="" method="post" enctype="multipart/form-data">
       <!--el enctype permite adjuntar archivos como fotos o pdfs de momento no-->
       <div class="mb-3">
-        <label for="" class="form-label">Nombre SubCategoria</label>
-        <input type="text" class="form-control" name="nombreSubcat" id="" aria-describedby="helpId"
+        <label for="nombreSubcat" class="form-label">Nombre SubCategoria</label>
+        <input type="text" class="form-control" name="nombreSubcat" id="nombreSubcat" aria-describedby="helpId"
           placeholder="Dale un nombre a la Categoria">
 
       </div>
       <div class="mb-3">
-        <label for="" class="form-label">Descripcion</label>
-        <input type="text" class="form-control" name="descripcionSubcat" id="" aria-describedby="helpId"
+        <label for="descripcionSubcat" class="form-label">Descripcion</label>
+        <input type="text" class="form-control" name="descripcionSubcat" id="descripcionSubcat" aria-describedby="helpId"
           placeholder="Añade una descripcion para la Categoria">
 
       </div>

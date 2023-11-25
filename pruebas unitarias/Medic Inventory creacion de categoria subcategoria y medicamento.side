@@ -1,0 +1,927 @@
+{
+  "id": "1ba717b8-b65d-4e5f-aecc-027d3c174a6b",
+  "version": "2.0",
+  "name": "Medic Inventory creacion de categoria subcategoria y medicamento",
+  "url": "https://316c-152-203-132-125.ngrok-free.app",
+  "tests": [{
+    "id": "a528064f-dd00-4c4a-be53-c1063d862b32",
+    "name": "Medicamentos categorias y subcategorias",
+    "commands": [{
+      "id": "a676e162-01e0-4d61-9969-552fe4ce15df",
+      "comment": "",
+      "command": "open",
+      "target": "/MedicInven/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "92840bee-8af5-47a7-88b5-a3589d121890",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1127x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4d19b389-f99c-41e5-8279-94ef6cb24d39",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Medicamentos",
+      "targets": [
+        ["linkText=Medicamentos", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Medicamentos')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Medicamentos/medicacate.php')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Medicamentos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c921be6-8cf5-41f0-84fe-01a1ee9fb232",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categorias",
+      "targets": [
+        ["linkText=Categorias", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fb4c1f1-544d-42f8-b88b-a20b3d9c9327",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categoria",
+      "targets": [
+        ["linkText=Categoria", "linkText"],
+        ["css=li:nth-child(1) > .dropdown-item", "css:finder"],
+        ["xpath=(//a[contains(text(),'Categoria')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Categorias/')]", "xpath:href"],
+        ["xpath=//li[3]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa54c021-ef95-4a90-98ee-0c802c67b877",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Agregar nueva Categoria",
+      "targets": [
+        ["linkText=Agregar nueva Categoria", "linkText"],
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Agregar nueva Categoria')]", "xpath:link"],
+        ["xpath=//a[@id='']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'crear.php')]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Agregar nueva Categoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d868fd0a-e0b0-4efe-a8a9-4d18005cde3e",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreCat",
+      "targets": [
+        ["id=nombreCat", "id"],
+        ["name=nombreCat", "name"],
+        ["css=#nombreCat", "css:finder"],
+        ["xpath=//input[@id='nombreCat']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "545c1e75-f69c-49bc-ac8a-685ae5399054",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombreCat",
+      "targets": [
+        ["id=nombreCat", "id"],
+        ["name=nombreCat", "name"],
+        ["css=#nombreCat", "css:finder"],
+        ["xpath=//input[@id='nombreCat']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Tópicos"
+    }, {
+      "id": "b3f29f29-0793-4ba8-a22a-6ccc340c914e",
+      "comment": "",
+      "command": "click",
+      "target": "id=DescripcionCate",
+      "targets": [
+        ["id=DescripcionCate", "id"],
+        ["name=DescripcionCate", "name"],
+        ["css=#DescripcionCate", "css:finder"],
+        ["xpath=//input[@id='DescripcionCate']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e012cdd-79d5-476a-a7a7-97d83c156f60",
+      "comment": "",
+      "command": "type",
+      "target": "id=DescripcionCate",
+      "targets": [
+        ["id=DescripcionCate", "id"],
+        ["name=DescripcionCate", "name"],
+        ["css=#DescripcionCate", "css:finder"],
+        ["xpath=//input[@id='DescripcionCate']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": " medicamentos o tratamientos que se aplican directamente sobre la piel o las mucosas con el objetivo de tratar afecciones locales o proporcionar alivio sintomático en una zona específica del cuerpo"
+    }, {
+      "id": "48a741b2-63c9-4a1b-afc0-6f0371bf423d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[2]/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar Categoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7d36433-0392-4fac-9530-ce6fb2a9e477",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "698c97bf-3455-4147-9b5c-11897d5fe632",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tabla_id_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bdd07ba-2e58-4392-a7b4-d7c4b5a9e51d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even .btn-info",
+      "targets": [
+        ["css=.even .btn-info", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[4]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'editar.php?txtID=11')]", "xpath:href"],
+        ["xpath=//tr[2]/td[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5dad775-bb9f-4f19-81ba-32b13fbe8e98",
+      "comment": "",
+      "command": "click",
+      "target": "name=DescripcionCate",
+      "targets": [
+        ["name=DescripcionCate", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='DescripcionCate']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa223608-81bc-4e91-b87b-d1e12c04d1ff",
+      "comment": "",
+      "command": "type",
+      "target": "name=DescripcionCate",
+      "targets": [
+        ["name=DescripcionCate", "name"],
+        ["css=.mb-3:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='DescripcionCate']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": " Medicamentos o tratamientos que se aplican directamente sobre la piel o las mucosas con el objetivo de tratar afecciones locales o proporcionar alivio sintomático en una zona específica del cuerpo."
+    }, {
+      "id": "2498b77a-2282-4653-aade-0cd9e589574b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Editar Categoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7edf86b6-74f4-49ee-9ea5-496b4028e1b7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "21f6d7a8-a5e1-4c3d-ab0b-7e02880c0494",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categorias",
+      "targets": [
+        ["linkText=Categorias", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9735aeb-483b-41b8-a6bf-93a304ea61b9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=SubCategoria",
+      "targets": [
+        ["linkText=SubCategoria", "linkText"],
+        ["css=li:nth-child(2) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'SubCategoria')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Subcategorias/')]", "xpath:href"],
+        ["xpath=//li[3]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'SubCategoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "df01f9f2-900a-4cf0-8e58-f7b019ca55e0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Agregar nueva SubCategoria",
+      "targets": [
+        ["linkText=Agregar nueva SubCategoria", "linkText"],
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Agregar nueva SubCategoria')]", "xpath:link"],
+        ["xpath=//a[@id='']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'crear.php')]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Agregar nueva SubCategoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a70a32b-7458-4785-8de0-d4a51ded3ea2",
+      "comment": "",
+      "command": "click",
+      "target": "name=nombreSubcat",
+      "targets": [
+        ["name=nombreSubcat", "name"],
+        ["css=.mb-3:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@id='']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa06811f-ce27-438e-9877-85f80d41bec6",
+      "comment": "",
+      "command": "click",
+      "target": "name=nombreSubcat",
+      "targets": [
+        ["name=nombreSubcat", "name"],
+        ["css=.mb-3:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@id='']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6bd4e916-cd1d-48e5-b133-d0d91d393724",
+      "comment": "",
+      "command": "type",
+      "target": "name=nombreSubcat",
+      "targets": [
+        ["name=nombreSubcat", "name"],
+        ["css=.mb-3:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@id='']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Agentes protectores"
+    }, {
+      "id": "f9f2cf84-2755-436d-aa87-8bdf2e72a892",
+      "comment": "",
+      "command": "click",
+      "target": "name=descripcionSubcat",
+      "targets": [
+        ["name=descripcionSubcat", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=(//input[@id=''])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "17e7d992-05fb-43cd-b867-008cec77b299",
+      "comment": "",
+      "command": "type",
+      "target": "name=descripcionSubcat",
+      "targets": [
+        ["name=descripcionSubcat", "name"],
+        ["css=.mb-3:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=(//input[@id=''])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": " Los aceites y las pomadas forman una barrera de base oleaginosa que contribuye a proteger la piel descamada o irritada y a retener la humedad."
+    }, {
+      "id": "21272951-00a6-440e-8a72-a6faa7fa022a",
+      "comment": "",
+      "command": "click",
+      "target": "id=idCATEGORIA",
+      "targets": [
+        ["id=idCATEGORIA", "id"],
+        ["name=CATEGORIA_idCATEGORIA", "name"],
+        ["css=#idCATEGORIA", "css:finder"],
+        ["xpath=//select[@id='idCATEGORIA']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "edb3aa18-977c-4891-825f-6d4f6daa250c",
+      "comment": "",
+      "command": "select",
+      "target": "id=idCATEGORIA",
+      "targets": [],
+      "value": "label=Tópicos"
+    }, {
+      "id": "f23241d4-9e79-4e46-afa7-a653b887bdf5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar SubCategoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "93b01900-ab33-4ce3-b1ca-b5b06f61d083",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f9d0993-bf53-439b-b58b-32e365856f9e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Medicamentos",
+      "targets": [
+        ["linkText=Medicamentos", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Medicamentos')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Medicamentos/medicacate.php')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Medicamentos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5a7005a-b1f3-4318-acaf-55c4b881c952",
+      "comment": "",
+      "command": "click",
+      "target": "css=.parent-row:nth-child(14) .fa",
+      "targets": [
+        ["css=.parent-row:nth-child(14) .fa", "css:finder"],
+        ["xpath=//tr[14]/td[2]/span/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3da06ff7-bc24-43ec-8122-c699328f7399",
+      "comment": "",
+      "command": "click",
+      "target": "css=.subcategories-row:nth-child(16) .subcategoria-text",
+      "targets": [
+        ["css=.subcategories-row:nth-child(16) .subcategoria-text", "css:finder"],
+        ["xpath=//tr[16]/td[3]/a/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a11393d-e478-4d00-b39f-b6b69ab5d55e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Agregar Nuevo Medicamento",
+      "targets": [
+        ["linkText=Agregar Nuevo Medicamento", "linkText"],
+        ["css=.btn:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Agregar Nuevo Medicamento')]", "xpath:link"],
+        ["xpath=//a[@id='']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'crear.php')]", "xpath:href"],
+        ["xpath=//button/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Agregar Nuevo Medicamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "888f9500-181f-48e3-a3cf-a35055863831",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreMedica",
+      "targets": [
+        ["id=nombreMedica", "id"],
+        ["name=nombreMedica", "name"],
+        ["css=#nombreMedica", "css:finder"],
+        ["xpath=//input[@id='nombreMedica']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b10cb579-a8ce-4a10-bb0a-6f3337eb4b84",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombreMedica",
+      "targets": [
+        ["id=nombreMedica", "id"],
+        ["name=nombreMedica", "name"],
+        ["css=#nombreMedica", "css:finder"],
+        ["xpath=//input[@id='nombreMedica']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Oxicodona"
+    }, {
+      "id": "30c4a5c9-9a8b-4d6b-a6ad-5b5a07350fa9",
+      "comment": "",
+      "command": "click",
+      "target": "id=descripcionMedica",
+      "targets": [
+        ["id=descripcionMedica", "id"],
+        ["name=descripcionMedica", "name"],
+        ["css=#descripcionMedica", "css:finder"],
+        ["xpath=//input[@id='descripcionMedica']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7cfbf911-90ce-4575-95cc-02afd8bee4fa",
+      "comment": "",
+      "command": "type",
+      "target": "id=descripcionMedica",
+      "targets": [
+        ["id=descripcionMedica", "id"],
+        ["name=descripcionMedica", "name"],
+        ["css=#descripcionMedica", "css:finder"],
+        ["xpath=//input[@id='descripcionMedica']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Tratamiento Oral"
+    }, {
+      "id": "76ad5a93-c42c-4be3-a271-75dbe667bf54",
+      "comment": "",
+      "command": "click",
+      "target": "id=fechaFabricacionMedica",
+      "targets": [
+        ["id=fechaFabricacionMedica", "id"],
+        ["name=fechaFabricacionMedica", "name"],
+        ["css=#fechaFabricacionMedica", "css:finder"],
+        ["xpath=//input[@id='fechaFabricacionMedica']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef7edf19-4601-4047-96cd-5c1b2db12604",
+      "comment": "",
+      "command": "type",
+      "target": "id=fechaFabricacionMedica",
+      "targets": [
+        ["id=fechaFabricacionMedica", "id"],
+        ["name=fechaFabricacionMedica", "name"],
+        ["css=#fechaFabricacionMedica", "css:finder"],
+        ["xpath=//input[@id='fechaFabricacionMedica']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2023-11-11"
+    }, {
+      "id": "a396f6d9-17cf-4a37-86a2-6ad52c808fbc",
+      "comment": "",
+      "command": "click",
+      "target": "id=fechaVencimientoMedica",
+      "targets": [
+        ["id=fechaVencimientoMedica", "id"],
+        ["name=fechaVencimientoMedica", "name"],
+        ["css=#fechaVencimientoMedica", "css:finder"],
+        ["xpath=//input[@id='fechaVencimientoMedica']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cfe448e8-112f-4d2e-af2a-a9371caea277",
+      "comment": "",
+      "command": "type",
+      "target": "id=fechaVencimientoMedica",
+      "targets": [
+        ["id=fechaVencimientoMedica", "id"],
+        ["name=fechaVencimientoMedica", "name"],
+        ["css=#fechaVencimientoMedica", "css:finder"],
+        ["xpath=//input[@id='fechaVencimientoMedica']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "2025-02-05"
+    }, {
+      "id": "bef4a2e7-321e-4118-8779-2de0557a509b",
+      "comment": "",
+      "command": "click",
+      "target": "id=ica",
+      "targets": [
+        ["id=ica", "id"],
+        ["name=cantidadUnidades", "name"],
+        ["css=.mb-3:nth-child(4) > #ica", "css:finder"],
+        ["xpath=//input[@id='ica']", "xpath:attributes"],
+        ["xpath=//div/div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc2e6175-8752-47be-8889-19ee33d6f588",
+      "comment": "",
+      "command": "type",
+      "target": "id=ica",
+      "targets": [
+        ["id=ica", "id"],
+        ["name=cantidadUnidades", "name"],
+        ["css=.mb-3:nth-child(4) > #ica", "css:finder"],
+        ["xpath=//input[@id='ica']", "xpath:attributes"],
+        ["xpath=//div/div[4]/input", "xpath:position"]
+      ],
+      "value": "400"
+    }, {
+      "id": "13a17f19-3a35-44b4-8b64-3173ba025266",
+      "comment": "",
+      "command": "click",
+      "target": "name=valorUnitMedica",
+      "targets": [
+        ["name=valorUnitMedica", "name"],
+        ["css=.mb-3:nth-child(5) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[2]", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "08765633-37c1-4f4e-a012-878c81378985",
+      "comment": "",
+      "command": "type",
+      "target": "name=valorUnitMedica",
+      "targets": [
+        ["name=valorUnitMedica", "name"],
+        ["css=.mb-3:nth-child(5) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[2]", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "5dac20e1-7e61-4ebc-8d5e-3801df8e7811",
+      "comment": "",
+      "command": "click",
+      "target": "name=noLoteMedica",
+      "targets": [
+        ["name=noLoteMedica", "name"],
+        ["css=.mb-3:nth-child(6) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f86b9e6-1701-46b8-ba71-6f8b36638c60",
+      "comment": "",
+      "command": "type",
+      "target": "name=noLoteMedica",
+      "targets": [
+        ["name=noLoteMedica", "name"],
+        ["css=.mb-3:nth-child(6) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "43456778"
+    }, {
+      "id": "d718afec-9b94-4c91-bd64-cb98e7ba30e3",
+      "comment": "",
+      "command": "click",
+      "target": "id=idCATEGORIA",
+      "targets": [
+        ["id=idCATEGORIA", "id"],
+        ["name=SUBCATEGORIA_CATEGORIA_idCATEGORIA", "name"],
+        ["css=#idCATEGORIA", "css:finder"],
+        ["xpath=//select[@id='idCATEGORIA']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9fce9ec1-0c50-48a5-a2f8-3cb624f91e3c",
+      "comment": "",
+      "command": "select",
+      "target": "id=idCATEGORIA",
+      "targets": [],
+      "value": "label=Tópicos"
+    }, {
+      "id": "3afe0c43-8b69-4837-bc03-a2befa5bfe41",
+      "comment": "",
+      "command": "click",
+      "target": "id=idRol",
+      "targets": [
+        ["id=idRol", "id"],
+        ["name=Persona_ROL_idRol", "name"],
+        ["css=#idRol", "css:finder"],
+        ["xpath=//select[@id='idRol']", "xpath:attributes"],
+        ["xpath=//div[9]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7852b598-699b-4093-8458-cdf2940258e4",
+      "comment": "",
+      "command": "click",
+      "target": "id=idRol",
+      "targets": [
+        ["id=idRol", "id"],
+        ["name=Persona_ROL_idRol", "name"],
+        ["css=#idRol", "css:finder"],
+        ["xpath=//select[@id='idRol']", "xpath:attributes"],
+        ["xpath=//div[9]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8d532cff-c6c7-4611-9a5b-84a0d6581a37",
+      "comment": "",
+      "command": "click",
+      "target": "id=idRol",
+      "targets": [
+        ["id=idRol", "id"],
+        ["name=Persona_ROL_idRol", "name"],
+        ["css=#idRol", "css:finder"],
+        ["xpath=//select[@id='idRol']", "xpath:attributes"],
+        ["xpath=//div[9]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "85847e7e-c40f-4908-a2e0-d6f7204d451b",
+      "comment": "",
+      "command": "click",
+      "target": "id=idPersona",
+      "targets": [
+        ["id=idPersona", "id"],
+        ["name=Persona_idPersona", "name"],
+        ["css=#idPersona", "css:finder"],
+        ["xpath=//select[@id='idPersona']", "xpath:attributes"],
+        ["xpath=//div[10]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "863f2a96-cd6a-422a-8fe1-6745180bd8ec",
+      "comment": "",
+      "command": "click",
+      "target": "name=agregarMed",
+      "targets": [
+        ["name=agregarMed", "name"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@name='agregarMed']", "xpath:attributes"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar Medicamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "29bce56a-b882-4e40-8eeb-306a80867289",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=3",
+      "targets": [
+        ["linkText=3", "linkText"],
+        ["css=span > .paginate_button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'3')]", "xpath:link"],
+        ["xpath=//div[@id='tabla_id_paginate']/span/a[3]", "xpath:idRelative"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0990e0b5-af72-4fa8-af84-78b8fb262b8d",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "679,380.59375"
+    }, {
+      "id": "3214cb41-5c15-4564-b92f-1530366d0aea",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "679,380.59375"
+    }, {
+      "id": "d79f4598-4bb0-4122-b466-bfd65499dc75",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "679,380.59375"
+    }, {
+      "id": "c9a10397-00d0-4c69-acd6-7bdbd8d44719",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even .btn-info",
+      "targets": [
+        ["css=.even .btn-info", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[4]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[12]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'editar.php?txtID=44')]", "xpath:href"],
+        ["xpath=//tr[2]/td[12]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ea6e568-bc1a-41c0-a054-41ad3e67ebbc",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreMedica",
+      "targets": [
+        ["id=nombreMedica", "id"],
+        ["name=nombreMedica", "name"],
+        ["css=#nombreMedica", "css:finder"],
+        ["xpath=//input[@id='nombreMedica']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e046c7a-4eca-48a5-8613-64415be7ab51",
+      "comment": "",
+      "command": "click",
+      "target": "id=descripcionMedica",
+      "targets": [
+        ["id=descripcionMedica", "id"],
+        ["name=descripcionMedica", "name"],
+        ["css=#descripcionMedica", "css:finder"],
+        ["xpath=//input[@id='descripcionMedica']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22965ac1-02b2-45e7-9006-c889b3d60654",
+      "comment": "",
+      "command": "click",
+      "target": "id=descripcionMedica",
+      "targets": [
+        ["id=descripcionMedica", "id"],
+        ["name=descripcionMedica", "name"],
+        ["css=#descripcionMedica", "css:finder"],
+        ["xpath=//input[@id='descripcionMedica']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cd2f721b-19b9-472a-b131-ef93b826023b",
+      "comment": "",
+      "command": "type",
+      "target": "id=descripcionMedica",
+      "targets": [
+        ["id=descripcionMedica", "id"],
+        ["name=descripcionMedica", "name"],
+        ["css=#descripcionMedica", "css:finder"],
+        ["xpath=//input[@id='descripcionMedica']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "Tratamiento Oral 30 ml"
+    }, {
+      "id": "6ad416bf-e7e1-4d89-9399-94382bf24acf",
+      "comment": "",
+      "command": "click",
+      "target": "name=valorUnitMedica",
+      "targets": [
+        ["name=valorUnitMedica", "name"],
+        ["css=.mb-3:nth-child(8) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[2]", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3de51dd0-a9e4-464a-894e-b7fa25b6def7",
+      "comment": "",
+      "command": "type",
+      "target": "name=valorUnitMedica",
+      "targets": [
+        ["name=valorUnitMedica", "name"],
+        ["css=.mb-3:nth-child(8) > #ica", "css:finder"],
+        ["xpath=(//input[@id='ica'])[2]", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "25000"
+    }, {
+      "id": "d4430ac2-7664-4273-b073-28583455109f",
+      "comment": "",
+      "command": "click",
+      "target": "id=idCATEGORIA",
+      "targets": [
+        ["id=idCATEGORIA", "id"],
+        ["name=SUBCATEGORIA_CATEGORIA_idCATEGORIA", "name"],
+        ["css=#idCATEGORIA", "css:finder"],
+        ["xpath=//select[@id='idCATEGORIA']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f62eda2-37c9-469c-904c-3c8a852ea39d",
+      "comment": "",
+      "command": "select",
+      "target": "id=idCATEGORIA",
+      "targets": [],
+      "value": "label=Tópicos"
+    }, {
+      "id": "cda89095-d1b0-49d7-89d2-db9bac759ab4",
+      "comment": "",
+      "command": "click",
+      "target": "id=idSUBCATEGORIA",
+      "targets": [
+        ["id=idSUBCATEGORIA", "id"],
+        ["name=SUBCATEGORIA_idSUBCATEGORIA", "name"],
+        ["css=#idSUBCATEGORIA", "css:finder"],
+        ["xpath=//select[@id='idSUBCATEGORIA']", "xpath:attributes"],
+        ["xpath=//div[11]/select", "xpath:position"],
+        ["xpath=//select[contains(.,'Los aceites y las pomadas forman una barrera de base oleaginosa que contribuye a proteger la piel descamada o irritada y a retener la humedad.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b9b5e03-6bb7-4ade-8439-cc485ebe1a30",
+      "comment": "",
+      "command": "click",
+      "target": "name=agregarMed",
+      "targets": [
+        ["name=agregarMed", "name"],
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@name='agregarMed']", "xpath:attributes"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Editar Medicamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1de3c836-0efb-4f10-87a0-055c5011d45f",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "818,976.59375"
+    }, {
+      "id": "59d774a2-4bbd-44be-854c-8f65046705c2",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "818,976.59375"
+    }, {
+      "id": "50750bb0-a02a-4d32-8af2-605293e0146e",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=.table-responsive-sm",
+      "targets": [
+        ["css=.table-responsive-sm", "css:finder"],
+        ["xpath=//div[4]/div", "xpath:position"]
+      ],
+      "value": "818,976.59375"
+    }, {
+      "id": "1340c491-66c3-4bb0-8b79-ad3ef84a9f5f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=3",
+      "targets": [
+        ["linkText=3", "linkText"],
+        ["css=span > .paginate_button:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'3')]", "xpath:link"],
+        ["xpath=//div[@id='tabla_id_paginate']/span/a[3]", "xpath:idRelative"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4fe1339e-0c7b-4632-9a51-7931c5829484",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a528064f-dd00-4c4a-be53-c1063d862b32"]
+  }],
+  "urls": ["https://316c-152-203-132-125.ngrok-free.app/"],
+  "plugins": []
+}

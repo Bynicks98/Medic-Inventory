@@ -18,11 +18,10 @@ function Header()
 	$this->SetTextColor(220,50,50);
 
 	$this->Cell(15,10,'ID', 1, 0,'C', 0);
-	$this->Cell(30,10, 'Medicamento', 1, 0,'C', 0);
-	$this->Cell(30,10, 'Descripcion', 1, 0,'C', 0);
+	$this->Cell(50,10, 'Medicamento', 1, 0,'C', 0);
 	$this->Cell(30,10, 'fFabricacion', 1, 0,'C', 0);
 	$this->Cell(30,10, 'fVencimiento', 1, 0,'C', 0);
-	$this->Cell(20,10, 'cantidadCajas', 1, 0, 	'C', 0);
+	$this->Cell(20,10, 'Unidades', 1, 0, 	'C', 0);
 	$this->Cell(20,10, 'valorUnit', 1, 0,'C', 0);
 	$this->Cell(20,10, 'NoLote', 1, 1,'C', 0);
 }
@@ -50,11 +49,10 @@ $pdf->SetFont('Arial','',7);
 	
 while($row= $resultado->fetch_assoc()){
 	$pdf->Cell(15,10, $row['idMEDICAMENTO'], 1, 0, 	'C', 0);
-	$pdf->Cell(30,10, $row['nombreMedica'], 1, 0,'C', 0);
-	$pdf->Cell(30,10, $row['descripcionMedica'], 1, 0,'C', 0);
+	$pdf->Cell(50,10, $row['nombreMedica'], 1, 0,'C', 0);
 	$pdf->Cell(30,10,$row['fechaFabricacionMedica'], 1, 0,'C', 0);
 	$pdf->Cell(30,10, $row['fechaVencimientoMedica'], 1, 0,'C', 0);
-	$pdf->Cell(20,10, $row['cantidadCajas'], 1, 0, 	'C', 0);
+	$pdf->Cell(20,10, $row['cantidadUnidades'], 1, 0, 	'C', 0);
 	$pdf->Cell(20,10, $row['valorUnitMedica'], 1, 0,'C', 0);
 	$pdf->Cell(20,10, $row['noLoteMedica'], 1, 1,'C', 0);
 }

@@ -13,7 +13,7 @@ if (isset($_GET['txtID'])) {
     $fechaVencimientoMedica = $registro["fechaVencimientoMedica"];
     $cantidadCajas = $registro["cantidadCajas"];
     $noLoteMedica = $registro["noLoteMedica"];
-    $valorUnitMedica = $registro["valorUnitario"];
+    $valorUnitMedica = $registro["valorUnitMedica"];
     $fechaFabricacionMedica = $registro["fechaFabricacionMedica"];
     $nombreMedica = $registro["nombreMedica"];
     $cantidadUnidades = $registro["cantidadUnidades"];
