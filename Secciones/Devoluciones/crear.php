@@ -144,7 +144,7 @@ $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC)
         <!--  -->
 
         <!-- bs5buttondefault para los botones  add user abajo -->
-        <button type="submit" class="btn btn-success">Agregar Medicamento</button>
+        <button type="submit" class="btn btn-success">Agregar Devolucion</button>
         <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
         <a name="cancel" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
     </form>

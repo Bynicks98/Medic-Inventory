@@ -2,7 +2,7 @@
   "id": "1ba717b8-b65d-4e5f-aecc-027d3c174a6b",
   "version": "2.0",
   "name": "Medic Inventory creacion de categoria subcategoria y medicamento",
-  "url": "https://316c-152-203-132-125.ngrok-free.app",
+  "url": "https://8ceb-152-203-132-125.ngrok-free.app/MedicInven/Secciones/Medicamentos/index.php?subcategoria=15",
   "tests": [{
     "id": "a528064f-dd00-4c4a-be53-c1063d862b32",
     "name": "Medicamentos categorias y subcategorias",
@@ -922,6 +922,6 @@
     "timeout": 300,
     "tests": ["a528064f-dd00-4c4a-be53-c1063d862b32"]
   }],
-  "urls": ["https://316c-152-203-132-125.ngrok-free.app/"],
+  "urls": ["https://316c-152-203-132-125.ngrok-free.app/", "https://8ceb-152-203-132-125.ngrok-free.app/MedicInven/Secciones/Medicamentos/index.php?subcategoria=15"],
   "plugins": []
 }

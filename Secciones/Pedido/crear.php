@@ -112,9 +112,9 @@ if ($_POST) {
     // Mensaje de error al insertar el pedido
     echo "Error al insertar el pedido.";
   }
-
+  header("Location:index.php?mensaje=" . $mensaje);
 }
-header("Location:index.php?mensaje=" . $mensaje);
+
 ?>
 
 

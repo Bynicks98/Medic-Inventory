@@ -81,18 +81,19 @@ include("../../Plantillas/header.php");
     <?php
     if ($rolUsuario === 'Administrador' || $rolUsuario === 'Asistente') {
         ?>
+
         <div class="card-header" style="text-align: right">
             <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar un Nuevo Pedido</a>
             <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
             <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
         </div>
         <?php
-    } else if ($rolUsuario == 'Lector'){
+    } else if ($rolUsuario == 'Lector') {
         ?>
-        <div class="card-header" style="text-align: right">
-        <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
-        <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
-        </div>
+            <div class="card-header" style="text-align: right">
+                <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Entrada">Filtrar Entradas</a>
+                <a class="btn btn-primary" href="<?php echo $_SERVER['PHP_SELF']; ?>?tipoPedido=Salida">Filtrar Salidas</a>
+            </div>
         <?php
     }
     ?>
@@ -158,7 +159,7 @@ include("../../Plantillas/header.php");
                                 <?php echo $registro['EstadoP'] ?>
                             </td>
                             <td>
-                            <?php
+                                <?php
                                 // Comprobar el rol del usuario para mostrar los botones correspondientes
                                 if ($rolUsuario == 'Administrador') {
                                     // Mostrar botones para el rol de Administrador
@@ -179,7 +180,8 @@ include("../../Plantillas/header.php");
                                     // Mostrar botón de lectura solo para el rol de Lector
                                     // ...
                                 }
-                                ?></td>
+                                ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>

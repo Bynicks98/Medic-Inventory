@@ -1,0 +1,371 @@
+{
+  "id": "5e2fbfac-2609-4ae0-b363-cf82676edb8a",
+  "version": "2.0",
+  "name": "Medic inventori eliminar Categoria subcategoria y medicamento",
+  "url": "https://8ceb-152-203-132-125.ngrok-free.app",
+  "tests": [{
+    "id": "73086d33-70f2-4f32-af66-d99192daaa1d",
+    "name": "Medic inventori eliminar categoria subcategoria y medicamento",
+    "commands": [{
+      "id": "2f1f7377-e56e-4c6e-bffa-2033999025da",
+      "comment": "",
+      "command": "open",
+      "target": "/MedicInven/Secciones/Medicamentos/index.php?subcategoria=15",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe6af130-cf69-4d20-8c39-aa62b0ac3e95",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1127x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cfa52c4d-36fc-4e2d-8255-bb57adf46893",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inline-flex",
+      "targets": [
+        ["css=.inline-flex", "css:finder"],
+        ["xpath=//div[@id='root']/div/main/div/div/section/div/footer/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Visit Site')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ea2c7d3-9f39-4f2d-bba5-08c92f9d5a5d",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22345952-f830-49af-832b-f7b5efb79500",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@gmail.com"
+    }, {
+      "id": "cb65adce-d367-4893-a9cd-95bd369bbe93",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fba0c54b-9ccd-45dc-80fc-bf0438e5ab23",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "9eb59a82-6641-4ee4-8dcb-bb9a98c3f02d",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba1e21cb-2e06-42a2-9cfa-5bcc62e4fcb5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Medicamentos",
+      "targets": [
+        ["linkText=Medicamentos", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Medicamentos')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Medicamentos/medicacate.php')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Medicamentos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd81071c-f982-4474-9a03-9f37e905e1cd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.parent-row:nth-child(14) .fa",
+      "targets": [
+        ["css=.parent-row:nth-child(14) .fa", "css:finder"],
+        ["xpath=//tr[14]/td[2]/span/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6adf6159-adf3-47f7-adeb-3c4d44bc511d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.subcategories-row:nth-child(16) .subcategoria-text",
+      "targets": [
+        ["css=.subcategories-row:nth-child(16) .subcategoria-text", "css:finder"],
+        ["xpath=//tr[16]/td[3]/a/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c1c03ed-21b7-4735-9466-8208cf7bff68",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Eliminar",
+      "targets": [
+        ["linkText=Eliminar", "linkText"],
+        ["css=.btn-danger:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Eliminar')]", "xpath:link"],
+        ["xpath=(//a[@id=''])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr/td[12]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(48);')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Eliminar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6dbbc4c-383c-4f7c-a700-62133f2781ac",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[7]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f32de44a-fa41-49d1-8712-3d8d46621fe5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categorias",
+      "targets": [
+        ["linkText=Categorias", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d82a44b-6cf3-46ad-a86f-d0fae7d49909",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categoria",
+      "targets": [
+        ["linkText=Categoria", "linkText"],
+        ["css=li:nth-child(1) > .dropdown-item", "css:finder"],
+        ["xpath=(//a[contains(text(),'Categoria')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Categorias/')]", "xpath:href"],
+        ["xpath=//li[3]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c11b0f4b-5b69-4e27-ae8e-8db68dd553bf",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categorias",
+      "targets": [
+        ["linkText=Categorias", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b099dfe8-535d-4d80-9d07-dba3363d56a6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=SubCategoria",
+      "targets": [
+        ["linkText=SubCategoria", "linkText"],
+        ["css=li:nth-child(2) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'SubCategoria')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Subcategorias/')]", "xpath:href"],
+        ["xpath=//li[3]/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'SubCategoria')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de3ad1bb-8dcb-461e-ad25-be8a12c411e3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tabla_id_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1fd5c061-9a85-41f2-839f-b7514393d813",
+      "comment": "",
+      "command": "click",
+      "target": "css=.odd:nth-child(3) .btn-danger",
+      "targets": [
+        ["css=.odd:nth-child(3) .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[3]", "xpath:link"],
+        ["xpath=(//a[@id=''])[7]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[3]/td[5]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(15);')]", "xpath:href"],
+        ["xpath=//tr[3]/td[5]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42b629e2-6132-4100-af94-73814676820b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e8b5546-1319-4831-ac11-0b078fb817ac",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categorias",
+      "targets": [
+        ["linkText=Categorias", "linkText"],
+        ["css=.dropdown-toggle", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ddde6131-6cf5-413b-b170-f305584868e1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Categoria",
+      "targets": [
+        ["linkText=Categoria", "linkText"],
+        ["css=li:nth-child(1) > .dropdown-item", "css:finder"],
+        ["xpath=(//a[contains(text(),'Categoria')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Categorias/')]", "xpath:href"],
+        ["xpath=//li[3]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "713cde23-015e-4810-9497-2de84087f38d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=2",
+      "targets": [
+        ["linkText=2", "linkText"],
+        ["css=.paginate_button:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'2')]", "xpath:link"],
+        ["xpath=//div[@id='tabla_id_paginate']/span/a[2]", "xpath:idRelative"],
+        ["xpath=//span/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "380b3986-e0e3-4548-883d-955d79944b8e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even .btn-danger",
+      "targets": [
+        ["css=.even .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[5]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[4]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(16);')]", "xpath:href"],
+        ["xpath=//tr[2]/td[4]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eba3ff82-ad13-4c5a-b1a1-118eca48a58a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.even .btn-danger",
+      "targets": [
+        ["css=.even .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[5]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[4]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(16);')]", "xpath:href"],
+        ["xpath=//tr[2]/td[4]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc73e305-53c5-4c6d-bda8-1c4ee86b6574",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.even .btn-danger",
+      "targets": [
+        ["css=.even .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[5]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[4]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(16);')]", "xpath:href"],
+        ["xpath=//tr[2]/td[4]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4628bbb4-c32d-49ed-8451-57845cbc8241",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b28405a-ec52-46d9-88ea-662918688258",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4715bf5a-132b-4b13-8d3c-f86187403d34",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["73086d33-70f2-4f32-af66-d99192daaa1d"]
+  }],
+  "urls": ["https://8ceb-152-203-132-125.ngrok-free.app/"],
+  "plugins": []
+}

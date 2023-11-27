@@ -57,34 +57,34 @@ $Subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 //   $sentenciaRoles = $conexion->prepare("SELECT idRol, nombreRol FROM rol");
 //   $sentenciaRoles->execute();
 //   $roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
- 
- 
- 
- 
+
+
+
+
 
 ?>
 <?php
 include("../../database.php");
 
 if ($_POST && isset($_POST["idCategoria"])) {
-    $idCategoria = filter_var($_POST["idCategoria"], FILTER_VALIDATE_INT);
+  $idCategoria = filter_var($_POST["idCategoria"], FILTER_VALIDATE_INT);
 
-    if ($idCategoria !== false) {
-        $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria WHERE CATEGORIA_idCATEGORIA = :idCategoria");
-        $sentenciaSubcat->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
-        $sentenciaSubcat->execute();
-        $subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
+  if ($idCategoria !== false) {
+    $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria WHERE CATEGORIA_idCATEGORIA = :idCategoria");
+    $sentenciaSubcat->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
+    $sentenciaSubcat->execute();
+    $subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!empty($subcategorias)) {
-            foreach ($subcategorias as $subcategoria) {
-                echo '<option value="' . $subcategoria['idSUBCATEGORIA'] . '">' . $subcategoria['nombreSubcat'] . '</option>';
-            }
-        } else {
-            echo '<option value="">No hay subcategorías disponibles</option>';
-        }
+    if (!empty($subcategorias)) {
+      foreach ($subcategorias as $subcategoria) {
+        echo '<option value="' . $subcategoria['idSUBCATEGORIA'] . '">' . $subcategoria['nombreSubcat'] . '</option>';
+      }
     } else {
-        echo '<option value="">Error: Categoría no válida</option>';
+      echo '<option value="">No hay subcategorías disponibles</option>';
     }
+  } else {
+    echo '<option value="">Error: Categoría no válida</option>';
+  }
 }
 ?>
 
@@ -129,7 +129,7 @@ if ($_POST && isset($_POST["idCategoria"])) {
   </div>
   <div class="mb-3" style="display: none;">
     <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
-    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" >
+    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId">
 
   </div>
   <div class="mb-3">
@@ -155,20 +155,20 @@ if ($_POST && isset($_POST["idCategoria"])) {
   <div class="mb-3">
     <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
-    <option value="">Selecciona una categoría</option>
+      <option value="">Selecciona una categoría</option>
       <?php foreach ($Categorias as $medicamento) { ?>
-        
+
         <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
           <?php echo $medicamento['nombreCat']; ?>
         </option>
       <?php } ?>
     </select>
   </div>
-  
+
   <div class="mb-3">
     <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
     <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
-    <option value="">Selecciona una Subcategoría</option>
+      <option value="">Selecciona una Subcategoría</option>
       <?php foreach ($Subcategorias as $medicamento) { ?>
         <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
           <?php echo $medicamento['nombreSubcat']; ?>
@@ -204,11 +204,11 @@ if ($_POST && isset($_POST["idCategoria"])) {
   <button type="submit" class="btn btn-success" name="agregarMed">Agregar Medicamento</button>
   <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
   <a name="cancel" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
-  
 
 
 
-</form>
+
+  </form>
 
 </div>
 <div class="card-footer text-muted"></div>
@@ -218,23 +218,23 @@ if ($_POST && isset($_POST["idCategoria"])) {
 <!-- Incluye el script de AJAX después de tu formulario -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#idCATEGORIA").change(function() {
-        var categoriaSeleccionada = $(this).val();
+  $(document).ready(function () {
+    $("#idCATEGORIA").change(function () {
+      var categoriaSeleccionada = $(this).val();
 
-        $.ajax({
-            url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
-            type: "POST",
-            data: { idCategoria: categoriaSeleccionada },
-            success: function(data) {
-                $("#idSUBCATEGORIA").html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error("Error al obtener subcategorías:", error);
-            }
-        });
+      $.ajax({
+        url: "obtener_subcategorias.php", // Aquí debería ser el archivo correcto si decides crear uno
+        type: "POST",
+        data: { idCategoria: categoriaSeleccionada },
+        success: function (data) {
+          $("#idSUBCATEGORIA").html(data);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al obtener subcategorías:", error);
+        }
+      });
     });
-});
+  });
 </script>
 
 
