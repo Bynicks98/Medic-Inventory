@@ -1,0 +1,199 @@
+{
+  "id": "14282600-1de3-4f00-a702-f9d50b660b5b",
+  "version": "2.0",
+  "name": "EliminarDevoyPedido",
+  "url": "https://8ceb-152-203-132-125.ngrok-free.app",
+  "tests": [{
+    "id": "a810e855-9fa9-47c3-bf19-452f915ca6ea",
+    "name": "Untitled",
+    "commands": [{
+      "id": "d816e77f-de2b-4fd4-a43a-23b8b23ea5f0",
+      "comment": "",
+      "command": "open",
+      "target": "/MedicInven/login.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e1f25bc7-0f68-498d-a06c-5fd58eec2be1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x754",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3ee1c2e2-cf1b-4fbf-9650-d1d2d513bc79",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc4b6dc2-0274-4d91-837d-9f60c712d2bb",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@gmail.com"
+    }, {
+      "id": "a3d67eee-a181-4b01-8379-4f0d247d1258",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63032587-8420-4f0f-806c-257dc219c459",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "a5c1ada9-1937-4a35-b437-754bdd651d34",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "956852bd-5f50-4478-86f6-c31cf848bd13",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Devoluciones",
+      "targets": [
+        ["linkText=Devoluciones", "linkText"],
+        ["css=.nav-item:nth-child(4) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Devoluciones')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Devoluciones/')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Devoluciones')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "91a9a1ce-7908-4a5c-a018-01498de7732d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even .btn-danger",
+      "targets": [
+        ["css=.even .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[5]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[7]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(38);')]", "xpath:href"],
+        ["xpath=//tr[2]/td[7]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1dfd8fc0-ed6d-490c-b20f-3c06db71aa47",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca372183-ecfd-4125-ad8c-3603cd926947",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b54c48b-e051-4554-9261-e81e4bd7b8eb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Pedidos",
+      "targets": [
+        ["linkText=Pedidos", "linkText"],
+        ["css=.nav-item:nth-child(8) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Pedidos')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Pedido/')]", "xpath:href"],
+        ["xpath=//li[8]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Pedidos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1a3fcd5f-f818-4536-9991-e5dab821696b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.even .btn-danger",
+      "targets": [
+        ["css=.even .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[2]", "xpath:link"],
+        ["xpath=(//a[@id=''])[5]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[2]/td[10]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(33);')]", "xpath:href"],
+        ["xpath=//tr[2]/td[10]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bddcce7d-5028-4c95-b0b3-b151b8fe0932",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6dcc37f4-c34b-4226-bee7-d97d9f8de2e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "87638a13-5ccb-4594-97a2-6f9fdc5e7e74",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a810e855-9fa9-47c3-bf19-452f915ca6ea"]
+  }],
+  "urls": ["https://8ceb-152-203-132-125.ngrok-free.app/"],
+  "plugins": []
+}

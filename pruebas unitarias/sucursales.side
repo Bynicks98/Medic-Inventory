@@ -1,0 +1,292 @@
+{
+  "id": "470e40fb-0237-4bad-9501-612b3ec6624f",
+  "version": "2.0",
+  "name": "sucursales",
+  "url": "https://991d-152-203-132-125.ngrok-free.app",
+  "tests": [{
+    "id": "3c202a1e-5492-4001-8b80-fc2f6031eefd",
+    "name": "Untitled",
+    "commands": [{
+      "id": "949a9171-5aba-46ff-9fc2-49516355c887",
+      "comment": "",
+      "command": "open",
+      "target": "/MedicInven/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a2d8cbe1-eee0-4e32-a095-f69253b5e1f7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "945x860",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "333f1af8-a45f-40d0-aab1-51166cdfaa36",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sucursal",
+      "targets": [
+        ["linkText=Sucursal", "linkText"],
+        ["css=.nav-item:nth-child(11) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Sucursal')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/MedicInven/Secciones/Sucursales/')]", "xpath:href"],
+        ["xpath=//li[11]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Sucursal')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6787a0a9-f088-4f1c-b4ca-cd0b3f93ddc6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Agregar nueva Sucursal",
+      "targets": [
+        ["linkText=Agregar nueva Sucursal", "linkText"],
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Agregar nueva Sucursal')]", "xpath:link"],
+        ["xpath=//a[@id='']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'crear.php')]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Agregar nueva Sucursal')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "388300b2-aea0-4064-9ad2-12e50e4b6987",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreIps",
+      "targets": [
+        ["id=nombreIps", "id"],
+        ["name=nombreIps", "name"],
+        ["css=#nombreIps", "css:finder"],
+        ["xpath=//input[@id='nombreIps']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af87d86b-4c71-4bdd-8873-042080b39faf",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreIps",
+      "targets": [
+        ["id=nombreIps", "id"],
+        ["name=nombreIps", "name"],
+        ["css=#nombreIps", "css:finder"],
+        ["xpath=//input[@id='nombreIps']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a95d7e2-48fd-4b32-8203-03d560177cf4",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreIps",
+      "targets": [
+        ["id=nombreIps", "id"],
+        ["name=nombreIps", "name"],
+        ["css=#nombreIps", "css:finder"],
+        ["xpath=//input[@id='nombreIps']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d686e1c1-edd2-439f-856f-117822e61672",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombreIps",
+      "targets": [
+        ["id=nombreIps", "id"],
+        ["name=nombreIps", "name"],
+        ["css=#nombreIps", "css:finder"],
+        ["xpath=//input[@id='nombreIps']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Cafe Salud"
+    }, {
+      "id": "1fecf439-c4f8-43db-9c26-c5a2510c6959",
+      "comment": "",
+      "command": "click",
+      "target": "id=nivelSucursal",
+      "targets": [
+        ["id=nivelSucursal", "id"],
+        ["name=nivelSucursal", "name"],
+        ["css=#nivelSucursal", "css:finder"],
+        ["xpath=//input[@id='nivelSucursal']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ec3bfdb-09b6-4d1b-aa6e-9f1759d2e6c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=nivelSucursal",
+      "targets": [
+        ["id=nivelSucursal", "id"],
+        ["name=nivelSucursal", "name"],
+        ["css=#nivelSucursal", "css:finder"],
+        ["xpath=//input[@id='nivelSucursal']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Primario"
+    }, {
+      "id": "fec91172-9791-4e3a-bba7-6f294334cad1",
+      "comment": "",
+      "command": "click",
+      "target": "id=direccionSucur",
+      "targets": [
+        ["id=direccionSucur", "id"],
+        ["name=direccionSucur", "name"],
+        ["css=#direccionSucur", "css:finder"],
+        ["xpath=//input[@id='direccionSucur']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "def2afea-de06-4497-a509-a87e62bc9e35",
+      "comment": "",
+      "command": "type",
+      "target": "id=direccionSucur",
+      "targets": [
+        ["id=direccionSucur", "id"],
+        ["name=direccionSucur", "name"],
+        ["css=#direccionSucur", "css:finder"],
+        ["xpath=//input[@id='direccionSucur']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "calle 67 # 45 67"
+    }, {
+      "id": "5b09ee55-5565-4a1a-97b4-9c7f25c9c958",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary:nth-child(1)",
+      "targets": [
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Agregar Sucursal')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d756354-b8a8-4390-bd82-f3c5c1f8be28",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "13d4f21d-a6d7-4a0f-a09f-737400c91076",
+      "comment": "",
+      "command": "click",
+      "target": "css=.odd:nth-child(3) .btn-info",
+      "targets": [
+        ["css=.odd:nth-child(3) .btn-info", "css:finder"],
+        ["xpath=(//a[contains(text(),'Editar')])[3]", "xpath:link"],
+        ["xpath=(//a[@id=''])[6]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[3]/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'editar.php?txtID=11')]", "xpath:href"],
+        ["xpath=//tr[3]/td[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1fb88848-ac95-4b1d-932b-793a90488eda",
+      "comment": "",
+      "command": "click",
+      "target": "name=nombreIps",
+      "targets": [
+        ["name=nombreIps", "name"],
+        ["css=.form-control:nth-child(3)", "css:finder"],
+        ["xpath=//input[@id='']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b3b5d1f-aa87-4a6a-b77a-e2d80fd92dfe",
+      "comment": "",
+      "command": "type",
+      "target": "name=nombreIps",
+      "targets": [
+        ["name=nombreIps", "name"],
+        ["css=.form-control:nth-child(3)", "css:finder"],
+        ["xpath=//input[@id='']", "xpath:attributes"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": "Virrey Solis"
+    }, {
+      "id": "693774d1-3e0b-4ddc-ac73-af0c10059f38",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary:nth-child(1)",
+      "targets": [
+        ["css=.btn-primary:nth-child(1)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Editar Sucursal')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bc2eb5d4-1653-4fb5-8f0b-b01b2e4aab5b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "473fdb01-8b57-41a6-8d45-d704ae75dd81",
+      "comment": "",
+      "command": "click",
+      "target": "css=.odd:nth-child(3) .btn-danger",
+      "targets": [
+        ["css=.odd:nth-child(3) .btn-danger", "css:finder"],
+        ["xpath=(//a[contains(text(),'Eliminar')])[3]", "xpath:link"],
+        ["xpath=(//a[@id=''])[7]", "xpath:attributes"],
+        ["xpath=//table[@id='tabla_id']/tbody/tr[3]/td[5]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'javascript:borrar(11);')]", "xpath:href"],
+        ["xpath=//tr[3]/td[5]/a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a7082a4-6f9f-4518-9cb6-3f2db9352e7d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Si, Borrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9943b11-733f-45c3-8ef4-3e26c81bf9ee",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[6]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'OK')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "554ab01d-adcc-4eb8-89a4-98b09e05ed55",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["3c202a1e-5492-4001-8b80-fc2f6031eefd"]
+  }],
+  "urls": ["https://991d-152-203-132-125.ngrok-free.app/"],
+  "plugins": []
+}

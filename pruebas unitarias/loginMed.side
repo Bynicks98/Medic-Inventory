@@ -1,0 +1,289 @@
+{
+  "id": "75ca4a4e-fa03-455d-9e8a-e2b184141001",
+  "version": "2.0",
+  "name": "loginMed",
+  "url": "https://8ceb-152-203-132-125.ngrok-free.app",
+  "tests": [{
+    "id": "d2fb0fef-72a1-460f-a1d2-6fe2e59159d2",
+    "name": "Untitled",
+    "commands": [{
+      "id": "b2e7cd89-9ede-44fa-b6b9-ff61f663c3fe",
+      "comment": "",
+      "command": "open",
+      "target": "/MedicInven/login.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "173956e1-35b5-4501-a435-57db7ba07d12",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x754",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ad9f09c5-bbc5-484f-bff6-1167663e54d6",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eda527d7-3c1a-48be-8917-c38ee94c717f",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@gmail.com"
+    }, {
+      "id": "98949df4-6fb2-4016-9543-84b70692ccb7",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23a5a588-5c70-4d25-abde-6f8dc0a2caa5",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "9bda6e0b-e611-48b3-b73c-69d0cc631ad1",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f41a90c8-63d5-4691-9754-cd9613ea49ec",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cerrar Sesión",
+      "targets": [
+        ["linkText=Cerrar Sesión", "linkText"],
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=//a[contains(text(),'Cerrar Sesión')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Medicinven/cerrar.php')]", "xpath:href"],
+        ["xpath=//div[6]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cerrar Sesión')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c14843c-b44d-4496-a0d7-1f03c20efddd",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc51cf21-a64d-4eae-b02c-5575fad3d663",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@gmail.com"
+    }, {
+      "id": "333ea7c2-8512-4dd2-935c-fd11795d46df",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b17b2311-8703-4de4-8a7e-5c6696364496",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1010"
+    }, {
+      "id": "27fd5996-864d-4136-98da-5a34611ccd8e",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bb78a13-f4e4-4bc0-bce2-cb5e13f4b8e0",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "864b1e5d-423b-4ed8-8ff7-9a62520dce08",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "a@gmail.com"
+    }, {
+      "id": "b4bdc574-aedb-46b5-beb8-8d05bd2eec02",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a93cef68-5407-4543-9edc-f9f2422aed9e",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "ef9926ff-7217-4c59-8f7f-d911d12c5ac8",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "69918155-1d28-48b3-b867-60ddfb142a8d",
+      "comment": "",
+      "command": "click",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "419b5427-b58d-46b6-a6f5-4e612d545d93",
+      "comment": "",
+      "command": "type",
+      "target": "name=correo",
+      "targets": [
+        ["name=correo", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='correo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "aa@gmail.com"
+    }, {
+      "id": "3c14f197-701c-455b-8855-864b4521455d",
+      "comment": "",
+      "command": "click",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "043eef31-c79b-4497-80bf-f238d69a6717",
+      "comment": "",
+      "command": "type",
+      "target": "name=contrasena",
+      "targets": [
+        ["name=contrasena", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='contrasena']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "0000"
+    }, {
+      "id": "75d3141a-8fc9-4c98-b58c-9b483f758942",
+      "comment": "",
+      "command": "click",
+      "target": "name=ingresar",
+      "targets": [
+        ["name=ingresar", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='ingresar']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "2c167c75-2102-4ab7-b88c-0e01c151b7fe",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d2fb0fef-72a1-460f-a1d2-6fe2e59159d2"]
+  }],
+  "urls": ["https://8ceb-152-203-132-125.ngrok-free.app/"],
+  "plugins": []
+}
