@@ -1,9 +1,6 @@
 <?php
 include("../../database.php");
 
-
-
-// Obtener nombres de medicamentos para el formulario
 $sentenciaNombresMedicamentos = $conexion->prepare("SELECT idMEDICAMENTO, nombreMedica FROM medicamento");
 $sentenciaNombresMedicamentos->execute();
 $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC);

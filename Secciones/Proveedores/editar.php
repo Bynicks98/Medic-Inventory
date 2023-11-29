@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 include("../../database.php");
 if(isset($_GET['txtID'])){
@@ -17,12 +13,9 @@ if(isset($_GET['txtID'])){
     $celularProve = $registro["celularProve"];
     $NITproveedores = $registro["NITproveedores"];
     $idSUCURSAL_idSUCURSAL = $registro["SUCURSALIPS_idSUCURSALIPS"];
-
   }
 }
-
 if ($_POST) {
-  
   // Recolección de datos
   $NombreProve  = (isset($_POST["nombreProve"]) ? $_POST["nombreProve"] : "");
   $NITproveedores = (isset($_POST["NITproveedores"]) ? $_POST["NITproveedores"] : "");
@@ -30,7 +23,6 @@ if ($_POST) {
   $telefonoProve = (isset($_POST["telefonoProve"]) ? $_POST["telefonoProve"] : "");
   $celularProve = (isset($_POST["celularProve"]) ? $_POST["celularProve"] : "");
   $idSUCURSAL_idSUCURSAL = (isset($_POST["SUCURSALIPS_idSUCURSALIPS"]) ? $_POST["SUCURSALIPS_idSUCURSALIPS"] : "");
-
   // Insertar datos 
   $sentencia = $conexion->prepare("UPDATE proveedor SET direccionProve =:direccionProve, nombreProve =:nombreProve, NITproveedores = :NITproveedores, telefonoProve = :telefonoProve, celularProve = :celularProve, SUCURSALIPS_idSUCURSALIPS = :SUCURSALIPS_idSUCURSALIPS
    where idPROVEEDOR=:idPROVEEDOR");
