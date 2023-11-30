@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 25-11-2023 a las 17:10:40
+-- Tiempo de generación: 30-11-2023 a las 17:51:52
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -138,13 +138,11 @@ CREATE TABLE `medicamento` (
 --
 
 INSERT INTO `medicamento` (`idMEDICAMENTO`, `descripcionMedica`, `fechaVencimientoMedica`, `cantidadCajas`, `noLoteMedica`, `valorUnitMedica`, `fechaFabricacionMedica`, `nombreMedica`, `cantidadUnidades`, `Persona_idPersona`, `Persona_ROL_idRol`, `SUBCATEGORIA_idSUBCATEGORIA`, `SUBCATEGORIA_CATEGORIA_idCATEGORIA`) VALUES
-(21, 'Es un analgésico opioide atípico que alivia el dolor actuando sobre células nerviosas específicas de la médula espinal y del cerebro', '2023-11-30', 40, 101010, 2500, '2023-11-10', 'Tramadol', 300, 12, 1, 3, 1),
+(21, 'Es un analgésico opioide atípico que alivia el dolor actuando sobre células nerviosas específicas de la médula espinal y del cerebro', '2023-11-30', 40, 101010, 25000, '2023-11-10', 'Tramadol', 220, 12, 1, 3, 1),
 (23, 'Posee propiedades analgésicas y antipiréticas, pero no tiene acción anti-inflamatoria.', '2023-12-05', 1, 10101011, 4500, '2023-11-12', 'Paraaminofenoles', 300, 12, 1, 3, 1),
 (24, 'Se utiliza, además, por su acción antitrombótica, ya que inhibe la agregación plaquetaria al reducir la adhesividad de las plaquetas sobre las paredes vasculares.', '2023-12-06', 3, 10101012, 5000, '2023-11-29', 'Salicilatos', 250, 12, 1, 4, 1),
 (25, 'Regula la evacuación en todos los trastornos intestinales tanto los que producen diarrea como los que producen estreñimiento', '2023-11-16', 2, 10101013, 5000, '2023-11-08', 'Biolid', 200, 12, 1, 5, 5),
-(26, 'Este medicamento actúa aumentando el volumen de las heces, favoreciendo el tránsito intestinal.', '2023-11-15', 25, 10101014, 4500, '2023-11-14', 'Metamucil', 301, 21, 1, 5, 5),
-(27, 'dev', '2023-11-18', 500, 1, 25000, '2023-11-16', 'devo', 128, 23, 1, 7, 7),
-(34, '500 ML', '2023-11-22', 0, 333, 22222, '2023-11-22', 'PRUEBA CREACION', 40, 12, 1, 3, 1);
+(26, 'Este medicamento actúa aumentando el volumen de las heces, favoreciendo el tránsito intestinal.', '2023-11-15', 25, 10101014, 4500, '2023-11-14', 'Metamucil', 301, 21, 1, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -201,7 +199,10 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPEDIDO`, `Tipo_pedido`, `fechaPedido`, `costoPedido`, `Nombre_Producto`, `cantidadP`, `Fecha_entrega`, `Fecha_envio`, `EstadoP`, `SUCURSALIPS_idSUCURSALIPS`, `DISTRIBUIDOR_idDISTRIBUIDOR`, `PAGO_idPAGO`, `MEDICAMENTO_idMEDICAMENTO`, `MEDICAMENTO_Persona_idPersona`, `MEDICAMENTO_PERSONA_ROL_idRol`, `MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA`, `MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA`, `FORMULAMEDICA_idFORMULA`) VALUES
-(25, 'Entrada', '2023-11-21', 250000, 'Tramadol', 20, '2023-11-14', '2023-11-14', 'Devuelto', 6, 4, 1, 21, 12, 1, 3, 1, 1);
+(25, 'Entrada', '2023-11-21', 250000, 'Tramadol', 20, '2023-11-14', '2023-11-14', 'Devuelto', 6, 4, 1, 21, 12, 1, 3, 1, 1),
+(35, 'Salida', '2023-11-26', 10000, 'Tramadol', 50, '2023-11-30', '2023-11-28', 'Completo', 6, 4, 1, 21, 12, 1, 3, 1, 1),
+(36, 'Salida', '2023-11-26', 10000, '21', 50, '2023-11-30', '2023-11-28', 'Completo', 6, 4, 1, 21, 12, 1, 3, 1, 1),
+(37, 'Salida', '2023-11-26', 10000, '21', 50, '2023-11-30', '2023-11-28', 'Completo', 6, 4, 1, 21, 12, 1, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +298,7 @@ INSERT INTO `subcategoria` (`idSUBCATEGORIA`, `descripcionSubcat`, `nombreSubcat
 (3, 'se caracterizan por poseer techo analgésico. Son la codeína, la dihidrocodeína y el tramadol.', 'Opioides menores', 1),
 (4, 'Alivian sobre todo el dolor de tipo somático de intensidad leve o moderada, y apenas actúan sobre el dolor visceral.', 'Analgésicos periféricos', 1),
 (5, 'Actúan igual que la fibra dietética,\r\nreteniendo líquido e incrementando\r\nla masa fecal, lo que estimula\r\nel peristaltismo', 'FORMADORES DE BOLO', 5),
-(6, 'dddddaaaaa', 'aaaaadd', 6),
+(6, 'Se usan en las rinoconjuntivitis alérgicas, las urticarias, el control del picor, la tos catarral, las náuseas, el tratamiento y prevención del mareo del movimiento, el insomnio y otras indicaciones', 'Antihistamínicos clásicos', 6),
 (7, 'pruebadevolu', 'pruebadevolu', 7);
 
 -- --------------------------------------------------------
@@ -422,13 +423,13 @@ ALTER TABLE `sucursalips`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idCATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `devoluciones`
 --
 ALTER TABLE `devoluciones`
-  MODIFY `idDevoluciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idDevoluciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `distribuidor`
@@ -446,7 +447,7 @@ ALTER TABLE `formulamedica`
 -- AUTO_INCREMENT de la tabla `medicamento`
 --
 ALTER TABLE `medicamento`
-  MODIFY `idMEDICAMENTO` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idMEDICAMENTO` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -458,19 +459,19 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPEDIDO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idPEDIDO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idPersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idPersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idPROVEEDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPROVEEDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -482,13 +483,13 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  MODIFY `idSUBCATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idSUBCATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `sucursalips`
 --
 ALTER TABLE `sucursalips`
-  MODIFY `idSUCURSAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idSUCURSAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

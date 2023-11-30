@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 22-11-2023 a las 18:34:51
+-- Tiempo de generación: 25-11-2023 a las 17:10:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `categoria`
 --
--- Creación: 22-11-2023 a las 17:19:39
---
 
 CREATE TABLE `categoria` (
   `idCATEGORIA` int(11) NOT NULL,
@@ -40,17 +38,15 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idCATEGORIA`, `DescripcionCate`, `nombreCat`) VALUES
-(1, 'Los analgésicos son medicinas que reducen o alivian los dolores de cabeza, musculares, artríticos o muchos otros achaques y dolores.', 'ANALGÉSICOS'),
-(5, 'los mess asda', 'MESS'),
-(6, 'fff', 'ddd'),
-(7, 'prueba devo', 'pruebadevo');
+(1, 'son medicinas que reducen o alivian los dolores de cabeza, musculares, artríticos o muchos otros achaques y dolores.', 'ANALGÉSICOS'),
+(5, 'es una preparación usada para provocar la defecación o la eliminación de heces.', 'Laxantes'),
+(6, 'son medicamentos que tratan los síntomas de las alergias bloqueando el efecto de la histamina. ', 'Antialérgicos'),
+(7, 'es un fármaco empleado para tratar la tos seca irritativa, no productiva.', 'Antitusivos\r\n');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `devoluciones`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `devoluciones` (
@@ -68,14 +64,12 @@ CREATE TABLE `devoluciones` (
 --
 
 INSERT INTO `devoluciones` (`idDevoluciones`, `cantidadD`, `nombreProducto`, `estadoD`, `motivoD`, `cantidadUD`, `PEDIDO_idPEDIDO`) VALUES
-(34, 0, '33', 'Aprobada', 'dañados', 22, 29);
+(34, 20, 'Tramadol', 'Aprobada', 'Daños en las cajas', 50, 25);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `distribuidor`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `distribuidor` (
@@ -83,7 +77,7 @@ CREATE TABLE `distribuidor` (
   `NIT_distribuidor` int(255) NOT NULL,
   `nombreDistri` varchar(255) NOT NULL,
   `direccionDistri` varchar(255) NOT NULL,
-  `celularDistri` int(255) NOT NULL,
+  `celularDistri` bigint(255) NOT NULL,
   `telefonoDistri` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -92,14 +86,13 @@ CREATE TABLE `distribuidor` (
 --
 
 INSERT INTO `distribuidor` (`idDISTRIBUIDOR`, `NIT_distribuidor`, `nombreDistri`, `direccionDistri`, `celularDistri`, `telefonoDistri`) VALUES
-(4, 12312312, 'RONALDO BARRAGAN', 'calle 45', 2147483647, 3123123);
+(4, 123123121, 'Polymedical', 'calle 45', 3216595694, 3123123),
+(6, 4558842, 'A.M Distribuidores', 'Calle 105 #57', 3126548545, 8945637);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `formulamedica`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `formulamedica` (
@@ -116,16 +109,12 @@ CREATE TABLE `formulamedica` (
 --
 
 INSERT INTO `formulamedica` (`idFORMULA`, `Referenciaformula`, `estadoFormula`, `fechaFormula`, `observacionesFormula`, `pagoFormula`) VALUES
-(1, 33322333, 'pendiente', '2023-10-28', 'pago pendeiente', 2580),
-(3, 33322233, 'Incompleto', '2023-11-10', 'EL SR PAGO EL 12/12/2020ADSAD', 223132),
-(5, 3312122, 'Completo', '2023-11-16', 'pruebadevo', 45000);
+(1, 125466, 'Completo', '2023-10-28', 'Se hara envio de 20 cajas de Tramadol a la ips ', 250000);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `medicamento`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `medicamento` (
@@ -149,21 +138,18 @@ CREATE TABLE `medicamento` (
 --
 
 INSERT INTO `medicamento` (`idMEDICAMENTO`, `descripcionMedica`, `fechaVencimientoMedica`, `cantidadCajas`, `noLoteMedica`, `valorUnitMedica`, `fechaFabricacionMedica`, `nombreMedica`, `cantidadUnidades`, `Persona_idPersona`, `Persona_ROL_idRol`, `SUBCATEGORIA_idSUBCATEGORIA`, `SUBCATEGORIA_CATEGORIA_idCATEGORIA`) VALUES
-(21, 'sdad', '2023-11-24', 23, 1111, 123456, '2023-11-10', 'parace', 345, 12, 1, 3, 1),
-(23, 'qqqqqq', '2023-12-05', 1, 2222, 22222, '2023-11-12', 'dddddd', 9, 12, 1, 3, 1),
-(24, 'dddd', '2023-12-06', 3, 32, 22222, '2023-11-29', 'dddd', 60, 12, 1, 3, 1),
-(25, 'ddddd', '2023-11-16', 2, 323, 0, '2023-11-08', 'fffffff', 10, 12, 1, 3, 1),
-(26, 'pruebaparadevolvermedica', '2023-11-15', 25, 1010, 4500, '2023-11-14', 'pruebadevolucion', 301, 21, 1, 7, 7),
+(21, 'Es un analgésico opioide atípico que alivia el dolor actuando sobre células nerviosas específicas de la médula espinal y del cerebro', '2023-11-30', 40, 101010, 2500, '2023-11-10', 'Tramadol', 300, 12, 1, 3, 1),
+(23, 'Posee propiedades analgésicas y antipiréticas, pero no tiene acción anti-inflamatoria.', '2023-12-05', 1, 10101011, 4500, '2023-11-12', 'Paraaminofenoles', 300, 12, 1, 3, 1),
+(24, 'Se utiliza, además, por su acción antitrombótica, ya que inhibe la agregación plaquetaria al reducir la adhesividad de las plaquetas sobre las paredes vasculares.', '2023-12-06', 3, 10101012, 5000, '2023-11-29', 'Salicilatos', 250, 12, 1, 4, 1),
+(25, 'Regula la evacuación en todos los trastornos intestinales tanto los que producen diarrea como los que producen estreñimiento', '2023-11-16', 2, 10101013, 5000, '2023-11-08', 'Biolid', 200, 12, 1, 5, 5),
+(26, 'Este medicamento actúa aumentando el volumen de las heces, favoreciendo el tránsito intestinal.', '2023-11-15', 25, 10101014, 4500, '2023-11-14', 'Metamucil', 301, 21, 1, 5, 5),
 (27, 'dev', '2023-11-18', 500, 1, 25000, '2023-11-16', 'devo', 128, 23, 1, 7, 7),
-(33, 'prueba', '2023-11-23', 100, 100, 1000, '2023-11-16', 'PruebaDevolucion', 120, 22, 1, 7, 7),
 (34, '500 ML', '2023-11-22', 0, 333, 22222, '2023-11-22', 'PRUEBA CREACION', 40, 12, 1, 3, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pago`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `pago` (
@@ -179,17 +165,14 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`idPAGO`, `ReferenciaPago`, `estadoPago`, `fechaPago`, `hechoPor`) VALUES
-(1, 33223, 'Completo', '2023-10-29', 'juana'),
-(4, 22233, 'Completo', '2023-11-16', 'pruebadevo'),
-(5, 423245, 'Completo', '2023-11-16', 'raul '),
-(15, 413322, 'Incompleto', '2023-11-21', 'pepito');
+(1, 332235454, 'Aceptado', '2023-10-29', 'Juan Ramirez'),
+(5, 423245, 'Aceptado', '2023-11-16', 'Raul Gonsalez'),
+(15, 413322, 'Incompleto', '2023-11-21', 'Pedro Ramirez');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pedido`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `pedido` (
@@ -218,17 +201,12 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPEDIDO`, `Tipo_pedido`, `fechaPedido`, `costoPedido`, `Nombre_Producto`, `cantidadP`, `Fecha_entrega`, `Fecha_envio`, `EstadoP`, `SUCURSALIPS_idSUCURSALIPS`, `DISTRIBUIDOR_idDISTRIBUIDOR`, `PAGO_idPAGO`, `MEDICAMENTO_idMEDICAMENTO`, `MEDICAMENTO_Persona_idPersona`, `MEDICAMENTO_PERSONA_ROL_idRol`, `MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA`, `MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA`, `FORMULAMEDICA_idFORMULA`) VALUES
-(19, 'Entrada', '2023-11-21', 45000, 'pruebadevolucion', 201, '2023-11-16', '2023-11-15', 'En Reparto', 6, 4, 1, 26, 21, 1, 7, 7, 1),
-(25, 'Entrada', '2023-11-21', 22222, 'pruebadevolucion', 200, '2023-11-14', '2023-11-14', 'En Reparto', 6, 4, 1, 26, 12, 1, 7, 7, 1),
-(27, 'Salida', '2023-11-16', 25000, 'devo', 200, '2023-11-20', '2023-11-18', 'En Reparto', 6, 4, 4, 27, 23, 1, 7, 7, 1),
-(29, 'Salida', '2023-11-20', 161, '33', 50, '2023-12-01', '2023-11-23', 'Salida', 8, 4, 1, 33, 25, 1, 7, 7, 1);
+(25, 'Entrada', '2023-11-21', 250000, 'Tramadol', 20, '2023-11-14', '2023-11-14', 'Devuelto', 6, 4, 1, 21, 12, 1, 3, 1, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `persona`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `persona` (
@@ -248,21 +226,15 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`idPersona`, `cedulaP`, `correo`, `numeroP`, `telefonoP`, `nombreP`, `apellidosP`, `contrasena`, `ROL_idRol`) VALUES
-(12, 12312312, 'ronaldolachupa123@gmail.com', 123, 1231, 'Ronaldo  el mas gay', 'insano', 'mama huevo', 1),
-(17, 2232133, 'ronaldolachupa123@gmail.com', 223344, 2233444, 'ronaldo', 'mama huevo', 'mama huevo', 1),
-(20, 171, 'ui@ai', 123123, 123123, 'aaaaaaaaaaa', 'aaaaaaaaaaaaa', 'we', 1),
-(21, 101, 'facil@g', 121, 1212, 'lol', 'lol', 'lol', 1),
-(22, 1233690107, 'benicolas11@hotmail.com', 2147483647, 2147483647, 'Jose Nicolas', 'Riaño Abril', '54321', 1),
-(23, 3232, 'pruebaderoles@gmail.com', 123, 1234, 'rolesprueba', 'us', 'pruebarol', 3),
-(24, 123123, 'a@a', 2414, 213123, 'a', 'aa', 'aaa', 27),
-(25, 12333, 'asistente@gmail.com', 32324, 23234, 'asistente', 'asistente', '1234', 2);
+(12, 12312312, 'admin@gmail.com', 123, 1231, 'Ronaldo', 'insano', '1234', 1),
+(21, 10146882, 'Juanramirez4523@gmail.com', 25, 6549872, 'Juan Andres', 'Ramirez ', 'JR1234', 3),
+(23, 1, 'Lector@gmail.com', 123, 1234, 'Lector', '', '1234', 3),
+(25, 2, 'Asistente@gmail.com', 2, 3123654, 'asistente', '', '1234', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `proveedor`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `proveedor` (
@@ -271,7 +243,7 @@ CREATE TABLE `proveedor` (
   `nombreProve` varchar(45) NOT NULL,
   `direccionProve` varchar(45) NOT NULL,
   `telefonoProve` int(11) NOT NULL,
-  `celularProve` int(11) NOT NULL,
+  `celularProve` bigint(25) NOT NULL,
   `SUCURSALIPS_idSUCURSALIPS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -280,14 +252,14 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idPROVEEDOR`, `NITproveedores`, `nombreProve`, `direccionProve`, `telefonoProve`, `celularProve`, `SUCURSALIPS_idSUCURSALIPS`) VALUES
-(6, 123131231, 'ronaldo', 'adsdasd', 321313213, 312321312, 6);
+(6, 123131231, 'Genfar', 'Calle 45 #45 70', 321313213, 312321312, 6),
+(9, 456797798, 'MK', 'Calle 56 #80 78', 6548245, 3126549876, 8),
+(10, 9756494, 'Farmaceuticas', 'Calle 67 Norte # 45', 5468795, 3216984567, 6);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `rol`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `rol` (
@@ -302,18 +274,12 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`idRol`, `nombreRol`) VALUES
 (1, 'Administrador'),
 (2, 'Asistente'),
-(3, 'Lector'),
-(26, 'Asistente'),
-(27, 'Lector'),
-(28, 'prueba2'),
-(29, 'Sua');
+(3, 'Lector');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `subcategoria`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `subcategoria` (
@@ -328,9 +294,9 @@ CREATE TABLE `subcategoria` (
 --
 
 INSERT INTO `subcategoria` (`idSUBCATEGORIA`, `descripcionSubcat`, `nombreSubcat`, `CATEGORIA_idCATEGORIA`) VALUES
-(3, 'pastillas', 'vitaminasa', 1),
-(4, 'xxxxx', 'asdadas', 1),
-(5, 'dddddd', 'ssssss', 5),
+(3, 'se caracterizan por poseer techo analgésico. Son la codeína, la dihidrocodeína y el tramadol.', 'Opioides menores', 1),
+(4, 'Alivian sobre todo el dolor de tipo somático de intensidad leve o moderada, y apenas actúan sobre el dolor visceral.', 'Analgésicos periféricos', 1),
+(5, 'Actúan igual que la fibra dietética,\r\nreteniendo líquido e incrementando\r\nla masa fecal, lo que estimula\r\nel peristaltismo', 'FORMADORES DE BOLO', 5),
 (6, 'dddddaaaaa', 'aaaaadd', 6),
 (7, 'pruebadevolu', 'pruebadevolu', 7);
 
@@ -338,8 +304,6 @@ INSERT INTO `subcategoria` (`idSUBCATEGORIA`, `descripcionSubcat`, `nombreSubcat
 
 --
 -- Estructura de tabla para la tabla `sucursalips`
---
--- Creación: 22-11-2023 a las 17:19:39
 --
 
 CREATE TABLE `sucursalips` (
@@ -354,8 +318,8 @@ CREATE TABLE `sucursalips` (
 --
 
 INSERT INTO `sucursalips` (`idSUCURSAL`, `direccionSucur`, `nombreIps`, `nivelSucursal`) VALUES
-(6, 'calle 34', 'ronaldo  el re mrk', '1'),
-(8, 'dwadad', 'ronaldo el gei', '1');
+(6, 'calle 34', 'Salud Total E.P.S', 'Primario'),
+(8, 'Calle 102 # 74 80', 'Colsubsidio', 'Primario');
 
 --
 -- Índices para tablas volcadas
@@ -470,7 +434,7 @@ ALTER TABLE `devoluciones`
 -- AUTO_INCREMENT de la tabla `distribuidor`
 --
 ALTER TABLE `distribuidor`
-  MODIFY `idDISTRIBUIDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idDISTRIBUIDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `formulamedica`
@@ -506,7 +470,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idPROVEEDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idPROVEEDOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
