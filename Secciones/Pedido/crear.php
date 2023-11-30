@@ -174,11 +174,11 @@ if ($_POST && isset($_POST["idCategoria"])) {
       <div class="mb-3">
         <label for="fechaPedido" class="form-label">Fecha del Pedido</label>
         <input type="date" class="form-control" name="fechaPedido" id="fechaPedido" aria-describedby="helpId"
-          placeholder="">
+          placeholder="" required>
         <div class="mb-3">
           <label for="costoPedido" class="form-label">Costo</label>
           <input type="text" class="form-control" name="costoPedido" id="costoPedido" aria-describedby="helpId"
-            placeholder="Ingresa el costo del pedido">
+            placeholder="Ingresa el costo del pedido" required>
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
         <div class="mb-3">
@@ -220,17 +220,17 @@ if ($_POST && isset($_POST["idCategoria"])) {
         <div class="mb-3">
           <label for="cantidadP" class="form-label">Cantidad</label>
           <input type="text" class="form-control" name="cantidadP" id="cantidadP" aria-describedby="helpId"
-            placeholder="Ingresa la cantida del pedido">
+            placeholder="Ingresa la cantida del pedido" required>
         </div>
         <div class="mb-3">
           <label for="Fecha_entrega" class="form-label">Fecha de entrega</label>
           <input type="date" class="form-control" name="Fecha_entrega" id="Fecha_entrega" aria-describedby="helpId"
-            placeholder="">
+            placeholder="" required>
         </div>
         <div class="mb-3">
           <label for="Fecha_envio" class="form-label">Fecha de envio</label>
           <input type="date" class="form-control" name="Fecha_envio" id="Fecha_envio" aria-describedby="helpId"
-            placeholder="">
+            placeholder="" required>
         </div>
         <div class="mb-3">
           <label for="SUCURSALIPS_idSUCURSALIPS" class="form-label">Sucursal</label>

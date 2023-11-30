@@ -33,13 +33,13 @@ $CATEGORIA = $sentenciaCat->fetchAll(PDO::FETCH_ASSOC);
       <div class="mb-3">
         <label for="nombreSubcat" class="form-label">Nombre SubCategoria</label>
         <input type="text" class="form-control" name="nombreSubcat" id="nombreSubcat" aria-describedby="helpId"
-          placeholder="Dale un nombre a la Categoria">
+          placeholder="Dale un nombre a la Categoria" required>
 
       </div>
       <div class="mb-3">
         <label for="descripcionSubcat" class="form-label">Descripcion</label>
         <input type="text" class="form-control" name="descripcionSubcat" id="descripcionSubcat" aria-describedby="helpId"
-          placeholder="Añade una descripcion para la Categoria">
+          placeholder="Añade una descripcion para la Categoria" required>
 
       </div>
       <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->

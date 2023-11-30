@@ -104,7 +104,7 @@ $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC)
       <div class="mb-3">
         <label for="motivoD" class="form-label">Motivo de la Devolucion</label>
         <input type="text" class="form-control" name="motivoD" id="motivoD" aria-describedby="helpId"
-          placeholder="Agrega el motivo de la devolucion ">
+          placeholder="Agrega el motivo de la devolucion " required>
 
       </div>
 
@@ -119,13 +119,13 @@ $nombresMedicamentos = $sentenciaNombresMedicamentos->fetchAll(PDO::FETCH_ASSOC)
       <div class="mb-3" style="display: none;">
         <label for="cantidadD" class="form-label">Cantidad de cajas</label>
         <input type="text" class="form-control" name="cantidadD" id="cantidadD" aria-describedby="helpId"
-          placeholder="Cantidad de cajas del pedido">
+          placeholder="Cantidad de cajas del pedido" required>
 
       </div>
       <div class="mb-3">
         <label for="cantidadUD" class="form-label">Cantidad de unidades</label>
         <input type="text" class="form-control" name="cantidadUD" id="cantidadUD" aria-describedby="helpId"
-          placeholder="Agrega la cantidad de unidades del pedido ">
+          placeholder="Agrega la cantidad de unidades del pedido " required>
 
       </div>
       <!-- FK categoria y subcategoria -->

@@ -34,7 +34,7 @@ crear Roles
             <div class="mb-3">
                 <label for="nombreRol" class="form-label">Nombre Rol</label>
                 <input type="text" class="form-control" name="nombreRol" id="nombreRol" aria-describedby="helpId"
-                    placeholder="Nombre del Rol...">
+                    placeholder="Nombre del Rol..." required>
             </div>
             <button type="submit" class="btn btn-primary">Agregar Rol</button>
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>

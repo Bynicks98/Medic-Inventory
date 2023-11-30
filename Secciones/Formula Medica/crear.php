@@ -39,14 +39,14 @@ if ($_POST) {
                     <h6>Referencia de la formula medica</h6>
                 </label>
                 <input type="text" class="form-control" name="Referenciaformula" id="Referenciaformula" aria-describedby="helpId"
-                    placeholder="">
+                    placeholder="" required>
             </div>
             <div class="mb-3">
                 <label for="fechaFormula" class="form-label">
                     <h6>Fecha</h6>
                 </label>
                 <input type="date" class="form-control" name="fechaFormula" id="fechaFormula" aria-describedby="helpId"
-                    placeholder="">
+                    placeholder="" required>
             </div>
 
             <div class="mb-3">
@@ -64,7 +64,7 @@ if ($_POST) {
                     <h6>Observación</h6>
                 </label>
                 <input type="text" class="form-control" name="observacionesFormula" id="observacionesFormula"
-                    aria-describedby="helpId" placeholder="Añade una observación">
+                    aria-describedby="helpId" placeholder="Añade una observación" required>
             </div>
 
             <div class="mb-3">
@@ -72,7 +72,7 @@ if ($_POST) {
                     <h6>Pago</h6>
                 </label>
                 <input type="number" class="form-control" name="pagoFormula" id="pagoFormula" aria-describedby="helpId"
-                    placeholder="Añade un monto de pago">
+                    placeholder="Añade un monto de pago" required>
             </div>
 
             <button type="submit" class="btn btn-success">Agregar Fórmula</button>

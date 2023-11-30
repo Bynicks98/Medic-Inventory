@@ -30,19 +30,19 @@ if ($_POST) {
       <div class="mb-3">
         <label for="nombreIps" class="form-label">Nombre de la Sucursal</label>
         <input type="text" class="form-control" name="nombreIps" id="nombreIps" aria-describedby="helpId"
-          placeholder="Dale un nombre a la Sucursal">
+          placeholder="Dale un nombre a la Sucursal" required>
 
       </div>
       <div class="mb-3">
         <label for="nivelSucursal" class="form-label">Nivel </label>
         <input type="text" class="form-control" name="nivelSucursal" id="nivelSucursal" aria-describedby="helpId"
-          placeholder="Ingresa el nivel de la Sucursal">
+          placeholder="Ingresa el nivel de la Sucursal" required>
       </div>
       <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
       <div class="mb-3">
         <label for="direccionSucur" class="form-label">Direccion</label>
         <input type="text" class="form-control" name="direccionSucur" id="direccionSucur" aria-describedby="helpId"
-          placeholder="Ingresa la direccion de la Sucursal">
+          placeholder="Ingresa la direccion de la Sucursal" required>
       </div>
       <div class="card-footer text-muted">
         <button type="submit" class="btn btn-primary">Agregar Sucursal</button>

@@ -38,29 +38,29 @@ $Sucur = $sentenciaSUCURSAL->fetchAll(PDO::FETCH_ASSOC);
         <div class="mb-3">
           <label for="" class="form-label">Nombre Proveedor</label>
           <input type="text"
-            class="form-control" name="nombreProve" id="" aria-describedby="helpId" placeholder="Dale un nombre al Proveedor">
+            class="form-control" name="nombreProve" id="" aria-describedby="helpId" placeholder="Dale un nombre al Proveedor" required>
 
         </div>
         <div class="mb-3">
           <label for="" class="form-label">NIT</label>
           <input type="text"
-            class="form-control" name="NITproveedores" id="" aria-describedby="helpId" placeholder="Ingresa el NIT del Proveedor">
+            class="form-control" name="NITproveedores" id="" aria-describedby="helpId" placeholder="Ingresa el NIT del Proveedor" required>
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
         <div class="mb-3">
           <label for="" class="form-label">Direccion</label>
           <input type="text"
-            class="form-control" name="direccionProve" id="" aria-describedby="helpId" placeholder="Ingresa la direccion del Proveedor">
+            class="form-control" name="direccionProve" id="" aria-describedby="helpId" placeholder="Ingresa la direccion del Proveedor" required>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Celular</label>
           <input type="text"
-            class="form-control" name="celularProvee" id="" aria-describedby="helpId" placeholder="Ingresa el celular del Proveedor">
+            class="form-control" name="celularProvee" id="" aria-describedby="helpId" placeholder="Ingresa el celular del Proveedor" required>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Telefono</label>
           <input type="text"
-            class="form-control" name="telefonoProve" id="" aria-describedby="helpId" placeholder="Ingresa el telefono del Proveedor">
+            class="form-control" name="telefonoProve" id="" aria-describedby="helpId" placeholder="Ingresa el telefono del Proveedor" required>
         </div>
         <div class="mb-3">
     <label for="idSUCURSAL" class="form-label">Sucursal a la que esta provee</label>

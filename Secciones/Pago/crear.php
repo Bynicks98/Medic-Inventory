@@ -32,11 +32,11 @@ if ($_POST) {
             <div class="mb-3">
                 <label for="ReferenciaPago" class="form-label">Referencia de pago</label>
                 <input type="text" class="form-control" name="ReferenciaPago" id="ReferenciaPago" aria-describedby="helpId"
-                    placeholder="">
+                    placeholder="" required>
             </div>
             <div class="mb-3">
                 <label for="estadoPago" class="form-label">Estado</label>
-                <select name="estadoPago" class="form-select">
+                <select name="estadoPago" class="form-select" required>
                     <option value="Completo">Aceptado</option>
                     <option value="Incompleto">Incompleto</option>
                 </select>
@@ -44,12 +44,12 @@ if ($_POST) {
             <div class="mb-3">
                 <label for="fechaPago" class="form-label">Fecha</label>
                 <input type="date" class="form-control" name="fechaPago" id="fechaPago" aria-describedby="helpId"
-                    placeholder="">
+                    placeholder="" required>
             </div>
             <div class="mb-3">
                 <label for="hechoPor" class="form-label">Persona que paga</label>
                 <input type="text" class="form-control" name="hechoPor" id="hechoPor" aria-describedby="helpId"
-                    placeholder="Ingresa el nombre de la persona que realiza el pago">
+                    placeholder="Ingresa el nombre de la persona que realiza el pago" required>
             </div>
             <button type="submit" class="btn btn-success">Agregar Pago</button>
             <a class="btn btn-primary" href="index.php" role="button">Cancelar</a>

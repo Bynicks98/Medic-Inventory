@@ -53,41 +53,41 @@ $roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
         <!--bs5forminput abajo-->
         <label for="nombreP" class="form-label">Nombre</label>
         <input type="text" class="form-control" name="nombreP" id="nombreP" aria-describedby="helpId"
-          placeholder="Ingrese su nombre">
+          placeholder="Ingrese su nombre" required>
 
       </div>
       <div class="mb-3">
         <label for="apellidosP" class="form-label">Apellido</label>
         <input type="text" class="form-control" name="apellidosP" id="apellidosP" aria-describedby="helpId"
-          placeholder="Ingrese su apellido...">
+          placeholder="Ingrese su apellido..." required>
 
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Telefono</label>
         <input type="number" class="form-control" name="telefonoP" id="telefonoP" aria-describedby="helpId"
-          placeholder="Ingrese su telefono">
+          placeholder="Ingrese su telefono" required>
 
       </div>
       <div class="mb-3">
         <label for="numeroP" class="form-label">Numero de Celular</label>
         <input type="number" class="form-control" name="numeroP" id="numeroP" aria-describedby="helpId"
-          placeholder="Ingrese su telefono">
+          placeholder="Ingrese su telefono" required>
 
       </div>
       <div class="mb-3">
         <label for="correo" class="form-label">Correo:</label>
         <input type="email" class="form-control" name="correo" id="correo" aria-describedby="helpId"
-          placeholder="Ingrese su correo">
+          placeholder="Ingrese su correo" required>
       </div>
       <div class="mb-3">
         <label for="cedulaP" class="form-label">Cedula:</label>
         <input type="text" class="form-control" name="cedulaP" id="cedulaP" aria-describedby="helpId"
-          placeholder="Ingrese su cedula">
+          placeholder="Ingrese su cedula" required>
       </div>
       <div class="mb-3">
         <label for="contrasena" class="form-label">Contraseña:</label>
         <input type="text" class="form-control" name="contrasena" id="contrasena" aria-describedby="helpId"
-          placeholder="Ingrese la contraseña deseada">
+          placeholder="Ingrese la contraseña deseada" required>
       </div>
       <!-- bs5formselectcustom sirve para hacer una seleccion del (Rol) eje:
         esto se tomara de una base de datos que tendra los roles abajo-->

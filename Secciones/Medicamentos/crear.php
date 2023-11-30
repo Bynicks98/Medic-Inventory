@@ -105,101 +105,101 @@ if ($_POST && isset($_POST["idCategoria"])) {
       <div class="mb-3">
         <label for="nombreMedica" class="form-label">Nombre </label>
         <input type="text" class="form-control" name="nombreMedica" id="nombreMedica" aria-describedby="helpId"
-          placeholder="Añade un nombre a tu medicamento">
+          placeholder="Añade un nombre a tu medicamento" required>
 
       </div>
       <div class="mb-3">
         <label for="descripcionMedica" class="form-label">Descripcion del medicamento</label>
         <input type="text" class="form-control" name="descripcionMedica" id="descripcionMedica"
-          aria-describedby="helpId" placeholder="Agrega el tipo de tu medicamento">
+          aria-describedby="helpId" placeholder="Agrega el tipo de tu medicamento" required>
 
       </div>
       <div class="mb-3">
         <label for="fechaFabricacionMedica" class="form-label">Fecha de Fabricacion</label>
         <input type="date" class="form-control" name="fechaFabricacionMedica" id="fechaFabricacionMedica"
-          aria-describedby="helpId" placeholder="elija la fecha de fabricacion">
+          aria-describedby="helpId" placeholder="elija la fecha de fabricacion" required>
 
       </div>
       <div class="mb-3">
         <label for="fechaVencimientoMedica" class="form-label">Fecha de Vencimiento</label>
         <input type="date" class="form-control" name="fechaVencimientoMedica" id="fechaVencimientoMedica"
-          aria-describedby="helpId" placeholder="elija la fecha de fabricacion.">
+          aria-describedby="helpId" placeholder="elija la fecha de fabricacion." required>
 
       </div>
-  </div>
-  <div class="mb-3" style="display: none;">
-    <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
-    <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId">
 
-  </div>
-  <div class="mb-3">
-    <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
-    <input type="text" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
-      aria-describedby="helpId" placeholder="">
+      <div class="mb-3" style="display: none;">
+        <label for="cantidadCajas" class="form-label">Cantidad de cajas</label>
+        <input type="text" class="form-control" name="cantidadCajas" id="cantidadCajas" aria-describedby="helpId" required>
 
-  </div>
-  <div class="mb-3">
-    <label for="valorUnitMedica" class="form-label">Valor unitario</label>
-    <input type="text" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
-      aria-describedby="helpId" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="cantidadUnidades" class="form-label">Cantidad de Unidades</label>
+        <input type="text" class="form-control" name="cantidadUnidades" id="ica" id="cantidadUnidades"
+          aria-describedby="helpId" placeholder="" required>
 
-  </div>
-  <div class="mb-3">
-    <label for="noLoteMedica" class="form-label">Numero de lote</label>
-    <input type="text" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
-      placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="valorUnitMedica" class="form-label">Valor unitario</label>
+        <input type="text" class="form-control" name="valorUnitMedica" id="ica" id="valorUnitMedica"
+          aria-describedby="helpId" placeholder="" required>
 
-  </div>
+      </div>
+      <div class="mb-3">
+        <label for="noLoteMedica" class="form-label">Numero de lote</label>
+        <input type="text" class="form-control" name="noLoteMedica" id="ica" id="noLoteMedica" aria-describedby="helpId"
+          placeholder="" required>
 
-  <!-- FK categoria y subcategoria -->
-  <div class="mb-3">
-    <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
-    <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
-      <option value="">Selecciona una categoría</option>
-      <?php foreach ($Categorias as $medicamento) { ?>
+      </div>
 
-        <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
-          <?php echo $medicamento['nombreCat']; ?>
-        </option>
-      <?php } ?>
-    </select>
-  </div>
+      <!-- FK categoria y subcategoria -->
+      <div class="mb-3">
+        <label for="idCATEGORIA" class="form-label">CATEGORIA</label>
+        <select class="form-select form-select-lg" name="SUBCATEGORIA_CATEGORIA_idCATEGORIA" id="idCATEGORIA">
+          <option value="">Selecciona una categoría</option>
+          <?php foreach ($Categorias as $medicamento) { ?>
 
-  <div class="mb-3">
-    <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
-    <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
-      <option value="">Selecciona una Subcategoría</option>
-      <?php foreach ($Subcategorias as $medicamento) { ?>
-        <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
-          <?php echo $medicamento['nombreSubcat']; ?>
-        </option>
-      <?php } ?>
-    </select>
-  </div>
-  <div class="mb-3">
-    <label for="idRol" class="form-label">Rol</label>
-    <select class="form-select form-select-lg" name="Persona_ROL_idRol" id="idRol">
-      <?php foreach ($roles as $medicamento) {
-        // Evitar que se muestre el rol con id 1 o con nombre 'lector'
-        if ($medicamento['idRol'] != 3 && $medicamento['nombreRol'] != 'lector') { ?>
-          <option value="<?php echo $medicamento['idRol']; ?>">
-            <?php echo $medicamento['nombreRol']; ?>
-          </option>
-        <?php }
-      } ?>
-    </select>
-  </div>
-  <div class="mb-3">
-    <label for="idPersona" class="form-label">Persona</label>
-    <select class="form-select form-select-lg" name="Persona_idPersona" id="idPersona">
-      <?php foreach ($Persona as $medicamento) { ?>
-        <option value="<?php echo $medicamento['idPersona']; ?>">
-          <?php echo $medicamento['nombreP']; ?>
-        </option>
-      <?php } ?>
-    </select>
-  </div>
+            <option value="<?php echo $medicamento['idCATEGORIA']; ?>">
+              <?php echo $medicamento['nombreCat']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
 
+      <div class="mb-3">
+        <label for="idSUBCATEGORIA" class="form-label">SUBCATEGORIA</label>
+        <select class="form-select form-select-lg" name="SUBCATEGORIA_idSUBCATEGORIA" id="idSUBCATEGORIA">
+          <option value="">Selecciona una Subcategoría</option>
+          <?php foreach ($Subcategorias as $medicamento) { ?>
+            <option value="<?php echo $medicamento['idSUBCATEGORIA']; ?>">
+              <?php echo $medicamento['nombreSubcat']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="idRol" class="form-label">Rol</label>
+        <select class="form-select form-select-lg" name="Persona_ROL_idRol" id="idRol">
+          <?php foreach ($roles as $medicamento) {
+            // Evitar que se muestre el rol con id 1 o con nombre 'lector'
+            if ($medicamento['idRol'] != 3 && $medicamento['nombreRol'] != 'lector') { ?>
+              <option value="<?php echo $medicamento['idRol']; ?>">
+                <?php echo $medicamento['nombreRol']; ?>
+              </option>
+            <?php }
+          } ?>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="idPersona" class="form-label">Persona</label>
+        <select class="form-select form-select-lg" name="Persona_idPersona" id="idPersona">
+          <?php foreach ($Persona as $medicamento) { ?>
+            <option value="<?php echo $medicamento['idPersona']; ?>">
+              <?php echo $medicamento['nombreP']; ?>
+            </option>
+          <?php } ?>
+        </select>
+      </div>
+  </div>
 
   <!--  -->
 

@@ -27,11 +27,11 @@ if($_POST){
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="nombreCat" class="form-label">Nombre Categoria</label>
-                <input type="text" class="form-control" name="nombreCat" id="nombreCat" aria-describedby="helpId" placeholder="Dale un nombre a la Categoria">
+                <input type="text" class="form-control" name="nombreCat" id="nombreCat" aria-describedby="helpId" placeholder="Dale un nombre a la Categoria" required>
             </div>
             <div class="mb-3">
                 <label for="DescripcionCate" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="DescripcionCate" id="DescripcionCate" aria-describedby="helpId" placeholder="Añade una descripcion para la Categoria">
+                <input type="text" class="form-control" name="DescripcionCate" id="DescripcionCate" aria-describedby="helpId" placeholder="Añade una descripcion para la Categoria" required>
             </div>
             <button type="submit" class="btn btn-success">Agregar Categoria</button>
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>

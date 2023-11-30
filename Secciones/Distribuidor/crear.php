@@ -33,29 +33,29 @@ if ($_POST) {
         <div class="mb-3">
           <label for="" class="form-label">Nombre Distribuidor</label>
           <input type="text"
-            class="form-control" name="nombreDistri" id="" aria-describedby="helpId" placeholder="Dale un nombre al Distribuidor">
+            class="form-control" name="nombreDistri" id="" aria-describedby="helpId" placeholder="Dale un nombre al Distribuidor" required>
 
         </div>
         <div class="mb-3">
           <label for="" class="form-label">NIT</label>
           <input type="text"
-            class="form-control" name="NIT_distribuidor" id="" aria-describedby="helpId" placeholder="Ingresa el NIT del Distribuidor">
+            class="form-control" name="NIT_distribuidor" id="" aria-describedby="helpId" placeholder="Ingresa el NIT del Distribuidor" required>
         </div>
         <!-- ejemplo del enctype abajo (Foto) se sigue usando el bs5forminput -->
         <div class="mb-3">
           <label for="" class="form-label">Direccion</label>
           <input type="text"
-            class="form-control" name="direccionDistri" id="" aria-describedby="helpId" placeholder="Ingresa la direccion del Distribuidor">
+            class="form-control" name="direccionDistri" id="" aria-describedby="helpId" placeholder="Ingresa la direccion del Distribuidor" required>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Celular</label>
           <input type="text"
-            class="form-control" name="celularDistri" id="" aria-describedby="helpId" placeholder="Ingresa el celular del distribuidor">
+            class="form-control" name="celularDistri" id="" aria-describedby="helpId" placeholder="Ingresa el celular del distribuidor" required>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Telefono</label>
           <input type="text"
-            class="form-control" name="telefonoDistri" id="" aria-describedby="helpId" placeholder="Ingresa el telefono del distribuidor">
+            class="form-control" name="telefonoDistri" id="" aria-describedby="helpId" placeholder="Ingresa el telefono del distribuidor" required>
         </div>
         <button type="submit" class="btn btn-success" >Agregar distribuidor</button>
         <!-- bs5button-a  para link cancel que nos lleva devuelta al index del user abajo-->
