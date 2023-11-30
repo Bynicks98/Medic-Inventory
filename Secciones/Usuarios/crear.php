@@ -43,7 +43,6 @@ $roles = $sentenciaRoles->fetchAll(PDO::FETCH_ASSOC);
 <?php include("../../Plantillas/header.php"); ?> <!--include para que el menu se muestre en todos los apartados -->
 <br>
 
-Datos del User
 <div class="card"> <!-- bs5cardheadfoot -->
   <div class="card-header">
     Datos del Usuario

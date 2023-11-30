@@ -119,24 +119,24 @@ if ($_POST) {
 include("../../database.php");
 
 if ($_POST && isset($_POST["idCategoria"])) {
-    $idCategoria = filter_var($_POST["idCategoria"], FILTER_VALIDATE_INT);
+  $idCategoria = filter_var($_POST["idCategoria"], FILTER_VALIDATE_INT);
 
-    if ($idCategoria !== false) {
-        $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria WHERE CATEGORIA_idCATEGORIA = :idCategoria");
-        $sentenciaSubcat->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
-        $sentenciaSubcat->execute();
-        $subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
+  if ($idCategoria !== false) {
+    $sentenciaSubcat = $conexion->prepare("SELECT idSUBCATEGORIA, nombreSubcat FROM subcategoria WHERE CATEGORIA_idCATEGORIA = :idCategoria");
+    $sentenciaSubcat->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
+    $sentenciaSubcat->execute();
+    $subcategorias = $sentenciaSubcat->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!empty($subcategorias)) {
-            foreach ($subcategorias as $subcategoria) {
-                echo '<option value="' . $subcategoria['idSUBCATEGORIA'] . '">' . $subcategoria['nombreSubcat'] . '</option>';
-            }
-        } else {
-            echo '<option value="">No hay subcategorías disponibles</option>';
-        }
+    if (!empty($subcategorias)) {
+      foreach ($subcategorias as $subcategoria) {
+        echo '<option value="' . $subcategoria['idSUBCATEGORIA'] . '">' . $subcategoria['nombreSubcat'] . '</option>';
+      }
     } else {
-        echo '<option value="">Error: Categoría no válida</option>';
+      echo '<option value="">No hay subcategorías disponibles</option>';
     }
+  } else {
+    echo '<option value="">Error: Categoría no válida</option>';
+  }
 }
 ?>
 
@@ -280,11 +280,14 @@ if ($_POST && isset($_POST["idCategoria"])) {
           <label for="MEDICAMENTO_PERSONA_ROL_idRol" class="form-label">Rol de la Persona</label>
           <select class="form-select" name="MEDICAMENTO_PERSONA_ROL_idRol" id="MEDICAMENTO_PERSONA_ROL_idRol" required>
             <option value="">Selecciona un rol</option>
-            <?php foreach ($roles as $rol) { ?>
-              <option value="<?php echo $rol['idRol']; ?>">
-                <?php echo $rol['nombreRol']; ?>
-              </option>
-            <?php } ?>
+            <?php foreach ($roles as $rol) {
+              // Evitar que se muestre el rol con id 1 o con nombre 'lector'
+              if ($rol['idRol'] != 3 && $rol['nombreRol'] != 'lector') { ?>
+                <option value="<?php echo $rol['idRol']; ?>">
+                  <?php echo $rol['nombreRol']; ?>
+                </option>
+              <?php }
+            } ?>
           </select>
         </div>
         <div class="mb-3">
@@ -330,22 +333,22 @@ if ($_POST && isset($_POST["idCategoria"])) {
           </div>
         </div>
         <script>
-  document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA').addEventListener('change', function () {
-    var categoriaId = this.value;
+          document.getElementById('MEDICAMENTO_SUBCATEGORIA_CATEGORIA_idCATEGORIA').addEventListener('change', function () {
+            var categoriaId = this.value;
 
-    // Realizar la solicitud AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        // Actualizar las opciones del campo de subcategorías
-        document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA').innerHTML = this.responseText;
-      }
-    };
-    xhr.open('POST', 'obtenerSub.php', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send('idCategoria=' + categoriaId);
-  });
-</script>
+            // Realizar la solicitud AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+              if (this.readyState === 4 && this.status === 200) {
+                // Actualizar las opciones del campo de subcategorías
+                document.getElementById('MEDICAMENTO_SUBCATEGORIA_idSUBCATEGORIA').innerHTML = this.responseText;
+              }
+            };
+            xhr.open('POST', 'obtenerSub.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send('idCategoria=' + categoriaId);
+          });
+        </script>
     </form>
   </div>
 

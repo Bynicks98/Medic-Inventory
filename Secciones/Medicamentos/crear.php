@@ -179,11 +179,14 @@ if ($_POST && isset($_POST["idCategoria"])) {
   <div class="mb-3">
     <label for="idRol" class="form-label">Rol</label>
     <select class="form-select form-select-lg" name="Persona_ROL_idRol" id="idRol">
-      <?php foreach ($roles as $medicamento) { ?>
-        <option value="<?php echo $medicamento['idRol']; ?>">
-          <?php echo $medicamento['nombreRol']; ?>
-        </option>
-      <?php } ?>
+      <?php foreach ($roles as $medicamento) {
+        // Evitar que se muestre el rol con id 1 o con nombre 'lector'
+        if ($medicamento['idRol'] != 3 && $medicamento['nombreRol'] != 'lector') { ?>
+          <option value="<?php echo $medicamento['idRol']; ?>">
+            <?php echo $medicamento['nombreRol']; ?>
+          </option>
+        <?php }
+      } ?>
     </select>
   </div>
   <div class="mb-3">

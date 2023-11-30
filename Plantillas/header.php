@@ -236,18 +236,6 @@ if (!isset($_SESSION['idPersona']) || empty($_SESSION['idPersona'])) {
         </ul>
       </div>
       <div>&nbsp;&nbsp;&nbsp;</div>
-      <div class="d-flex align-items-center ">
-        <ul class="nav navbar-nav">
-          <li>
-            <form class="d-flex ">
-              <input class="form-control me-2;" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-      <div>&nbsp;&nbsp;&nbsp;</div>
-
       <div class="align-items-center d-grid gap-2 d-md-flex justify-content-md-end">
         <ul class="nav navbar-nav">
           <li class="nav-item"><a class="nav-link p-1 btn btn-danger " href="/Medicinven/cerrar.php"

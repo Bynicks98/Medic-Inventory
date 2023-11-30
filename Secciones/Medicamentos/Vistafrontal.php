@@ -38,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     <a name="" id="" class="btn btn-primary" href="crear.php" role="button">Agregar Medicamento</a>
-    <a class="btn btn-success" href="generacionpdf.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
-      role="button">Generar PDF</a>
   </div>
 
   <div class="card-body">
@@ -56,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <th scope="col">Cantidad de unidades</th>
             <th scope="col">Valor unidad Medicamento</th>
             <th scope="col">Numero de Lote </th>
-            <th scope="col">Acciones</th>
+            <th scope="col" style="display: none;">Acciones</th>
             <th>Alerta</th>
 
           </tr>
@@ -93,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <td>
                 <?php echo $registro['noLoteMedica'] ?>
               </td>
-              <td>
+              <td style="display: none;">
                 <a class="btn btn-info" href="editar.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
                   role="button">Editar</a>
                 <a class="btn btn-danger" href="index.php?txtID=<?php echo $registro['idMEDICAMENTO'] ?>"
